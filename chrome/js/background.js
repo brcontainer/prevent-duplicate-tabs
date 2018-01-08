@@ -42,7 +42,8 @@
 
         browser.tabs.query({}, function (tabs) {
 
-            var url, groupTabs = {},
+            var url,
+                groupTabs = {},
                 ignoreHash = !configs.hash,
                 ignoreQuery = !configs.query,
                 ignoreIncognitos = !configs.incognito;
