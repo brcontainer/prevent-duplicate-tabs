@@ -1,5 +1,5 @@
 /*
- * Prevent Duplicate Tabs 0.1.0
+ * Prevent Duplicate Tabs 0.2.0
  * Copyright (c) 2017 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
@@ -36,7 +36,7 @@
     d.addEventListener("dragstart", disableEvent);
 
     d.addEventListener("click", function (e) {
-        if (e.target.nodeName !== "A" || !isHttpRegex.test(e.target.href)) {
+        if (e.button !== 0 || e.target.nodeName !== "A" || !isHttpRegex.test(e.target.href)) {
             return;
         }
 

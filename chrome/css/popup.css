@@ -1,5 +1,5 @@
 /*
- * Prevent Duplicate Tabs 0.1.0
+ * Prevent Duplicate Tabs 0.2.0
  * Copyright (c) 2017 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
@@ -43,11 +43,8 @@ h1, h2, h3 {
     margin: 0;
 }
 
-.main {
-    padding: 2px;
-}
-
 h1 {
+    margin: 0 2px;
     padding: 15px 10px;
     font-size: 11pt;
     border-bottom: 1px #c5c5c5 solid;
@@ -83,7 +80,13 @@ code {
 
 .row {
     padding: 10px 0;
+    border-top: 1px transparent solid;
     border-bottom: 1px #eae5e5 solid;
+}
+
+.row:hover {
+    background-color: #e4e5e3;
+    border-color: #d0c9c9;
 }
 
 .row:last-child {

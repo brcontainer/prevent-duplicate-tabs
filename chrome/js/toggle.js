@@ -1,5 +1,5 @@
 /*
- * Prevent Duplicate Tabs 0.1.0
+ * Prevent Duplicate Tabs 0.2.0
  * Copyright (c) 2017 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
@@ -13,7 +13,7 @@
         }
 
         browser.runtime.sendMessage({
-            "actived": this.checked,
+            "enable": this.checked,
             "setup": this.id
         }, function (response) {});
     }

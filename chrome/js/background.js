@@ -1,5 +1,5 @@
 /*
- * Prevent Duplicate Tabs 0.1.0
+ * Prevent Duplicate Tabs 0.2.0
  * Copyright (c) 2017 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
@@ -82,8 +82,12 @@
         });
     }
 
-    function sortTabs(tab) {
-        return !tab.active;
+    function sortTabs(tab, nextTab) {
+        return (
+            configs.active && !tab.active
+        ) || (
+            configs.old ? tab.id > nextTab.id : tab.id < nextTab.id
+        );
     }
 
     function closeTabs(tabs) {
@@ -108,27 +112,31 @@
 
     function getConfigs() {
         return {
+            "old": getStorage("old"),
+            "active": getStorage("active"),
             "start": getStorage("start"),
-            "incognito": getStorage("incognito"),
             "replace": getStorage("replace"),
             "update": getStorage("update"),
             "create": getStorage("create"),
             "remove": getStorage("remove"),
             "query": getStorage("query"),
-            "hash": getStorage("hash")
+            "hash": getStorage("hash"),
+            "incognito": getStorage("incognito")
         };
     }
 
     if (!getStorage("firstrun")) {
         configs = {
+            "old": true,
+            "active": true,
             "start": true,
-            "incognito": false,
             "replace": true,
             "update": true,
             "create": true,
             "remove": true,
             "query": true,
-            "hash": false
+            "hash": false,
+            "incognito": false
         };
 
         for (var config in configs) {
@@ -149,8 +157,8 @@
 
     browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         if (request.setup) {
-            configs[request.setup] = request.actived;
-            setStorage(request.setup, request.actived);
+            configs[request.setup] = request.enable;
+            setStorage(request.setup, request.enable);
         } else if (request.configs) {
             sendResponse(getConfigs());
         }
