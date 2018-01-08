@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+    <title>Prevent Duplicate Tabs</title>
+    <link rel="icon" type="image/png" href="/images/icon.png">
+    <link rel="stylesheet" type="text/css" href="/css/popup.css">
+    <link rel="stylesheet" type="text/css" href="/css/toggle.css">
+</head>
+<body>
+    <div class="main">
+        <h1>
+            <i class="ico"></i>
+            settings
+        </h1>
+
+        <div class="row">
+            <div class="col">
+                <div class="toggle">
+                    <input type="checkbox" id="start" disabled>
+                    <label for="start">&nbsp;</label>
+                </div>
+            </div>
+            <div class="col">
+                <h2>start</h2>
+                <p>When you start the browser</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="toggle">
+                    <input type="checkbox" id="update" disabled>
+                    <label for="update">&nbsp;</label>
+                </div>
+            </div>
+            <div class="col">
+                <h2>Update</h2>
+                <p>Fired when a tab is updated</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="toggle">
+                <input type="checkbox" id="create" disabled>
+                <label for="create">&nbsp;</label>
+                </div>
+            </div>
+            <div class="col">
+                <h2>create</h2>
+                <p>Fired when a tab is created</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="toggle">
+                    <input type="checkbox" id="remove" disabled>
+                    <label for="remove">&nbsp;</label>
+                </div>
+            </div>
+            <div class="col">
+                <h2>remove</h2>
+                <p>Fired when a tab is closed</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="toggle">
+                    <input type="checkbox" id="replace" disabled>
+                    <label for="replace">&nbsp;</label>
+                </div>
+            </div>
+            <div class="col">
+                <h2>replace</h2>
+                <p>Fired when a tab is replaced with another tab due to prerendering or instant.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="toggle">
+                    <input type="checkbox" id="incognito" disabled>
+                    <label for="incognito">&nbsp;</label>
+                </div>
+            </div>
+            <div class="col">
+                <h2>incognito</h2>
+                <p>Check anonymous tabs</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="toggle">
+                    <input type="checkbox" id="hash" disabled>
+                    <label for="hash">&nbsp;</label>
+                </div>
+            </div>
+            <div class="col">
+                <h2>ignore hash</h2>
+                <p>foo bar bar foo bar bar foo bar bar</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="toggle">
+                    <input type="checkbox" id="query" disabled>
+                    <label for="query">&nbsp;</label>
+                </div>
+            </div>
+            <div class="col">
+                <h2>ignore querystring</h2>
+                <p>foo bar bar foo bar bar foo bar bar</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+                <a href="https://github.com/brcontainer/prevent-duplicate-tabs/issues/new">
+                    report a issue
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <script type="text/javascript" src="/js/toggle.js"></script>
+    <script type="text/javascript" src="/js/popup.js"></script>
+</body>
+</html>
