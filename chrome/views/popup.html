@@ -89,20 +89,7 @@
             </div>
             <div class="col">
                 <h2>incognito</h2>
-                <p>Check anonymous tabs</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="toggle">
-                    <input type="checkbox" id="hash" disabled>
-                    <label for="hash">&nbsp;</label>
-                </div>
-            </div>
-            <div class="col">
-                <h2>ignore hash</h2>
-                <p>foo bar bar foo bar bar foo bar bar</p>
+                <p>Check anonymous tabs (requires you to manually enable in your browser)</p>
             </div>
         </div>
 
@@ -114,8 +101,21 @@
                 </div>
             </div>
             <div class="col">
-                <h2>ignore querystring</h2>
-                <p>foo bar bar foo bar bar foo bar bar</p>
+                <h2>querystring</h2>
+                <p>If disabled (off) it's ignore querystring in URLs, then this <code>http://foo/bar?baz</code> will be equivalent to this <code>http://foo/bar</code></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="toggle">
+                    <input type="checkbox" id="hash" disabled>
+                    <label for="hash">&nbsp;</label>
+                </div>
+            </div>
+            <div class="col">
+                <h2>hash</h2>
+                <p>If disabled (off) it's ignore hash in URLs, then this <code>http://foo/bar#baz</code> will be equivalent to this <code>http://foo/bar</code></p>
             </div>
         </div>
 

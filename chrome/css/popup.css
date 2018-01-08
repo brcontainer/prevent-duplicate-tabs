@@ -7,7 +7,7 @@
  */
 
 html, body {
-    width: 320px;
+    width: 380px;
     padding: 0;
     margin: 0;
 }
@@ -71,6 +71,15 @@ h3 {
     font-size: 8pt;
 }
 
+code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(27,31,35,0.05);
+    border-radius: 3px;
+}
+
 .row {
     padding: 10px 0;
     border-bottom: 1px #eae5e5 solid;
@@ -89,7 +98,7 @@ h3 {
 }
 
 .row > .col:last-child {
-    margin-left: 80px;
+    margin: 0 10px 0 80px;
 }
 
 .row::after {

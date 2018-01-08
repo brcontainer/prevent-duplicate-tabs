@@ -9,7 +9,11 @@
 (function (browser) {
     "use strict";
 
-    var running = false, configs = {};
+    var configs,
+        running = false,
+        linkJsonRE = /^\{(.*?)\}$/,
+        removeHashRE = /#[\s\S]+?$/,
+        removeQueryRE = /\?[\s\S]+?$/;
 
     function setStorage(key, value) {
         localStorage.setItem(key, JSON.stringify({ "value": value }));
@@ -18,7 +22,7 @@
     function getStorage(key) {
         var itemValue = localStorage[key];
 
-        if (!itemValue && !/^\{(.*?)\}$/.test(itemValue)) {
+        if (!itemValue && !linkJsonRE.test(itemValue)) {
             return false;
         }
 
@@ -38,14 +42,27 @@
 
         browser.tabs.query({}, function (tabs) {
 
-            var url, groupTabs = {};
+            var url, groupTabs = {},
+                ignoreHash = !configs.hash,
+                ignoreQuery = !configs.query,
+                ignoreIncognitos = !configs.incognito;
 
             for (var i = tabs.length - 1; i >= 0; i--) {
-                if (tabs[i].pinned) {
+                if (tabs[i].pinned || (ignoreIncognitos && tabs[i].incognito)) {
                     continue;
                 }
 
-                url = (tabs[i].incognito ? "incognito" : "normal") + "::" + tabs[i].url;
+                url = tabs[i].url;
+
+                if (ignoreHash) {
+                    url = url.replace(removeHashRE, "");
+                }
+
+                if (ignoreQuery) {
+                    url = url.replace(removeQueryRE, "");
+                }
+
+                url = (tabs[i].incognito ? "incognito" : "normal") + "::" + url;
 
                 if (!groupTabs[url]) {
                     groupTabs[url] = [];
@@ -88,6 +105,19 @@
         };
     }
 
+    function getConfigs() {
+        return {
+            "start": getStorage("start"),
+            "incognito": getStorage("incognito"),
+            "replace": getStorage("replace"),
+            "update": getStorage("update"),
+            "create": getStorage("create"),
+            "remove": getStorage("remove"),
+            "query": getStorage("query"),
+            "hash": getStorage("hash")
+        };
+    }
+
     if (!getStorage("firstrun")) {
         configs = {
             "start": true,
@@ -96,7 +126,7 @@
             "update": true,
             "create": true,
             "remove": true,
-            "query": false,
+            "query": true,
             "hash": false
         };
 
@@ -105,9 +135,11 @@
         }
 
         setStorage("firstrun", true);
+    } else {
+        configs = getConfigs();
     }
 
-    setTimeout(checkTabs, 100);
+    setTimeout(checkTabs, 100, "start");
 
     browser.tabs.onUpdated.addListener(createEvent("update"));
     browser.tabs.onCreated.addListener(createEvent("create"));
@@ -119,16 +151,7 @@
             configs[request.setup] = request.actived;
             setStorage(request.setup, request.actived);
         } else if (request.configs) {
-            sendResponse({
-                "start": getStorage("start"),
-                "incognito": getStorage("incognito"),
-                "replace": getStorage("replace"),
-                "update": getStorage("update"),
-                "create": getStorage("create"),
-                "remove": getStorage("remove"),
-                "query": getStorage("query"),
-                "hash": getStorage("hash")
-            });
+            sendResponse(getConfigs());
         }
     });
 })(chrome||browser);
