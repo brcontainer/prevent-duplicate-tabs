@@ -1,5 +1,5 @@
 /*
- * Prevent Duplicate Tabs 0.2.0
+ * Prevent Duplicate Tabs 0.3.0
  * Copyright (c) 2017 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
@@ -23,7 +23,6 @@ html, body {
 }
 
 body {
-    background-color: #faf7f7;
     font-size: 10pt;
     -webkit-touch-callout: none;
       -webkit-user-select: none;
@@ -31,6 +30,10 @@ body {
          -moz-user-select: none;
           -ms-user-select: none;
               user-select: none;
+}
+
+body, .main > footer {
+    background-color: #faf7f7;
 }
 
 body, a {
@@ -45,6 +48,7 @@ h1, h2, h3 {
 }
 
 h1 {
+    position: relative;
     margin: 0 0 10px 0;
     padding: 15px 10px;
     font-size: 12pt;
@@ -52,13 +56,46 @@ h1 {
     background-color: rgba(255, 255, 255, 0.9);
 }
 
-h1 i.ico {
-    background: url(../images/setup.svg) right center no-repeat;
+.ico {
+    background: right center no-repeat;
     background-size: contain;
     display: inline-block;
+    vertical-align: bottom;
+}
+.ico.setup {
+    background-image: url(/images/setup.svg);
     height: 24px;
     width: 24px;
-    vertical-align: middle;
+}
+.ico.bug {
+    background-image: url(/images/bug.svg);
+    height: 16px;
+    width: 16px;
+    margin-right: 5px;
+}
+
+h1::after, h1::before {
+    bottom: -1px;
+    left: 19px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+h1::after {
+    border-color: rgba(250, 247, 247, 0);
+    border-bottom-color: #faf7f7;
+    border-width: 5px;
+    margin-left: -5px;
+}
+h1::before {
+    border-color: rgba(222, 218, 218, 0);
+    border-bottom-color: #dedada;
+    border-width: 6px;
+    margin-left: -6px;
 }
 
 h2 {
@@ -157,4 +194,13 @@ h1, .group, .row, .main > footer {
 
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 600px)
+{
+    html, body {
+        max-height: initial;
+        height: auto;
+        width: auto;
+    }
 }

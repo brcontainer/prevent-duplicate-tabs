@@ -1,10 +1,13 @@
 {
     "name": "Prevent Duplicate Tabs",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "manifest_version": 2,
     "description": "Prevent duplicate tabs",
     "icons": {
-        "16":  "images/icon.png"
+        "16": "images/icon.png",
+        "32": "images/32x.png",
+        "48": "images/48x.png",
+        "128":  "images/128x.png"
     },
     "browser_action": {
         "default_icon":  "images/icon.png",
