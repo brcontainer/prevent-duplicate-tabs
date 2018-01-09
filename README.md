@@ -10,6 +10,11 @@ Simple add-on for prevent duplicate tabs, you can custom this using options in p
 - Firefox 48+
 - Opera 40+
 
+## Install
+
+- [Opera](https://addons.opera.com/en/extensions/details/prevent-duplicate-tabs/)
+- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/smart-prevent-duplicate-tabs/)
+
 ## Configs
 
 ### Sort order
