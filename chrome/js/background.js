@@ -84,22 +84,22 @@
 
     function sortTabs(tab, nextTab) {
         return (
-            configs.active && !tab.active
+            configs.active && (nextTab.active || !tab.active)
         ) || (
-            configs.old ? tab.id > nextTab.id : tab.id < nextTab.id
+            configs.old ? tab.id < nextTab.id : tab.id > nextTab.id
         );
     }
 
     function closeTabs(tabs) {
         tabs = tabs.sort(sortTabs);
 
-        var i = 1, j = tabs.length;
+        var j = tabs.length;
 
         if (j < 2) {
             return;
         }
 
-        for (var i = tabs.length - 1; i >= 1; i--) {
+        for (var i = 1; i < j; i++) {
             browser.tabs.remove(tabs[i].id, empty);
         }
     }
