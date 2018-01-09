@@ -26,11 +26,12 @@
     border-radius: 100px;
     cursor: pointer;
     transition: all 0.3s ease;
+    z-inde: 1;
 }
 
 .toggle > label::after {
     position: absolute;
-    z-index: 51;
+    z-index: 2;
     left: 1px;
     top: 1px;
     display: block;

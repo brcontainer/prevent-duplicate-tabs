@@ -14,142 +14,156 @@
             <i class="ico"></i> settings
         </h1>
 
-        <div class="row">
-            <div class="col">
-                <div class="toggle">
-                    <input type="checkbox" id="old" disabled>
-                    <label for="old">&nbsp;</label>
+        <h2>Sort order</h2>
+
+        <div class="group">
+            <div class="row">
+                <div class="col">
+                    <div class="toggle">
+                        <input type="checkbox" id="old" disabled>
+                        <label for="old">&nbsp;</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>Close olders</h3>
+                    <p>Closes the old tabs (enabled or disabled if the tab is active it will keep)</p>
                 </div>
             </div>
-            <div class="col">
-                <h2>Close olds</h2>
-                <p>Closes the old tabs (enabled or disabled if the tab is active it will keep)</p>
+
+            <div class="row">
+                <div class="col">
+                    <div class="toggle">
+                        <input type="checkbox" id="active" disabled>
+                        <label for="active">&nbsp;</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>Prefer tab activated</h3>
+                    <p>Keeping tab that is activated (visible)</p>
+                </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col">
-                <div class="toggle">
-                    <input type="checkbox" id="active" disabled>
-                    <label for="active">&nbsp;</label>
+        <h2>Events</h2>
+
+        <div class="group">
+            <div class="row">
+                <div class="col">
+                    <div class="toggle">
+                        <input type="checkbox" id="start" disabled>
+                        <label for="start">&nbsp;</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>start</h3>
+                    <p>Fired when you start the browser</p>
                 </div>
             </div>
-            <div class="col">
-                <h2>Prefer tab activated</h2>
-                <p>Keeping tab that is activated (visible)</p>
+
+            <div class="row">
+                <div class="col">
+                    <div class="toggle">
+                        <input type="checkbox" id="update" disabled>
+                        <label for="update">&nbsp;</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>Update</h3>
+                    <p>Fired when a tab is updated</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="toggle">
+                    <input type="checkbox" id="create" disabled>
+                    <label for="create">&nbsp;</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>create</h3>
+                    <p>Fired when a tab is created</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="toggle">
+                        <input type="checkbox" id="remove" disabled>
+                        <label for="remove">&nbsp;</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>remove</h3>
+                    <p>Fired when a tab is closed</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="toggle">
+                        <input type="checkbox" id="replace" disabled>
+                        <label for="replace">&nbsp;</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>replace</h3>
+                    <p>Fired when a tab is replaced with another tab due to prerendering or instant.</p>
+                </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col">
-                <div class="toggle">
-                    <input type="checkbox" id="start" disabled>
-                    <label for="start">&nbsp;</label>
+        <h2>URLs</h2>
+
+        <div class="group">
+            <div class="row">
+                <div class="col">
+                    <div class="toggle">
+                        <input type="checkbox" id="query" disabled>
+                        <label for="query">&nbsp;</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>querystring</h3>
+                    <p>If disabled (off) it's ignore querystring in URLs, then this <code>http://foo/bar?baz</code> will be equivalent to this <code>http://foo/bar</code></p>
                 </div>
             </div>
-            <div class="col">
-                <h2>start</h2>
-                <p>When you start the browser</p>
+
+            <div class="row">
+                <div class="col">
+                    <div class="toggle">
+                        <input type="checkbox" id="hash" disabled>
+                        <label for="hash">&nbsp;</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>hash</h3>
+                    <p>If disabled (off) it's ignore hash in URLs, then this <code>http://foo/bar#baz</code> will be equivalent to this <code>http://foo/bar</code></p>
+                </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col">
-                <div class="toggle">
-                    <input type="checkbox" id="update" disabled>
-                    <label for="update">&nbsp;</label>
-                </div>
-            </div>
-            <div class="col">
-                <h2>Update</h2>
-                <p>Fired when a tab is updated</p>
-            </div>
-        </div>
+        <h2>Others</h2>
 
-        <div class="row">
-            <div class="col">
-                <div class="toggle">
-                <input type="checkbox" id="create" disabled>
-                <label for="create">&nbsp;</label>
+        <div class="group">
+            <div class="row">
+                <div class="col">
+                    <div class="toggle">
+                        <input type="checkbox" id="incognito" disabled>
+                        <label for="incognito">&nbsp;</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <h2>create</h2>
-                <p>Fired when a tab is created</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="toggle">
-                    <input type="checkbox" id="remove" disabled>
-                    <label for="remove">&nbsp;</label>
+                <div class="col">
+                    <h3>incognito</h3>
+                    <p>Check anonymous tabs (requires you to manually enable in your browser)</p>
                 </div>
-            </div>
-            <div class="col">
-                <h2>remove</h2>
-                <p>Fired when a tab is closed</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="toggle">
-                    <input type="checkbox" id="replace" disabled>
-                    <label for="replace">&nbsp;</label>
-                </div>
-            </div>
-            <div class="col">
-                <h2>replace</h2>
-                <p>Fired when a tab is replaced with another tab due to prerendering or instant.</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="toggle">
-                    <input type="checkbox" id="query" disabled>
-                    <label for="query">&nbsp;</label>
-                </div>
-            </div>
-            <div class="col">
-                <h2>querystring</h2>
-                <p>If disabled (off) it's ignore querystring in URLs, then this <code>http://foo/bar?baz</code> will be equivalent to this <code>http://foo/bar</code></p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="toggle">
-                    <input type="checkbox" id="hash" disabled>
-                    <label for="hash">&nbsp;</label>
-                </div>
-            </div>
-            <div class="col">
-                <h2>hash</h2>
-                <p>If disabled (off) it's ignore hash in URLs, then this <code>http://foo/bar#baz</code> will be equivalent to this <code>http://foo/bar</code></p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <div class="toggle">
-                    <input type="checkbox" id="incognito" disabled>
-                    <label for="incognito">&nbsp;</label>
-                </div>
-            </div>
-            <div class="col">
-                <h2>incognito</h2>
-                <p>Check anonymous tabs (requires you to manually enable in your browser)</p>
             </div>
         </div>
 
         <footer>
-            <p>
-                <a href="https://github.com/brcontainer/prevent-duplicate-tabs/issues/new">
-                    report a issue
-                </a>
-            </p>
+            <a href="https://github.com/brcontainer/prevent-duplicate-tabs/issues/new">
+                report a issue
+            </a>
         </footer>
     </div>
 

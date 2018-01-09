@@ -23,15 +23,6 @@
         }
     }
 
-    function fixVideoBug(p) {
-        if (p === 1) {
-            d.body.classList.add("fix");
-            fixTimer = setTimeout(fixVideoBug, 5, 2);
-        } else if (p === 2) {
-            d.body.classList.remove("fix");
-        }
-    }
-
     d.addEventListener("contextmenu", disableEvent);
     d.addEventListener("dragstart", disableEvent);
 
@@ -43,15 +34,4 @@
         e.preventDefault();
         browser.tabs.create({ "url": e.target.href });
     });
-
-    function doScroll() {
-        if (fixTimer) {
-            clearTimeout(fixTimer);
-        }
-
-        fixTimer = setTimeout(fixVideoBug, 50, 1);
-    }
-
-    w.addEventListener("scroll", doScroll);
-    d.body.addEventListener("scroll", doScroll);
 })(window, document, chrome||browser);
