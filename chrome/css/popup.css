@@ -1,5 +1,5 @@
 /*
- * Prevent Duplicate Tabs 0.3.0
+ * Prevent Duplicate Tabs 0.4.0
  * Copyright (c) 2017 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
@@ -196,7 +196,7 @@ h1, .group, .row, .main > footer {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-@media (min-width: 600px)
+@media (min-width: 390px)
 {
     html, body {
         max-height: initial;

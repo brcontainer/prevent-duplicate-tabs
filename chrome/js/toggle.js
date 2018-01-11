@@ -1,12 +1,16 @@
 /*
- * Prevent Duplicate Tabs 0.3.0
+ * Prevent Duplicate Tabs 0.4.0
  * Copyright (c) 2017 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-(function (w, d, browser) {
+(function (w, d) {
+    "use strict";
+
+    var browser = w.chrome||w.browser;
+
     function changeSwitch() {
         if (!browser || !browser.runtime || !browser.runtime.sendMessage) {
             return;
@@ -19,7 +23,7 @@
     }
 
     browser.runtime.sendMessage({ "configs": true }, function (response) {
-        var toggles = d.querySelectorAll(".toggle input[type=checkbox]");
+        var current, toggles = d.querySelectorAll(".toggle input[type=checkbox]");
 
         for (var i = 0, j = toggles.length; i < j; i++) {
             current = toggles[i];
@@ -29,4 +33,4 @@
             current.addEventListener("change", changeSwitch);
         }
     });
-})(window, document, chrome||browser);
+})(window, document);

@@ -1,13 +1,15 @@
 /*
- * Prevent Duplicate Tabs 0.3.0
+ * Prevent Duplicate Tabs 0.4.0
  * Copyright (c) 2017 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-(function (browser) {
+(function () {
     "use strict";
+
+    var browser = window.chrome||window.browser;
 
     var configs,
         running = false,
@@ -150,10 +152,10 @@
 
     setTimeout(checkTabs, 100, "start");
 
+    browser.tabs.onReplaced.addListener(createEvent("replace"));
     browser.tabs.onUpdated.addListener(createEvent("update"));
     browser.tabs.onCreated.addListener(createEvent("create"));
     browser.tabs.onRemoved.addListener(createEvent("remove"));
-    browser.tabs.onReplaced.addListener(createEvent("replace"));
 
     browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         if (request.setup) {
@@ -163,4 +165,4 @@
             sendResponse(getConfigs());
         }
     });
-})(chrome||browser);
+})();

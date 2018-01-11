@@ -1,15 +1,16 @@
 /*
- * Prevent Duplicate Tabs 0.3.0
+ * Prevent Duplicate Tabs 0.4.0
  * Copyright (c) 2017 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-(function (w, d, browser) {
+(function (w, d) {
     "use strict";
 
-    var fixTimer, isHttpRegex = /^https?:\/\//;
+    var isHttpRegex = /^https?:\/\//,
+        browser = w.chrome||w.browser;
 
     var debugMode = !(
         "update_url" in browser.runtime.getManifest() ||
@@ -34,4 +35,4 @@
         e.preventDefault();
         browser.tabs.create({ "url": e.target.href });
     });
-})(window, document, chrome||browser);
+})(window, document);
