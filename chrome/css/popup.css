@@ -63,12 +63,12 @@ h1 {
     vertical-align: bottom;
 }
 .ico.setup {
-    background-image: url(/images/setup.svg);
+    background-image: url(../images/setup.svg);
     height: 24px;
     width: 24px;
 }
 .ico.bug {
-    background-image: url(/images/bug.svg);
+    background-image: url(../images/bug.svg);
     height: 16px;
     width: 16px;
     margin-right: 5px;
@@ -91,6 +91,7 @@ h1::after {
     border-width: 5px;
     margin-left: -5px;
 }
+
 h1::before {
     border-color: rgba(222, 218, 218, 0);
     border-bottom-color: #dedada;
@@ -202,5 +203,11 @@ h1, .group, .row, .main > footer {
         max-height: initial;
         height: auto;
         width: auto;
+    }
+}
+
+@-moz-document url-prefix() {
+    body {
+        background-color: transparent;
     }
 }
