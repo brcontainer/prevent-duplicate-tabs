@@ -10,12 +10,15 @@
     "use strict";
 
     var isHttpRegex = /^https?:\/\//,
-        browser = w.chrome||w.browser;
+        browser = w.chrome||w.browser,
+        view = d.getElementById("version");
 
     var debugMode = !(
         "update_url" in browser.runtime.getManifest() ||
         browser.runtime.id === "stackexchangenotifications@mozilla.org"
     );
+
+    version.textContent = "Version " + browser.runtime.getManifest().version;
 
     function disableEvent(e) {
         if (!debugMode) {
@@ -32,7 +35,19 @@
             return;
         }
 
+        var el = e.target;
+
+        if (!el.href) {
+            while ((el = el.parentNode) && el.nodeType === 1) {
+                if (el.tagName === "A") {
+                    break;
+                }
+            }
+        }
+
+        if (!el || !el.href) return;
+
         e.preventDefault();
-        browser.tabs.create({ "url": e.target.href });
+        browser.tabs.create({ "url": el.href });
     });
 })(window, document);

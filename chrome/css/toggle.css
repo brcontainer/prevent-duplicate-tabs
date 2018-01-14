@@ -17,30 +17,29 @@
 
 .toggle > label {
     position: relative;
-    z-index: 50;
+    z-index: 1;
     display: block;
     height: 26px;
     width: 52px;
     background-color: #dbddde;
-    border: 1px #bdbfbf solid;
+    box-shadow: 0 0 1px rgba(0,0,0,0.3) inset;
     border-radius: 100px;
     cursor: pointer;
     transition: all 0.3s ease;
-    z-index: 1;
 }
 
 .toggle > label::after {
     position: absolute;
     z-index: 2;
-    left: 1px;
-    top: 1px;
+    left: 2px;
+    top: 2px;
     display: block;
     width: 22px;
     height: 22px;
     border-radius: 100px;
     background: #fff;
-    box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
     content: "";
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
     transition: all 0.3s ease;
 }
 
@@ -50,11 +49,11 @@
 
 .toggle > input:checked ~ label {
     background-color: #4cda64;
-    border-color: #4cda64;
+    box-shadow: none;
 }
 
 .toggle > input:checked ~ label::after {
-    left: 27px;
+    left: 28px;
 }
 
 .toggle > input:disabled ~ label {

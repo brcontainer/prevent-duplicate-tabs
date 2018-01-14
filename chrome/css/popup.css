@@ -137,7 +137,6 @@ code {
 }
 
 .row:last-child {
-    padding-bottom: 24px;
     border-bottom: none;
 }
 
@@ -152,34 +151,40 @@ code {
     margin: 0 10px 0 80px;
 }
 
-.row::after {
-    clear: both;
-    height: 0;
-    display: block;
-    content: " ";
-}
-
 .row > .col > p {
     padding: 0;
     margin: 0;
 }
 
 .main > footer {
-    padding: 16px;
+    padding: 16px 4px;
+    margin: 0 12px;
     text-align: center;
     border-top: 1px solid;
 }
 
 .main > footer a {
     text-decoration: none;
+    float: right;
 }
 
-.main > footer a, .row > .col > p {
+.main > footer #version {
+    float: left;
+}
+
+.main > footer, .main > footer a, .row > .col > p {
     color: #928b8b;
 }
 
 h1, .group, .row, .main > footer {
     border-color: #dedada;
+}
+
+.row::after, .main > footer::after {
+    clear: both;
+    height: 0;
+    display: block;
+    content: " ";
 }
 
 ::-webkit-scrollbar {
@@ -204,10 +209,22 @@ h1, .group, .row, .main > footer {
         height: auto;
         width: auto;
     }
-}
 
-@-moz-document url-prefix() {
-    body {
+    h1 {
         background-color: transparent;
+        padding-right: 2px;
+        padding-left: 2px;
+        margin-right: 8px;
+        margin-left: 8px;
+    }
+
+    h1::after, h1::before {
+        display: none;
+    }
+
+    @-moz-document url-prefix() {
+        body {
+            background-color: transparent;
+        }
     }
 }

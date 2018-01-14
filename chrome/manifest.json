@@ -7,11 +7,14 @@
         "16": "images/icon.png",
         "32": "images/32x.png",
         "48": "images/48x.png",
-        "128":  "images/128x.png"
+        "128": "images/128x.png"
     },
     "browser_action": {
         "default_icon":  "images/icon.png",
         "default_popup": "views/popup.html"
+    },
+    "options_ui": {
+        "page": "views/popup.html"
     },
     "background": {
         "scripts": [
