@@ -1,5 +1,5 @@
 /*
- * Prevent Duplicate Tabs 0.4.0
+ * Prevent Duplicate Tabs 0.5.0
  * Copyright (c) 2017 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
@@ -13,9 +13,12 @@
 
     var configs,
         running = false,
+        isHttpRE = /^https?:\/\/\w/,
         linkJsonRE = /^\{(.*?)\}$/,
         removeHashRE = /#[\s\S]+?$/,
         removeQueryRE = /\?[\s\S]+?$/;
+
+    function empty() {}
 
     function setStorage(key, value) {
         localStorage.setItem(key, JSON.stringify({ "value": value }));
@@ -33,8 +36,6 @@
         return current ? current.value : itemValue;
     }
 
-    function empty() {}
-
     function checkTabs(type) {
         if (running || !configs[type]) {
             return;
@@ -46,12 +47,17 @@
 
             var url,
                 groupTabs = {},
+                onlyHttp = !configs.http,
                 ignoreHash = !configs.hash,
                 ignoreQuery = !configs.query,
                 ignoreIncognitos = !configs.incognito;
 
             for (var i = tabs.length - 1; i >= 0; i--) {
-                if (tabs[i].pinned || (ignoreIncognitos && tabs[i].incognito)) {
+                if (
+                    tabs[i].pinned ||
+                    (ignoreIncognitos && tabs[i].incognito) ||
+                    (onlyHttp && isHttpRE.test(tabs[i]))
+                ) {
                     continue;
                 }
 
@@ -80,26 +86,28 @@
 
             groupTabs = tabs = null;
 
-            running = false;
+            setTimeout(function () {
+                running = false;
+            }, 1000);
         });
     }
 
     function sortTabs(tab, nextTab) {
-        return (
-            configs.active && (nextTab.active || !tab.active)
-        ) || (
-            configs.old ? tab.id < nextTab.id : tab.id > nextTab.id
-        );
+        if (configs.active && (tab.actived || nextTab.actived)) {
+            return tab.actived ? -1 : 1;
+        }
+
+        return configs.old && tab.id < nextTab.id ? 1 : -1;
     }
 
     function closeTabs(tabs) {
-        tabs = tabs.sort(sortTabs);
-
         var j = tabs.length;
 
         if (j < 2) {
             return;
         }
+
+        tabs = tabs.sort(sortTabs);
 
         for (var i = 1; i < j; i++) {
             browser.tabs.remove(tabs[i].id, empty);
@@ -121,6 +129,7 @@
             "update": getStorage("update"),
             "create": getStorage("create"),
             "remove": getStorage("remove"),
+            "http": getStorage("http"),
             "query": getStorage("query"),
             "hash": getStorage("hash"),
             "incognito": getStorage("incognito")
@@ -136,6 +145,7 @@
             "update": true,
             "create": true,
             "remove": true,
+            "http": true,
             "query": true,
             "hash": false,
             "incognito": false
