@@ -1,20 +1,25 @@
 /*
- * Prevent Duplicate Tabs 0.5.0
- * Copyright (c) 2017 Guilherme Nascimento (brcontainer@yahoo.com.br)
+ * Prevent Duplicate Tabs 0.5.1
+ * Copyright (c) 2020 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-(function () {
+(function (w) {
     "use strict";
 
-    var browser = window.chrome||window.browser;
+    if (typeof browser === "undefined") {
+        w.browser = chrome;
+    } else if (!w.browser) {
+        w.browser = browser;
+    }
 
     var configs,
-        running = false,
-        isHttpRE = /^https?:\/\/\w/,
-        linkJsonRE = /^\{(.*?)\}$/,
+        timeout,
+        isHttpRE = /^https?:\/\/\w/i,
+        isNewTabRE = /^(about:blank|chrome:\/\/newtab\/?)$/i,
+        linkJsonRE = /^\{[\s\S]+?\}$/,
         removeHashRE = /#[\s\S]+?$/,
         removeQueryRE = /\?[\s\S]+?$/;
 
@@ -37,59 +42,64 @@
     }
 
     function checkTabs(type) {
-        if (running || !configs[type]) {
-            return;
+        if (configs[type]) {
+            browser.tabs.query({}, preGetTabs);
+        }
+    }
+
+    function preGetTabs(tabs) {
+        if (timeout) {
+            clearTimeout(timeout);
         }
 
-        running = true;
+        timeout = setTimeout(getTabs, 50, tabs);
+    }
 
-        browser.tabs.query({}, function (tabs) {
+    function getTabs(tabs) {
+        var tab,
+            url,
+            groupTabs = {},
+            ignoreHttp = !configs.http,
+            ignoreHash = !configs.hash,
+            ignoreQuery = !configs.query,
+            ignoreIncognitos = !configs.incognito;
 
-            var url,
-                groupTabs = {},
-                onlyHttp = !configs.http,
-                ignoreHash = !configs.hash,
-                ignoreQuery = !configs.query,
-                ignoreIncognitos = !configs.incognito;
+        for (var i = tabs.length - 1; i >= 0; i--) {
+            tab = tabs[i];
+            url = tab.url;
 
-            for (var i = tabs.length - 1; i >= 0; i--) {
-                if (
-                    tabs[i].pinned ||
-                    (ignoreIncognitos && tabs[i].incognito) ||
-                    (onlyHttp && isHttpRE.test(tabs[i]))
-                ) {
-                    continue;
-                }
-
-                url = tabs[i].url;
-
-                if (ignoreHash) {
-                    url = url.replace(removeHashRE, "");
-                }
-
-                if (ignoreQuery) {
-                    url = url.replace(removeQueryRE, "");
-                }
-
-                url = (tabs[i].incognito ? "incognito" : "normal") + "::" + url;
-
-                if (!groupTabs[url]) {
-                    groupTabs[url] = [];
-                }
-
-                groupTabs[url].push({ "id": tabs[i].id, "actived": tabs[i].active });
+            if (
+                tab.pinned ||
+                url === "" ||
+                isNewTabRE.test(url) ||
+                (ignoreIncognitos && tab.incognito) ||
+                (ignoreHttp && isHttpRE.test(tab))
+            ) {
+                continue;
             }
 
-            for (var url in groupTabs) {
-                closeTabs(groupTabs[url]);
+            if (ignoreHash) {
+                url = url.replace(removeHashRE, "");
             }
 
-            groupTabs = tabs = null;
+            if (ignoreQuery) {
+                url = url.replace(removeQueryRE, "");
+            }
 
-            setTimeout(function () {
-                running = false;
-            }, 1000);
-        });
+            url = (tab.incognito ? "incognito" : "normal") + "::" + url;
+
+            if (!groupTabs[url]) {
+                groupTabs[url] = [];
+            }
+
+            groupTabs[url].push({ "id": tab.id, "actived": tab.active });
+        }
+
+        for (var url in groupTabs) {
+            closeTabs(groupTabs[url]);
+        }
+
+        groupTabs = tabs = null;
     }
 
     function sortTabs(tab, nextTab) {
@@ -175,4 +185,4 @@
             sendResponse(getConfigs());
         }
     });
-})();
+})(window);

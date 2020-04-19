@@ -1,6 +1,6 @@
 /*
- * Prevent Duplicate Tabs 0.5.0
- * Copyright (c) 2017 Guilherme Nascimento (brcontainer@yahoo.com.br)
+ * Prevent Duplicate Tabs 0.5.1
+ * Copyright (c) 2020 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
  * https://github.com/brcontainer/prevent-duplicate-tabs
@@ -32,7 +32,7 @@ body {
               user-select: none;
 }
 
-body, .main > footer {
+body {
     background-color: #faf7f7;
 }
 
@@ -124,12 +124,20 @@ code {
     border: 1px solid;
     border-radius: 3px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.04);
+    transition: all .1s ease;
+}
+
+.group:hover {
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.04),
+                0 0 8px 0 rgba(0, 0, 0, 0.04),
+                0 0 15px 0 rgba(0, 0, 0, 0.01),
+                0 0 20px 4px rgba(0, 0, 0, 0.02);
 }
 
 .row {
     padding: 5px 0 12px 0;
     border-bottom: 1px solid;
-    transition: all .1s;
+    transition: all .1s ease;
 }
 
 .row:hover {
@@ -187,6 +195,11 @@ h1, .group, .row, .main > footer {
     content: " ";
 }
 
+html, html * {
+    scrollbar-color: #cdcdcd #f0f0f0;
+    scrollbar-width: thin;
+}
+
 ::-webkit-scrollbar {
     background: #dfdfdf;
     border-radius: 4px;
@@ -222,9 +235,11 @@ h1, .group, .row, .main > footer {
         display: none;
     }
 
-    @-moz-document url-prefix() {
-        body {
-            background-color: transparent;
-        }
+    body {
+        background-color: transparent;
+    }
+
+    .row {
+        background-color: #fff8f8;
     }
 }

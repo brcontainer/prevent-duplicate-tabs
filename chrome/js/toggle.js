@@ -1,6 +1,6 @@
 /*
- * Prevent Duplicate Tabs 0.5.0
- * Copyright (c) 2017 Guilherme Nascimento (brcontainer@yahoo.com.br)
+ * Prevent Duplicate Tabs 0.5.1
+ * Copyright (c) 2020 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
  * https://github.com/brcontainer/prevent-duplicate-tabs
@@ -9,17 +9,21 @@
 (function (w, d) {
     "use strict";
 
-    var browser = w.chrome||w.browser;
+    var sync = false;
+
+    if (typeof browser === "undefined") {
+        w.browser = chrome;
+    } else if (!w.browser) {
+        w.browser = browser;
+    }
 
     function changeSwitch() {
-        if (!browser || !browser.runtime || !browser.runtime.sendMessage) {
-            return;
+        if (sync && browser && browser.runtime && browser.runtime.sendMessage) {
+            browser.runtime.sendMessage({
+                "enable": this.checked,
+                "setup": this.id
+            }, function (response) {});
         }
-
-        browser.runtime.sendMessage({
-            "enable": this.checked,
-            "setup": this.id
-        }, function (response) {});
     }
 
     browser.runtime.sendMessage({ "configs": true }, function (response) {
@@ -31,6 +35,16 @@
             current.disabled = false;
 
             current.addEventListener("change", changeSwitch);
+        }
+    });
+
+    browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+        if (request.setup) {
+            sync = true;
+
+            d.getElementById(request.setup).checked = request.enable;
+
+            sync = false;
         }
     });
 })(window, document);

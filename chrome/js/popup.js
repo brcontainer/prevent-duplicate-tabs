@@ -1,6 +1,6 @@
 /*
- * Prevent Duplicate Tabs 0.5.0
- * Copyright (c) 2017 Guilherme Nascimento (brcontainer@yahoo.com.br)
+ * Prevent Duplicate Tabs 0.5.1
+ * Copyright (c) 2020 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
  * https://github.com/brcontainer/prevent-duplicate-tabs
@@ -9,8 +9,13 @@
 (function (w, d) {
     "use strict";
 
-    var isHttpRegex = /^https?:\/\//,
-        browser = w.chrome||w.browser,
+    if (typeof browser === "undefined") {
+        w.browser = chrome;
+    } else if (!w.browser) {
+        w.browser = browser;
+    }
+
+    var isHttpRE = /^https?:\/\/\w/i,
         view = d.getElementById("version");
 
     var debugMode = !(
@@ -31,23 +36,24 @@
     d.addEventListener("dragstart", disableEvent);
 
     d.addEventListener("click", function (e) {
-        if (e.button !== 0 || e.target.nodeName !== "A" || !isHttpRegex.test(e.target.href)) {
+        if (e.button !== 0) {
             return;
         }
 
         var el = e.target;
 
-        if (!el.href) {
-            while ((el = el.parentNode) && el.nodeType === 1) {
-                if (el.tagName === "A") {
-                    break;
-                }
+        if (el.nodeName !== "A") {
+            el = el.closest("a[href]");
+
+            if (!el) {
+                return;
             }
         }
 
-        if (!el || !el.href) return;
+        if (!isHttpRE.test(el.href)) return;
 
         e.preventDefault();
+
         browser.tabs.create({ "url": el.href });
     });
 })(window, document);
