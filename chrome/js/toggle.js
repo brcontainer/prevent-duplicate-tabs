@@ -17,8 +17,10 @@
         w.browser = browser;
     }
 
-    function changeSwitch() {
-        if (sync && browser && browser.runtime && browser.runtime.sendMessage) {
+    function changeSwitch(e) {
+        if (browser && browser.runtime && browser.runtime.sendMessage) {
+            sync = true;
+
             browser.runtime.sendMessage({
                 "enable": this.checked,
                 "setup": this.id
@@ -33,18 +35,20 @@
             current = toggles[i];
             current.checked = !!response[current.id];
             current.disabled = false;
-
-            current.addEventListener("change", changeSwitch);
         }
     });
 
     browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-        if (request.setup) {
-            sync = true;
-
+        if (sync && request.setup) {
             d.getElementById(request.setup).checked = request.enable;
-
-            sync = false;
         }
+
+        sync = false;
     });
+
+    var toggles = d.querySelectorAll(".toggle input[type=checkbox]");
+
+    for (var i = 0, j = toggles.length; i < j; i++) {
+        toggles[i].addEventListener("change", changeSwitch);
+    }
 })(window, document);

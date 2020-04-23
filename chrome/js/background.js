@@ -18,7 +18,7 @@
     var configs,
         timeout,
         isHttpRE = /^https?:\/\/\w/i,
-        isNewTabRE = /^(about:blank|chrome:\/\/newtab\/?)$/i,
+        isNewTabRE = /^(about:blank|chrome:\/+?(newtab|startpageshared)\/?)$/i,
         linkJsonRE = /^\{[\s\S]+?\}$/,
         removeHashRE = /#[\s\S]+?$/,
         removeQueryRE = /\?[\s\S]+?$/;
@@ -59,7 +59,7 @@
         var tab,
             url,
             groupTabs = {},
-            ignoreHttp = !configs.http,
+            onlyHttp = configs.http,
             ignoreHash = !configs.hash,
             ignoreQuery = !configs.query,
             ignoreIncognitos = !configs.incognito;
@@ -73,7 +73,7 @@
                 url === "" ||
                 isNewTabRE.test(url) ||
                 (ignoreIncognitos && tab.incognito) ||
-                (ignoreHttp && isHttpRE.test(tab))
+                (onlyHttp && !isHttpRE.test(url))
             ) {
                 continue;
             }
