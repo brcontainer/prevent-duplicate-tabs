@@ -64,3 +64,7 @@
 .toggle > input:disabled ~ label::after {
     background-color: rgba(255, 255, 255, 0.3);
 }
+
+.toggle.red > input:checked ~ label {
+    background-color: #e20b0b;
+}

@@ -58,7 +58,21 @@
         }
     }
 
+    function isDisabled()
+    {
+        return configs.turnoff || (
+            !configs.start &&
+            !configs.replace &&
+            !configs.update &&
+            !configs.create &&
+            !configs.remove &&
+            !configs.datachange
+        );
+    }
+
     function getTabs(tabs) {
+        if (configs.turnoff) return;
+
         var tab,
             url,
             groupTabs = {},
@@ -123,12 +137,13 @@
     function createEvent(type) {
         return function (tab) {
             setTimeout(checkTabs, 10, type);
-            setTimeout(toggleIgnoreIcon, 100, tab.id || tab, tab.url);
+            setTimeout(toggleIgnoreIcon, 100, tab.id || tab.tabId || tab, tab.url);
         };
     }
 
     function getConfigs() {
         return {
+            "turnoff": getStorage("turnoff"),
             "old": getStorage("old"),
             "active": getStorage("active"),
             "start": getStorage("start"),
@@ -189,7 +204,7 @@
         } else if (isHttpRE.test(url)) {
             var icon;
 
-            if (ignoreds.urls.indexOf(url) !== -1 || ignoreds.hosts.indexOf(new URL(url).host) !== -1) {
+            if (isDisabled() || ignoreds.urls.indexOf(url) !== -1 || ignoreds.hosts.indexOf(new URL(url).host) !== -1) {
                 icon = "/images/disabled.png";
             } else {
                 icon = "/images/icon.png";
@@ -202,8 +217,17 @@
         }
     }
 
+    function updateCurrentIcon(tabs)
+    {
+        if (tabs[0]) {
+            console.log('updateCurrentIcon', tabs[0]);
+            toggleIgnoreIcon(tabs[0].id, tabs[0].url);
+        }
+    }
+
     if (!getStorage("firstrun")) {
         configs = {
+            "turnoff": false,
             "old": true,
             "active": true,
             "start": true,
@@ -246,6 +270,7 @@
         } else if (request.setup) {
             configs[request.setup] = request.enable;
             setStorage(request.setup, request.enable);
+            browser.tabs.query({ active: true, lastFocusedWindow: true }, updateCurrentIcon);
         } else if (request.configs) {
             sendResponse(getConfigs());
         } else if (request.ignored) {

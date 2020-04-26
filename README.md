@@ -21,11 +21,11 @@ Simple add-on for prevent duplicate tabs, you can custom this using options in p
 
 - **Close olders**
 
-    Closes the old tabs (close most recent tab)
+    Closes the oldest repeated tabs
 
-- **Prefer tab activated**
+- **Keep the tab that is active**
 
-    Keeping tab that is activated (visible)
+    Don't close actives tabs
 
 ### Events
 
@@ -48,6 +48,10 @@ Simple add-on for prevent duplicate tabs, you can custom this using options in p
 - **replace**
 
     Close repeated tabs when a tab is replaced with another tab due to prerendering or instant, more details in [`tabs.onReplaced.addListener`](https://developer.chrome.com/extensions/tabs#event-onReplaced)
+
+- **datachange**
+
+    Close repeated tabs when you change **sort order**, **events**, **urls** and **others** configurations from extension
 
 ### URLs
 
