@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html id="config">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
@@ -13,6 +13,62 @@
         <h1>
             <i class="ico setup"></i> settings
         </h1>
+
+        <div id="actions">
+
+            <h2>Actions</h2>
+
+            <div class="group">
+                <div class="row" data-ignored="hosts[host]">
+                    <div class="col">
+                        <button data-type="host">
+                            <i class="ico knowed"></i>
+                            <i class="ico ignored"></i>
+                        </button>
+                    </div>
+                    <div class="col">
+                        <h3>
+                            <span class="knowed">Ignore</span>
+                            <span class="ignored">Reconsider</span>
+                            this host
+                        </h3>
+                        <p>
+                            <span class="knowed">
+                                Preventing duplicate tabs whose address contains the <code data-value="host"></code> host
+                            </span>
+                            <span class="ignored">
+                                Repeated tabs with <code data-value="host"></code> host will NOT be considered duplicates
+                            </span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row" data-ignored="urls[url]">
+                    <div class="col">
+                        <button data-type="url">
+                            <i class="ico knowed"></i>
+                            <i class="ico ignored"></i>
+                        </button>
+                    </div>
+                    <div class="col">
+                        <h3>
+                            <span class="knowed">Ignore</span>
+                            <span class="ignored">Reconsider</span>
+                            this URL
+                        </h3>
+                        <p>
+                            <span class="knowed">
+                                Preventing duplicate tabs with the <code data-value="url"></code> address
+                            </span>
+                            <span class="ignored">
+                                Repeated tabs with <code data-value="url"></code> address will NOT be considered duplicates
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
         <h2>Sort order</h2>
 
@@ -111,6 +167,19 @@
                     <p>Close repeated tabs when a tab is replaced with another tab due to prerendering or instant</p>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="toggle">
+                        <input type="checkbox" id="datachange" disabled>
+                        <label for="datachange"></label>
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>Datachange</h3>
+                    <p>Close repeated tabs when you change "sort order", "events", "urls" and "others" configurations from extension</p>
+                </div>
+            </div>
         </div>
 
         <h2>URLs</h2>
@@ -183,5 +252,6 @@
 
     <script type="text/javascript" src="../js/toggle.js"></script>
     <script type="text/javascript" src="../js/popup.js"></script>
+    <script type="text/javascript" src="../js/data.js"></script>
 </body>
 </html>

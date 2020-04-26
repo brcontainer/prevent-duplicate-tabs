@@ -56,6 +56,10 @@ h1 {
     background-color: rgba(255, 255, 255, 0.9);
 }
 
+button * {
+    pointer-events: none;
+}
+
 .ico {
     background: right center no-repeat;
     background-size: contain;
@@ -72,6 +76,16 @@ h1 {
     height: 16px;
     width: 16px;
     margin-right: 5px;
+}
+.ico.knowed {
+    background-image: url(../images/observer.svg#knowed);
+    height: 24px;
+    width: 24px;
+}
+.ico.ignored {
+    background-image: url(../images/observer.svg#ignored);
+    height: 24px;
+    width: 24px;
 }
 
 h1::after, h1::before {
@@ -113,9 +127,18 @@ code {
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     padding: 0.2em 0.4em;
     margin: 0;
+    color: #383535;
     font-size: 85%;
+    font-weight: bold;
     background-color: rgba(27,31,35,0.05);
     border-radius: 3px;
+    overflow: hidden;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: text-bottom;
+    line-height: 0.9;
 }
 
 .group {
@@ -162,6 +185,7 @@ code {
 .row > .col > p {
     padding: 0;
     margin: 0;
+    line-height: 1.3;
 }
 
 .main > footer {
@@ -195,13 +219,48 @@ h1, .group, .row, .main > footer {
     content: " ";
 }
 
+[data-show]:not(.data-show) {
+    display: none;
+}
+
+[data-ignored] button {
+    background: transparent;
+    outline: none;
+    border: none;
+    border-radius: 24px;
+    margin: 9px auto 0 auto;
+    padding: 12px 0;
+    height: 48px;
+    width: 48px;
+    cursor: pointer;
+}
+
+.row.data-ignored .ico.knowed,
+.row.data-ignored span.knowed,
+.row:not(.data-ignored) .ico.ignored,
+.row:not(.data-ignored) span.ignored {
+    display: none;
+}
+
+[data-ignored] button:hover {
+    background-color: rgba(0,0,0,0.05)
+}
+
+.row.data-ignored {
+    background-color: #ffdfdf;
+}
+
+.row.data-ignored:hover {
+    background-color: #ffcece;
+}
+
 html, html * {
     scrollbar-color: #cdcdcd #f0f0f0;
     scrollbar-width: thin;
 }
 
 ::-webkit-scrollbar {
-    background: #dfdfdf;
+    background-color: #dfdfdf;
     border-radius: 4px;
     width: 8px;
 }
@@ -215,31 +274,43 @@ html, html * {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-@media (min-width: 390px)
-{
-    html, body {
-        max-height: initial;
-        height: auto;
-        width: auto;
-    }
+html:target, html:target body {
+    max-height: initial;
+    height: auto;
+    width: auto;
+}
 
-    h1 {
-        background-color: transparent;
-        padding-right: 2px;
-        padding-left: 2px;
-        margin-right: 8px;
-        margin-left: 8px;
-    }
+html:target h1 {
+    background-color: transparent;
+    padding-right: 2px;
+    padding-left: 2px;
+    margin-right: 8px;
+    margin-left: 8px;
+}
 
-    h1::after, h1::before {
-        display: none;
-    }
+html:target h1::after, html:target h1::before {
+    display: none;
+}
 
-    body {
-        background-color: transparent;
-    }
+html:target body {
+    background-color: transparent;
+}
 
-    .row {
-        background-color: #fff8f8;
-    }
+html:target .row {
+    background-color: #fff8f8;
+}
+
+html:target #actions, #actions:not(.show) {
+    display: none;
+}
+
+html:target body::before {
+    box-shadow: 0 0 8px 2px rgba(0,0,0,0.3);
+    background-color: #fff;
+    position: fixed;
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
+    content: "";
 }

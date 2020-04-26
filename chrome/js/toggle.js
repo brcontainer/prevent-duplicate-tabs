@@ -39,7 +39,7 @@
     });
 
     browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-        if (sync && request.setup) {
+        if (!sync && request.setup) {
             d.getElementById(request.setup).checked = request.enable;
         }
 

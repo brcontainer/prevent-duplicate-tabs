@@ -15,7 +15,7 @@
         w.browser = browser;
     }
 
-    var isHttpRE = /^https?:\/\/\w/i,
+    var isHttpRE = /^https?:\/\/[^\/]/i,
         view = d.getElementById("version");
 
     var debugMode = !(
@@ -26,28 +26,24 @@
     version.textContent = "Version " + browser.runtime.getManifest().version;
 
     function disableEvent(e) {
-        if (!debugMode) {
-            e.preventDefault();
-            return false;
-        }
+        e.preventDefault();
+        return false;
     }
 
-    d.addEventListener("contextmenu", disableEvent);
-    d.addEventListener("dragstart", disableEvent);
+    if (!debugMode) {
+        d.addEventListener("contextmenu", disableEvent);
+        d.addEventListener("dragstart", disableEvent);
+    }
 
     d.addEventListener("click", function (e) {
-        if (e.button !== 0) {
-            return;
-        }
+        if (e.button !== 0) return;
 
         var el = e.target;
 
         if (el.nodeName !== "A") {
             el = el.closest("a[href]");
 
-            if (!el) {
-                return;
-            }
+            if (!el) return;
         }
 
         if (!isHttpRE.test(el.href)) return;
