@@ -253,7 +253,6 @@
         }
 
         if (request.setup || request.ignore !== u) {
-            console.log('configs.datachange', configs.datachange)
             if (configs.datachange) setTimeout(checkTabs, 10, "datachange");
         }
     });
