@@ -199,7 +199,7 @@
     {
         if (url === u) {
             browser.tabs.get(tab, function (tab) {
-                toggleIgnoreIcon(tab.id, tab.url);
+                if (tab) toggleIgnoreIcon(tab.id, tab.url);
             });
         } else {
             var icon;

@@ -20,7 +20,7 @@
 
     var debugMode = !(
         "update_url" in browser.runtime.getManifest() ||
-        browser.runtime.id === "stackexchangenotifications@mozilla.org"
+        browser.runtime.id === "{e80594de-acca-4551-af7a-c9bd9d2f3388}"
     );
 
     version.textContent = "Version " + browser.runtime.getManifest().version;

@@ -1,7 +1,7 @@
 {
     "author": "Guilherme Nascimento",
     "name": "Prevent Duplicate Tabs",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "manifest_version": 2,
     "description": "Prevent duplicate tabs",
     "icons": {

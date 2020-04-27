@@ -4,16 +4,19 @@ Simple add-on for prevent duplicate tabs, you can custom this using options in p
 
 ![promocional](promo.png)
 
-## Requirements
+## Supported browsers
 
 - Chrome 30+
 - Firefox 48+
+- Edge (Chromium)
 - Opera 40+
 
 ## Install
 
-- [Opera](https://addons.opera.com/en/extensions/details/prevent-duplicate-tabs/)
+- [Chrome](https://chrome.google.com/webstore/detail/prevent-duplicate-tabs/eednccpckdkpojaiemedoejdngappaag)
 - [Firefox](https://addons.mozilla.org/en-US/firefox/addon/smart-prevent-duplicate-tabs/)
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/iijplllphnkkeepcinimpjobncicbbmb)
+- [Opera](https://addons.opera.com/en/extensions/details/prevent-duplicate-tabs/)
 
 ## Configs
 
