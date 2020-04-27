@@ -71,7 +71,7 @@
     }
 
     function getTabs(tabs) {
-        if (configs.turnoff) return;
+        if (isDisabled()) return;
 
         var tab,
             url,
@@ -201,7 +201,7 @@
             browser.tabs.get(tab, function (tab) {
                 toggleIgnoreIcon(tab.id, tab.url);
             });
-        } else if (isHttpRE.test(url)) {
+        } else {
             var icon;
 
             if (isDisabled() || ignoreds.urls.indexOf(url) !== -1 || ignoreds.hosts.indexOf(new URL(url).host) !== -1) {
@@ -219,10 +219,7 @@
 
     function updateCurrentIcon(tabs)
     {
-        if (tabs[0]) {
-            console.log('updateCurrentIcon', tabs[0]);
-            toggleIgnoreIcon(tabs[0].id, tabs[0].url);
-        }
+        if (tabs[0]) toggleIgnoreIcon(tabs[0].id, tabs[0].url);
     }
 
     if (!getStorage("firstrun")) {
