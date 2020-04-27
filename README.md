@@ -25,7 +25,7 @@ Simple add-on for prevent duplicate tabs, you can custom this using options in p
 
 - **Keep the tab that is active**
 
-    Don't close actives tabs
+    Don't close active tabs
 
 ### Events
 
