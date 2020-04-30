@@ -7,10 +7,24 @@
  */
 
 html, body {
-    overflow-x: hidden;
     padding: 0;
     margin: 0;
+}
+
+body {
+    padding: 60px 3px 3px 3px;
+    padding: 57px 0 0 0;
+}
+
+html:not(:target), body:not(:target) {
+    overflow: hidden;
     width: 380px;
+}
+
+main {
+    padding-top: 15px;
+    overflow: hidden;
+    overflow-y: auto;
     min-height: 300px;
     max-height: 500px;
 }
@@ -23,6 +37,7 @@ html, body {
 }
 
 body {
+    background-color: #faf7f7;
     font-size: 10pt;
     -webkit-touch-callout: none;
       -webkit-user-select: none;
@@ -30,17 +45,6 @@ body {
          -moz-user-select: none;
           -ms-user-select: none;
               user-select: none;
-}
-
-body {
-    background-color: #faf7f7;
-}
-
-body::before {
-    display: block;
-    visibility: hidden;
-    content: "-";
-    padding: 28px 10px;
 }
 
 body, a {
@@ -59,8 +63,8 @@ h1 {
     left: 0;
     top: 0;
     z-index: 100;
-    width: calc(100% - 9px);
-    margin: 0 0 10px 0;
+    width: 380px;
+    margin: 0;
     padding: 15px 10px;
     font-size: 12pt;
     border-bottom: 1px solid;
@@ -90,38 +94,6 @@ h1 > .global-config > .toggle > label::after {
 
 h1 > .global-config > .toggle > input:checked ~ label::after {
     left: 24px;
-}
-
-button * {
-    pointer-events: none;
-}
-
-.ico {
-    background: right center no-repeat;
-    background-size: contain;
-    display: inline-block;
-    vertical-align: bottom;
-}
-.ico.setup {
-    background-image: url(../images/setup.svg);
-    height: 24px;
-    width: 24px;
-}
-.ico.bug {
-    background-image: url(../images/bug.svg);
-    height: 16px;
-    width: 16px;
-    margin-right: 5px;
-}
-.ico.knowed {
-    background-image: url(../images/observer.svg#knowed);
-    height: 24px;
-    width: 24px;
-}
-.ico.ignored {
-    background-image: url(../images/observer.svg#ignored);
-    height: 24px;
-    width: 24px;
 }
 
 h1::after, h1::before {
@@ -157,6 +129,38 @@ h2 {
 h3 {
     font-size: 9pt;
     padding: 5px 0;
+}
+
+button * {
+    pointer-events: none;
+}
+
+.ico {
+    background: right center no-repeat;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: bottom;
+}
+.ico.setup {
+    background-image: url(../images/setup.svg);
+    height: 24px;
+    width: 24px;
+}
+.ico.bug {
+    background-image: url(../images/bug.svg);
+    height: 16px;
+    width: 16px;
+    margin-right: 5px;
+}
+.ico.knowed {
+    background-image: url(../images/observer.svg#knowed);
+    height: 24px;
+    width: 24px;
+}
+.ico.ignored {
+    background-image: url(../images/observer.svg#ignored);
+    height: 24px;
+    width: 24px;
 }
 
 code {
@@ -224,31 +228,31 @@ code {
     line-height: 1.3;
 }
 
-.main > footer {
+main > footer {
     padding: 16px 4px;
     margin: 0 12px;
     text-align: center;
     border-top: 1px solid;
 }
 
-.main > footer a {
+main > footer a {
     text-decoration: none;
     float: right;
 }
 
-.main > footer #version {
+main > footer #version {
     float: left;
 }
 
-.main > footer, .main > footer a, .row > .col > p {
+main > footer, main > footer a, .row > .col > p {
     color: #928b8b;
 }
 
-h1, .group, .row, .main > footer {
+h1, .group, .row, main > footer {
     border-color: #dedada;
 }
 
-.row::after, .main > footer::after {
+.row::after, main > footer::after {
     clear: both;
     height: 0;
     display: block;
@@ -293,24 +297,23 @@ h1, .group, .row, .main > footer {
     display: none;
 }
 
+
 html, html * {
-    scrollbar-color: #cdcdcd #f0f0f0;
+    scrollbar-color: rgba(0,0,0,.2) #dfdfdf;
     scrollbar-width: thin;
 }
 
 ::-webkit-scrollbar {
     background-color: #dfdfdf;
-    border-radius: 4px;
-    width: 8px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
+    background-color: rgba(0,0,0,.2);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0,0,0,.5);
 }
 
 html:target, html:target body {
@@ -319,20 +322,25 @@ html:target, html:target body {
     width: auto;
 }
 
+html:target main {
+    overflow: visible;
+    min-height: 1px;
+    max-height: 5000px;
+}
+
 html:target h1 {
+    position: static;
     background-color: #fff;
     padding-right: 2px;
     padding-left: 2px;
     margin-right: 8px;
     margin-left: 8px;
-}
-
-html:target h1::after, html:target h1::before {
-    display: none;
+    width: auto;
 }
 
 html:target body {
     background-color: transparent;
+    padding: 0;
 }
 
 html:target .row {
