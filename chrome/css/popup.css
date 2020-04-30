@@ -11,12 +11,7 @@ html, body {
     margin: 0;
 }
 
-body {
-    padding: 60px 3px 3px 3px;
-    padding: 57px 0 0 0;
-}
-
-html:not(:target), body:not(:target) {
+html:not(:target), html:not(:target) body {
     overflow: hidden;
     width: 380px;
 }
@@ -27,6 +22,7 @@ main {
     overflow-y: auto;
     min-height: 300px;
     max-height: 500px;
+    scroll-behavior: smooth;
 }
 
 * {
@@ -37,6 +33,7 @@ main {
 }
 
 body {
+    padding: 57px 0 0 0;
     background-color: #faf7f7;
     font-size: 10pt;
     -webkit-touch-callout: none;
@@ -297,7 +294,6 @@ h1, .group, .row, main > footer {
     display: none;
 }
 
-
 html, html * {
     scrollbar-color: rgba(0,0,0,.2) #dfdfdf;
     scrollbar-width: thin;
@@ -330,6 +326,7 @@ html:target main {
 
 html:target h1 {
     position: static;
+    position: relative;
     background-color: #fff;
     padding-right: 2px;
     padding-left: 2px;
@@ -341,6 +338,10 @@ html:target h1 {
 html:target body {
     background-color: transparent;
     padding: 0;
+}
+
+html:target h1::before, html:target h1::after {
+    display: none;
 }
 
 html:target .row {
