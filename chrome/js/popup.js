@@ -1,5 +1,5 @@
 /*
- * Prevent Duplicate Tabs 0.6.0
+ * Prevent Duplicate Tabs
  * Copyright (c) 2020 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
@@ -15,13 +15,15 @@
         w.browser = browser;
     }
 
-    var isHttpRE = /^https?:\/\/[^\/]/i,
+    var debugMode = false,
+        isHttpRE = /^https?:\/\/[^\/]/i,
         view = d.getElementById("version");
 
-    var debugMode = !(
-        "update_url" in browser.runtime.getManifest() ||
-        browser.runtime.id === "{e80594de-acca-4551-af7a-c9bd9d2f3388}"
-    );
+    if (x.runtime.id && !x.runtime.requestUpdateCheck) {
+        if (/@temporary-addon$/.test(x.runtime.id)) debugMode = true;
+    } else if (!"update_url" in manifest) {
+        debugMode = true;
+    }
 
     version.textContent = "Version " + browser.runtime.getManifest().version;
 
@@ -31,8 +33,8 @@
     }
 
     if (!debugMode) {
-        d.addEventListener("contextmenu", disableEvent);
-        d.addEventListener("dragstart", disableEvent);
+        d.oncontextmenu = disableEvent;
+        d.ondragstart = disableEvent;
     }
 
     d.addEventListener("click", function (e) {

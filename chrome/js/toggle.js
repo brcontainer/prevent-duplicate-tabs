@@ -1,5 +1,5 @@
 /*
- * Prevent Duplicate Tabs 0.6.0
+ * Prevent Duplicate Tabs
  * Copyright (c) 2020 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
