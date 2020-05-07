@@ -1074,62 +1074,94 @@ body .markdown-body
 </ul>
 <h2 id="configs">Configs<a class="headerlink" href="#configs" title="Permanent link"></a></h2>
 <h3 id="sort-order">Sort order<a class="headerlink" href="#sort-order" title="Permanent link"></a></h3>
-<ul>
-<li>
-<p><strong>Close olders</strong></p>
-<p>Closes the oldest repeated tabs</p>
-</li>
-<li>
-<p><strong>Keep the tab that is active</strong></p>
-<p>Don&rsquo;t close active tabs</p>
-</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>close olders</code></td>
+<td>Closes the old tabs (close most recent tab)</td>
+</tr>
+<tr>
+<td><code>keep the tab that is active</code></td>
+<td>Don&rsquo;t close active tabs</td>
+</tr>
+</tbody>
+</table>
 <h3 id="events">Events<a class="headerlink" href="#events" title="Permanent link"></a></h3>
-<ul>
-<li>
-<p><strong>start</strong></p>
-<p>Close repeated tabs when your browser is launched</p>
-</li>
-<li>
-<p><strong>update</strong></p>
-<p>Close repeated tabs when a tab is updated, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onUpdated"><code>tabs.onUpdated.addListener</code></a></p>
-</li>
-<li>
-<p><strong>create</strong></p>
-<p>Close repeated tabs when a new tab is created, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onCreated"><code>tabs.onCreated.addListener</code></a></p>
-</li>
-<li>
-<p><strong>remove</strong></p>
-<p>Close repeated tabs when a tab is closed, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onRemoved"><code>tabs.onRemoved.addListener</code></a></p>
-</li>
-<li>
-<p><strong>replace</strong></p>
-<p>Close repeated tabs when a tab is replaced with another tab due to prerendering or instant, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onReplaced"><code>tabs.onReplaced.addListener</code></a></p>
-</li>
-<li>
-<p><strong>datachange</strong></p>
-<p>Close repeated tabs when you change <strong>sort order</strong>, <strong>events</strong>, <strong>urls</strong> and <strong>others</strong> configurations from extension</p>
-</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start</code></td>
+<td>Close repeated tabs when your browser is launched</td>
+</tr>
+<tr>
+<td><code>update</code></td>
+<td>Close repeated tabs when a tab is updated, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onUpdated"><code>tabs.onUpdated.addListener</code></a></td>
+</tr>
+<tr>
+<td><code>create</code></td>
+<td>Close repeated tabs when a new tab is created, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onCreated"><code>tabs.onCreated.addListener</code></a></td>
+</tr>
+<tr>
+<td><code>remove</code></td>
+<td>Close repeated tabs when a tab is closed, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onRemoved"><code>tabs.onRemoved.addListener</code></a></td>
+</tr>
+<tr>
+<td><code>replace</code></td>
+<td>Close repeated tabs when a tab is replaced with another tab due to prerendering or instant, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onReplaced"><code>tabs.onReplaced.addListener</code></a></td>
+</tr>
+<tr>
+<td><code>datachange</code></td>
+<td>Close repeated tabs when you change <code>Sort order</code>, <code>Events</code>, <code>URLs</code> and <code>Others</code> configurations from extension</td>
+</tr>
+</tbody>
+</table>
 <h3 id="urls">URLs<a class="headerlink" href="#urls" title="Permanent link"></a></h3>
-<ul>
-<li>
-<p><strong>only http</strong></p>
-<p>Close only tabs with HTTP(s) urls</p>
-</li>
-<li>
-<p><strong>querystring</strong></p>
-<p>If disabled (off) it&rsquo;s ignore querystring in URLs, then this <code>http://foo/bar?baz</code> will be equivalent to this <code>http://foo/bar</code></p>
-</li>
-<li>
-<p><strong>hash</strong></p>
-<p>If disabled (off) it&rsquo;s ignore hash in URLs, then this <code>http://foo/bar#baz</code> will be equivalent to this <code>http://foo/bar</code></p>
-</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>only http</code></td>
+<td>Close only tabs with HTTP(s) urls</td>
+</tr>
+<tr>
+<td><code>querystring</code></td>
+<td>If disabled (off) it&rsquo;s ignore querystring in URLs, then this <code>http://foo/bar?baz</code> will be equivalent to this <code>http://foo/bar</code></td>
+</tr>
+<tr>
+<td><code>hash</code></td>
+<td>If disabled (off) it&rsquo;s ignore hash in URLs, then this <code>http://foo/bar#baz</code> will be equivalent to this <code>http://foo/bar</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="others">Others<a class="headerlink" href="#others" title="Permanent link"></a></h3>
-<ul>
-<li>
-<p><strong>incognito</strong></p>
-<p>Check repeated anonymous tabs (requires you to manually enable in your browser)</p>
-</li>
-</ul></article></body></html>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>incognito</code></td>
+<td>Check repeated anonymous tabs (requires you to manually enable in your browser)</td>
+</tr>
+</tbody>
+</table></article></body></html>

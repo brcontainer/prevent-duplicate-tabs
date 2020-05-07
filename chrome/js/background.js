@@ -58,8 +58,7 @@
         }
     }
 
-    function isDisabled()
-    {
+    function isDisabled() {
         return configs.turnoff || (
             !configs.start &&
             !configs.replace &&
@@ -159,8 +158,7 @@
         };
     }
 
-    function getIgnored()
-    {
+    function getIgnored() {
         var hosts = getStorage("hosts"),
             urls = getStorage("urls");
 
@@ -170,8 +168,7 @@
         };
     }
 
-    function toggleIgnoreData(type, ignore, value)
-    {
+    function toggleIgnoreData(type, ignore, value) {
         var contents = getStorage(type);
 
         type = type === "url" ? "urls" : "hosts";
@@ -195,8 +192,7 @@
         contents = null;
     }
 
-    function toggleIgnoreIcon(tab, url)
-    {
+    function toggleIgnoreIcon(tab, url) {
         if (url === u) {
             browser.tabs.get(tab, function (tab) {
                 if (tab) toggleIgnoreIcon(tab.id, tab.url);
@@ -217,8 +213,7 @@
         }
     }
 
-    function updateCurrentIcon(tabs)
-    {
+    function updateCurrentIcon(tabs) {
         if (tabs[0]) toggleIgnoreIcon(tabs[0].id, tabs[0].url);
     }
 
