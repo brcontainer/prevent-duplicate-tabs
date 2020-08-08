@@ -21,13 +21,11 @@
         view = d.getElementById("version"),
         manifest = browser.runtime.getManifest();
 
-    if (browser.runtime.id && !browser.runtime.requestUpdateCheck) {
+    if (browser.runtime.id && !("requestUpdateCheck" in browser.runtime)) {
         if (/@temporary-addon$/.test(browser.runtime.id)) debugMode = true;
     } else if (!("update_url" in manifest)) {
         debugMode = true;
     }
-
-    console.log(!("update_url" in manifest))
 
     version.textContent = "Version " + manifest.version;
 
