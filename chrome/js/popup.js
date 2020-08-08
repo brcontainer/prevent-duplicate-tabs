@@ -16,16 +16,20 @@
     }
 
     var debugMode = false,
+        browser = w.browser,
         isHttpRE = /^https?:\/\/[^\/]/i,
-        view = d.getElementById("version");
+        view = d.getElementById("version"),
+        manifest = browser.runtime.getManifest();
 
-    if (x.runtime.id && !x.runtime.requestUpdateCheck) {
-        if (/@temporary-addon$/.test(x.runtime.id)) debugMode = true;
-    } else if (!"update_url" in manifest) {
+    if (browser.runtime.id && !browser.runtime.requestUpdateCheck) {
+        if (/@temporary-addon$/.test(browser.runtime.id)) debugMode = true;
+    } else if (!("update_url" in manifest)) {
         debugMode = true;
     }
 
-    version.textContent = "Version " + browser.runtime.getManifest().version;
+    console.log(!("update_url" in manifest))
+
+    version.textContent = "Version " + manifest.version;
 
     function disableEvent(e) {
         e.preventDefault();

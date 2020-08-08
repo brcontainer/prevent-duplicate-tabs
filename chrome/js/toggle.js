@@ -9,13 +9,14 @@
 (function (w, d) {
     "use strict";
 
-    var sync = false;
-
     if (typeof browser === "undefined") {
         w.browser = chrome;
     } else if (!w.browser) {
         w.browser = browser;
     }
+
+    var sync = false,
+        browser = w.browser;
 
     function changeSwitch(e) {
         if (browser && browser.runtime && browser.runtime.sendMessage) {

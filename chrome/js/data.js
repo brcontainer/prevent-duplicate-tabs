@@ -9,15 +9,18 @@
 (function (w, d) {
     "use strict";
 
-    var sync = false, url, host, tabId;
-
     if (typeof browser === "undefined") {
         w.browser = chrome;
     } else if (!w.browser) {
         w.browser = browser;
     }
-    
-    var isHttpRE = /^https?:\/\/\w/i;
+
+    var url,
+        host,
+        tabId,
+        sync = false,
+        isHttpRE = /^https?:\/\/\w/i,
+        browser = w.browser;
 
     function applyData(hosts, urls) {
         var http = isHttpRE.test(url);

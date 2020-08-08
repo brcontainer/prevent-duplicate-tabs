@@ -22,7 +22,8 @@
         isNewTabRE = /^(about:blank|chrome:\/+?(newtab|startpageshared)\/?)$/i,
         linkJsonRE = /^\{[\s\S]+?\}$/,
         removeHashRE = /#[\s\S]+?$/,
-        removeQueryRE = /\?[\s\S]+?$/;
+        removeQueryRE = /\?[\s\S]+?$/,
+        browser = w.browser;
 
     function empty() {}
 
