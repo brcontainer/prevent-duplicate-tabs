@@ -1056,8 +1056,12 @@ body .markdown-body
 .codehilite .il{color:#009999}
 .codehilite .gc{color:#999;background-color:#EAF2F5}
 </style><title>README</title></head><body><article class="markdown-body"><h2 id="about">About<a class="headerlink" href="#about" title="Permanent link"></a></h2>
-<p>Simple add-on for prevent duplicate tabs, you can custom this using options in popup</p>
-<p><img alt="promocional" src="promo.png" /></p>
+<p>Prevents from automatically creating new tabs or repeating tabs when two or more tabs have the same addresses</p>
+<p>The process of closing repeated tabs is automatic based on settings that you can determine within the extension/add-on, it is also possible to quickly disable and activate the add-on without having to access the extensions panel.</p>
+<p>You can add a host or URL to specify as an exception so that the extension/add-on does not close repeated tabs.</p>
+<p>The extension/add-on has support for closing repeated tabs in incognito/anonymous mode, but this works in isolation and will not share any information in anonymous mode with normal mode, being completely separate actions.</p>
+<p>Among the configurations you can choose to consider or disregard querystring and hashes in URLs as a factor to differentiate them.</p>
+<p><img alt="promocional" src="C:/Users/new_g/Documents/GitHub/brcontainer/prevent-duplicate-tabs/promo.png" /></p>
 <h2 id="supported-browsers">Supported browsers<a class="headerlink" href="#supported-browsers" title="Permanent link"></a></h2>
 <ul>
 <li>Chrome 30+</li>
@@ -1068,12 +1072,13 @@ body .markdown-body
 <h2 id="install">Install<a class="headerlink" href="#install" title="Permanent link"></a></h2>
 <ul>
 <li><a href="https://chrome.google.com/webstore/detail/prevent-duplicate-tabs/eednccpckdkpojaiemedoejdngappaag">Chrome</a></li>
-<li><a href="https://addons.mozilla.org/en-US/firefox/addon/smart-prevent-duplicate-tabs/">Firefox</a></li>
-<li><a href="https://microsoftedge.microsoft.com/addons/detail/iijplllphnkkeepcinimpjobncicbbmb">Edge</a></li>
-<li><a href="https://addons.opera.com/en/extensions/details/prevent-duplicate-tabs/">Opera</a></li>
+<li><a href="https://add-ons.mozilla.org/en-US/firefox/add-on/smart-prevent-duplicate-tabs/">Firefox</a></li>
+<li><a href="https://microsoftedge.microsoft.com/add-ons/detail/iijplllphnkkeepcinimpjobncicbbmb">Edge</a></li>
+<li><a href="https://add-ons.opera.com/en/extensions/details/prevent-duplicate-tabs/">Opera</a></li>
 </ul>
 <h2 id="configs">Configs<a class="headerlink" href="#configs" title="Permanent link"></a></h2>
 <h3 id="sort-order">Sort order<a class="headerlink" href="#sort-order" title="Permanent link"></a></h3>
+<p>It is also possible to configure whether you prefer to close the oldest tabs and whether you want to prevent the active tab (currently visible) from being closed:</p>
 <table>
 <thead>
 <tr>
@@ -1084,7 +1089,7 @@ body .markdown-body
 <tbody>
 <tr>
 <td><code>close olders</code></td>
-<td>Closes the old tabs (close most recent tab)</td>
+<td>Close the old tabs and keep the most recent one with the same URL</td>
 </tr>
 <tr>
 <td><code>keep the tab that is active</code></td>
@@ -1093,6 +1098,7 @@ body .markdown-body
 </tbody>
 </table>
 <h3 id="events">Events<a class="headerlink" href="#events" title="Permanent link"></a></h3>
+<p>The closing of the tabs works based on events from the Chrome API and you can disable or reactivate such events within the extension/add-on:</p>
 <table>
 <thead>
 <tr>
@@ -1112,10 +1118,6 @@ body .markdown-body
 <tr>
 <td><code>create</code></td>
 <td>Close repeated tabs when a new tab is created, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onCreated"><code>tabs.onCreated.addListener</code></a></td>
-</tr>
-<tr>
-<td><code>remove</code></td>
-<td>Close repeated tabs when a tab is closed, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onRemoved"><code>tabs.onRemoved.addListener</code></a></td>
 </tr>
 <tr>
 <td><code>replace</code></td>

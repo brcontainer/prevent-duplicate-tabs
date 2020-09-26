@@ -65,7 +65,6 @@
             !configs.replace &&
             !configs.update &&
             !configs.create &&
-            !configs.remove &&
             !configs.datachange
         );
     }
@@ -150,7 +149,6 @@
             "replace": getStorage("replace"),
             "update": getStorage("update"),
             "create": getStorage("create"),
-            "remove": getStorage("remove"),
             "datachange": getStorage("datachange"),
             "http": getStorage("http"),
             "query": getStorage("query"),
@@ -227,7 +225,6 @@
             "replace": true,
             "update": true,
             "create": true,
-            "remove": true,
             "datachange": true,
             "http": true,
             "query": true,
@@ -249,7 +246,6 @@
 
     browser.tabs.onUpdated.addListener(createEvent("update"));
     browser.tabs.onCreated.addListener(createEvent("create"));
-    browser.tabs.onRemoved.addListener(createEvent("remove"));
     browser.tabs.onReplaced.addListener(createEvent("replace"));
 
     browser.tabs.onActivated.addListener(function (tab) {
