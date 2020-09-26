@@ -1,0 +1,125 @@
+{
+    "turn_off": {
+        "message": "Turn off"
+    },
+    "title": {
+        "message": "settings"
+    },
+    "actions_title": {
+        "message": "Actions"
+    },
+    "ignore_host": {
+        "message": "Ignore this host"
+    },
+    "reconsider_host": {
+        "message": "Reconsider this host"
+    },
+    "ignore_host_description": {
+        "message": "Preventing duplicate tabs whose address contains the `{host}` host"
+    },
+    "reconsider_host_description": {
+        "message": "Repeated tabs with `{host}` host will NOT be considered duplicates"
+    },
+    "ignore_url": {
+        "message": "Ignore this URL"
+    },
+    "reconsider_url": {
+        "message": "Reconsider this URL"
+    },
+    "ignore_url_description": {
+        "message": "Preventing duplicate tabs with the `{url}` address"
+    },
+    "reconsider_url_description": {
+        "message": "Repeated tabs with `{url}` address will NOT be considered duplicates"
+    },
+    "sort_order_title": {
+        "message": "Sort order"
+    },
+    "sort_order_title": {
+        "message": "Sort order"
+    },
+    "close_olders_title": {
+        "message": "Close olders"
+    },
+    "close_olders_description": {
+        "message": "Close the old tabs and keep the most recent one with the same URL"
+    },
+    "close_olders_description": {
+        "message": "Close the old tabs and keep the most recent one with the same URL"
+    },
+    "keep_active_title": {
+        "message": "Keep the tab that is active"
+    },
+    "keep_active_description": {
+        "message": "Don't close active tabs"
+    },
+    "urls_title": {
+        "message": "URLs"
+    },
+    "only_http_title": {
+        "message": "Only HTTP"
+    },
+    "only_http_description": {
+        "message": "Close only tabs with HTTP(s) urls"
+    },
+    "querystring_title": {
+        "message": "Querystring"
+    },
+    "querystring_description": {
+        "message": "If disabled (off) it's ignore querystring in URLs, then this `http://foo/bar?baz` will be equivalent to this `http://foo/bar`"
+    },
+    "hash_title": {
+        "message": "Hash"
+    },
+    "hash_description": {
+        "message": "If disabled (off) it's ignore hash in URLs, then this `http://foo/bar#baz` will be equivalent to this `http://foo/bar`"
+    },
+    "others_title": {
+        "message": "Others"
+    },
+    "incognito_title": {
+        "message": "Incognito"
+    },
+    "incognito_description": {
+        "message": "Check repeated anonymous tabs (requires you to manually enable in your browser)"
+    },
+    "events_title": {
+        "message": "Events"
+    },
+    "start_event_title": {
+        "message": "Start"
+    },
+    "start_event_description": {
+        "message": "Close repeated tabs when your browser is launched"
+    },
+    "update_event_title": {
+        "message": "Update"
+    },
+    "update_event_description": {
+        "message": "Close repeated tabs when a tab is updated"
+    },
+    "create_event_title": {
+        "message": "Create"
+    },
+    "create_event_description": {
+        "message": "Close repeated tabs when a new tab is created"
+    },
+    "replace_event_title": {
+        "message": "Replace"
+    },
+    "replace_event_description": {
+        "message": "Close repeated tabs when a tab is replaced with another tab due to prerendering or instant"
+    },
+    "datachange_event_title": {
+        "message": "Datachange"
+    },
+    "datachange_event_description": {
+        "message": "Close repeated tabs when you change \"sort order\", \"events\", \"urls\" and \"others\" configurations from extension"
+    },
+    "version": {
+        "message": "Version {version}"
+    },
+    "report": {
+        "message": "report a issue"
+    }
+}

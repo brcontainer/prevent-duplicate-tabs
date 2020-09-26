@@ -48,6 +48,10 @@ body, a {
     color: #4F4949;
 }
 
+var {
+    font-style: normal;
+}
+
 h1, h2, h3 {
     text-transform: uppercase;
     letter-spacing: 1px;

@@ -15,46 +15,37 @@
         w.browser = browser;
     }
 
-    var url,
-        host,
-        tabId,
+    var tabId,
         sync = false,
+        browser = w.browser,
         isHttpRE = /^https?:\/\/\w/i,
-        browser = w.browser;
+        variables = {
+            "url": null,
+            "host": null,
+            "version": browser.runtime.getManifest().version
+        };
 
     function applyData(hosts, urls) {
-        var http = isHttpRE.test(url);
+        var http = isHttpRE.test(variables.url);
 
         if (!http) return;
 
         var actions = d.getElementById("actions"),
-            values = d.querySelectorAll("[data-value]"),
             ignoreds = d.querySelectorAll("[data-ignored]");
 
         actions.style.display = "block";
 
-        for (var i = 0, j = values.length; i < j; i++) {
-            var el = values[i], value = el.dataset.value;
-
-            if (value === "url") {
-                el.textContent = url;
-                el.title = url;
-            } else if (value === "host") {
-                el.textContent = host;
-            }
-        }
-
-        for (var i = 0, j = ignoreds.length; i < j; i++) {
+        for (var i = ignoreds.length - 1; i >= 0; i--) {
             var el = ignoreds[i], data = el.dataset.ignored;
 
             if (data.indexOf("urls[") === 0) {
-                if (urls.indexOf(url) !== -1) el.classList.toggle("data-ignored", true);
+                if (urls.indexOf(variables.url) !== -1) el.classList.toggle("data-ignored", true);
             } else if (data.indexOf("!urls[") === 0) {
-                if (urls.indexOf(url) === -1) el.classList.toggle("data-ignored", true);
+                if (urls.indexOf(variables.url) === -1) el.classList.toggle("data-ignored", true);
             } else if (data.indexOf("hosts[") === 0) {
-                if (hosts.indexOf(host) !== -1) el.classList.toggle("data-ignored", true);
+                if (hosts.indexOf(variables.host) !== -1) el.classList.toggle("data-ignored", true);
             } else if (data.indexOf("!hosts[") === 0) {
-                if (hosts.indexOf(host) === -1) el.classList.toggle("data-ignored", true);
+                if (hosts.indexOf(variables.host) === -1) el.classList.toggle("data-ignored", true);
             }
         }
 
@@ -64,7 +55,7 @@
     function applyEvents() {
         var els = d.querySelectorAll("[data-ignored] .col:first-child > button");
 
-        for (var i = 0, j = els.length; i < j; i++) {
+        for (var i = els.length - 1; i >= 0; i--) {
             els[i].addEventListener("click", addRemoveUrl);
         }
     }
@@ -80,10 +71,10 @@
 
             browser.runtime.sendMessage({
                 "type": type,
-                "value": type === "url" ? url : host,
+                "value": type === "url" ? variables.url : variables.host,
                 "ignore": ignore,
                 "tabId": tabId,
-                "url": url
+                "url": variables.url
             }, function (response) {});
 
             toggleIgnore(type, ignore);
@@ -96,13 +87,45 @@
                 .toggle("data-ignored", ignore);
     }
 
+    function markdown(message) {
+        return message
+                .replace(/(^|\s|[>])_(.*?)_($|\s|[<])/g, '$1<i>$2<\/i>$3')
+                    .replace(/(^|\s|[>])`(.*?)`($|\s|[<])/g, '$1<code>$2<\/code>$3')
+                        .replace(/\{([a-z])(\w+)?\}/gi, '<var name="$1$2"><\/var>')
+                            .replace(/(^|\s|[>])\*(.*?)\*($|\s|[<])/g, '$1<strong>$2<\/strong>$3');
+    }
+
+    function applyVars(vars) {
+        var query;
+
+        if (vars) {
+            query = "var[name='" + vars.join("'], var[name='") + "']";
+        } else {
+            query = "var[name]";
+        }
+
+        var vars = d.querySelectorAll(query);
+
+        for (var i = vars.length - 1; i >= 0; i--) {
+            var el = vars[i], key = el.getAttribute("name"), value = variables[key];
+
+            if (key && value) {
+                el.textContent = value;
+                el.removeAttribute("name");
+            }
+        }
+    }
+
     browser.runtime.sendMessage({ "ignored": true }, function (response) {
         if (response) {
             browser.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
                 if (tabs[0]) {
-                    url = tabs[0].url;
-                    host = new URL(url).host;
                     tabId = tabs[0].id;
+
+                    variables.url = tabs[0].url;
+                    variables.host = new URL(variables.url).host;
+
+                    applyVars(["url", "host"]);
 
                     applyData(response.hosts, response.urls);
                 }
@@ -115,4 +138,14 @@
 
         sync = false;
     });
+
+    var locales = d.querySelectorAll("[data-i18n]");
+
+    for (var i = locales.length - 1; i >= 0; i--) {
+        var el = locales[i], message = chrome.i18n.getMessage(el.dataset.i18n);
+
+        if (message) el.innerHTML = markdown(message);
+    }
+
+    applyVars();
 })(window, document);

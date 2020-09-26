@@ -18,7 +18,6 @@
     var debugMode = false,
         browser = w.browser,
         isHttpRE = /^https?:\/\/[^\/]/i,
-        view = d.getElementById("version"),
         manifest = browser.runtime.getManifest();
 
     if (browser.runtime.id && !("requestUpdateCheck" in browser.runtime)) {
@@ -26,8 +25,6 @@
     } else if (!("update_url" in manifest)) {
         debugMode = true;
     }
-
-    version.textContent = "Version " + manifest.version;
 
     function disableEvent(e) {
         e.preventDefault();
