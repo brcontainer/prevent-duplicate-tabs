@@ -1,0 +1,122 @@
+{
+  "turn_off": {
+    "message": "消す"
+  },
+  "title": {
+    "message": "設定"
+  },
+  "actions_title": {
+    "message": "行動"
+  },
+  "ignore_host": {
+    "message": "このホストを無視"
+  },
+  "reconsider_host": {
+    "message": "このホストを再検討"
+  },
+  "ignore_host_description": {
+    "message": "アドレスに `{host}` ドメインが含まれるタブの重複を防止する"
+  },
+  "reconsider_host_description": {
+    "message": " `{host}` ドメインで繰り返されるタブは重複とは見なされません"
+  },
+  "ignore_url": {
+    "message": "このURLを無視"
+  },
+  "reconsider_url": {
+    "message": "このURLを再検討する"
+  },
+  "ignore_url_description": {
+    "message": "URLアドレスを使用したタブの重複の防止"
+  },
+  "reconsider_url_description": {
+    "message": "URLアドレスで繰り返されるタブは重複とは見なされません"
+  },
+  "sort_order_title": {
+    "message": "ソート順"
+  },
+  "close_olders_title": {
+    "message": "年上の人を閉じる"
+  },
+  "close_olders_description": {
+    "message": "古いタブを閉じ、最新のタブを同じURLで保持します"
+  },
+  "close_olders_description": {
+    "message": "古いタブを閉じ、最新のタブを同じURLで保持します"
+  },
+  "keep_active_title": {
+    "message": "アクティブなタブを保持する"
+  },
+  "keep_active_description": {
+    "message": "アクティブなタブを閉じないでください"
+  },
+  "urls_title": {
+    "message": "URLs"
+  },
+  "only_http_title": {
+    "message": "HTTPのみ"
+  },
+  "only_http_description": {
+    "message": "HTTP URLのあるタブのみを閉じる"
+  },
+  "querystring_title": {
+    "message": "「__uerystring」"
+  },
+  "querystring_description": {
+    "message": "無効（消す）の場合、URLのquerystringは無視されます。この `http://foo/bar#baz` は、この `http://foo/bar` と同等になります。"
+  },
+  "hash_title": {
+    "message": "Hash"
+  },
+  "hash_description": {
+    "message": "無効（消す）の場合、URLのhashは無視されます。この `http://foo/bar?baz` は、この `http://foo/bar` と同等になります。"
+  },
+  "others_title": {
+    "message": "その他"
+  },
+  "incognito_title": {
+    "message": "シークレット"
+  },
+  "incognito_description": {
+    "message": "プライベートモードで繰り返しタブを確認する（ブラウザーで手動で有効にする必要があります）"
+  },
+  "events_title": {
+    "message": "イベント"
+  },
+  "start_event_title": {
+    "message": "start"
+  },
+  "start_event_description": {
+    "message": "ブラウザの起動時に繰り返されるタブを閉じます"
+  },
+  "update_event_title": {
+    "message": "update"
+  },
+  "update_event_description": {
+    "message": "タブが更新されたときに繰り返されるタブを閉じる"
+  },
+  "create_event_title": {
+    "message": "create"
+  },
+  "create_event_description": {
+    "message": "新しいタブが作成されたときに繰り返されるタブを閉じる"
+  },
+  "replace_event_title": {
+    "message": "replace"
+  },
+  "replace_event_description": {
+    "message": "事前レンダリングまたはインスタントのためにタブが別のタブに置き換えられた場合、繰り返されるタブを閉じる"
+  },
+  "datachange_event_title": {
+    "message": "datachange"
+  },
+  "datachange_event_description": {
+    "message": "「ソート順」、「イベント」、「URL」、および「その他」の構成を変更するときに、繰り返されるタブを閉じる"
+  },
+  "version": {
+    "message": "バージョン{version}"
+  },
+  "report": {
+    "message": "問題を報告する"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "turn_off": {
+    "message": "Schalte aus"
+  },
+  "title": {
+    "message": "die Einstellungen"
+  },
+  "action_title": {
+    "message": "Aktionen"
+  },
+  "ignore_host": {
+    "message": "Ignorieren Sie diesen Host"
+  },
+  "reconsider_host": {
+    "message": "Überdenken Sie diesen Host"
+  },
+  "ignore_host_description": {
+    "message": "Verhindern von doppelten Registerkarten, deren Adresse die Domäne `{host}` enthält"
+  },
+  "reconsider_host_description": {
+    "message": "Wiederholte Registerkarten mit der Domäne `{host}` werden NICHT als Duplikate betrachtet"
+  },
+  "ignore_url": {
+    "message": "Ignorieren Sie diese URL"
+  },
+  "reconsider_url": {
+    "message": "Überdenken Sie diese URL"
+  },
+  "ignore_url_description": {
+    "message": "Verhindern von doppelten Registerkarten mit der Adresse `{url}`"
+  },
+  "reconsider_url_description": {
+    "message": "Wiederholte Registerkarten mit der Adresse `{url}` werden NICHT als Duplikate betrachtet"
+  },
+  "sort_order_title": {
+    "message": "Sortierung"
+  },
+  "close_olders_title": {
+    "message": "Ältere schließen"
+  },
+  "close_olders_description": {
+    "message": "Schließen Sie die alten Registerkarten und behalten Sie die neueste mit dem gleichen URL bei"
+  },
+  "close_olders_description": {
+    "message": "Schließen Sie die alten Registerkarten und behalten Sie die neueste mit dem gleichen URL bei"
+  },
+  "keep_active_title": {
+    "message": "Behalten Sie die aktive Registerkarte bei"
+  },
+  "keep_active_description": {
+    "message": "Schließen Sie keine aktiven Registerkarten"
+  },
+  "urls_title": {
+    "message": "URLs"
+  },
+  "only_http_title": {
+    "message": "Nur HTTP"
+  },
+  "only_http_description": {
+    "message": "Schließen Sie nur Registerkarten mit HTTP-URLs"
+  },
+  "querystring_title": {
+    "message": "querystring"
+  },
+  "querystring_description": {
+    "message": "Wenn deaktiviert (schalte aus), wird querystring in der URL ignoriert, dann entspricht dieser `http://foo/bar?baz` diesem `http://foo/bar`"
+  },
+  "hash_title": {
+    "message": "hash"
+  },
+  "hash_description": {
+    "message": "Wenn deaktiviert (schalte aus), wird hash in der URL ignoriert, dann entspricht dieser `http://foo/bar#baz` diesem `http://foo/bar`"
+  },
+  "others_title": {
+    "message": "Andere"
+  },
+  "incognito_title": {
+    "message": "Inkognito"
+  },
+  "incognito_description": {
+    "message": "Überprüfen Sie wiederholte Registerkarten im privaten Modus (erfordert die manuelle Aktivierung in Ihrem Browser)"
+  },
+  "events_title": {
+    "message": "Veranstaltungen"
+  },
+  "start_event_title": {
+    "message": "start"
+  },
+  "start_event_description": {
+    "message": "Schließen Sie wiederholte Registerkarten, wenn Ihr Browser gestartet wird"
+  },
+  "update_event_title": {
+    "message": "update"
+  },
+  "update_event_description": {
+    "message": "Schließen Sie wiederholte Registerkarten, wenn eine Registerkarte aktualisiert wird"
+  },
+  "create_event_title": {
+    "message": "create"
+  },
+  "create_event_description": {
+    "message": "Schließen Sie wiederholte Registerkarten, wenn eine neue Registerkarte erstellt wird"
+  },
+  "replace_event_title": {
+    "message": "replace"
+  },
+  "replace_event_description": {
+    "message": "Schließen Sie wiederholte Registerkarten, wenn eine Registerkarte aufgrund von Vorrendern oder sofortigem Ersetzen durch eine andere ersetzt wird"
+  },
+  "datachange_event_title": {
+    "message": "datachange"
+  },
+  "datachange_event_description": {
+    "message": "Schließen Sie wiederholte Registerkarten, wenn Sie die Konfiguration von \"Sortierung\", \"Veranstaltungen\", \"URLs\" und \"Andere\" ändern"
+  },
+  "version": {
+    "message": "Version {version}"
+  },
+  "report": {
+    "message": "ein Problem melden"
+  }
+}

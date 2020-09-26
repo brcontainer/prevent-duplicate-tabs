@@ -1,122 +1,119 @@
 {
-    "turn_off": {
-        "message": "Inactivar"
-    },
-    "title": {
-        "message": "ajustes"
-    },
-    "actions_title": {
-        "message": "Comportamiento"
-    },
-    "ignore_host": {
-        "message": "Ignorar este anfitrión"
-    },
-    "reconsider_host": {
-        "message": "Reconsidere este anfitrión"
-    },
-    "ignore_host_description": {
-        "message": "Evitar pestañas duplicadas cuya dirección contiene el host `{host}`"
-    },
-    "reconsider_host_description": {
-        "message": "Las pestañas repetidas con el host `{host}` NO se considerarán duplicadas"
-    },
-    "ignore_url": {
-        "message": "Ignorar esta URL"
-    },
-    "reconsider_url": {
-        "message": "Reconsidere esta URL"
-    },
-    "ignore_url_description": {
-        "message": "Evitar pestañas duplicadas con la dirección `{url}`"
-    },
-    "reconsider_url_description": {
-        "message": "Las pestañas repetidas con la dirección `{url}` NO se considerarán duplicadas."
-    },
-    "sort_order_title": {
-        "message": "Orden de clasificación"
-    },
-    "close_olders_title": {
-        "message": "Cerrar viejos"
-    },
-    "close_olders_description": {
-        "message": "Cierre las pestañas antiguas y mantenga la más reciente con la misma URL"
-    },
-    "close_olders_description": {
-        "message": "Cierre las pestañas antiguas y mantenga la más reciente con la misma URL"
-    },
-    "keep_active_title": {
-        "message": "Mantenga la que está activa"
-    },
-    "keep_active_description": {
-        "message": "No cierres las pestañas activas"
-    },
-    "urls_title": {
-        "message": "URLs"
-    },
-    "only_http_title": {
-        "message": "Solo HTTP"
-    },
-    "only_http_description": {
-        "message": "Cerrar solo pestañas con URL HTTP(s)"
-    },
-    "querystring_title": {
-        "message": "Querystring"
-    },
-    "querystring_description": {
-        "message": "Si está desactivado (desactivado), ignora la querystring en las URL, entonces este `http://foo/bar?baz` será equivalente a este `http://foo/bar`"
-    },
-    "hash_title": {
-        "message": "Hash"
-    },
-    "hash_description": {
-        "message": "Si está deshabilitado (desactivado), ignora el hash en las URL, entonces este `http://foo/bar#baz` será equivalente a este `http://foo/bar`"
-    },
-    "others_title": {
-        "message": "Otros"
-    },
-    "incognito_title": {
-        "message": "Incógnito"
-    },
-    "incognito_description": {
-        "message": "Verifique las pestañas anónimas repetidas (requiere que las habilite manualmente en su navegador)"
-    },
-    "events_title": {
-        "message": "Eventos"
-    },
-    "start_event_title": {
-        "message": "Start"
-    },
-    "start_event_description": {
-        "message": "Cierre las pestañas repetidas cuando se inicia su navegador"
-    },
-    "update_event_title": {
-        "message": "Update"
-    },
-    "update_event_description": {
-        "message": "Cerrar pestañas repetidas cuando se actualiza una pestaña"
-    },
-    "create_event_title": {
-        "message": "Create"
-    },
-    "create_event_description": {
-        "message": "Cerrar pestañas repetidas cuando se crea una nueva pestaña"
-    },
-    "replace_event_title": {
-        "message": "Replace"
-    },
-    "replace_event_description": {
-        "message": "Cierre las pestañas repetidas cuando una pestaña se reemplaza con otra pestaña debido a la reproducción previa o instantánea"
-    },
-    "datachange_event_title": {
-        "message": "Datachange"
-    },
-    "datachange_event_description": {
-        "message": "Cierre las pestañas repetidas cuando cambie las configuraciones de \"orden de clasificación\", \"eventos\", \"URL\" y \"otros\" de la extensión"
-    },
-    "version": {
-        "message": "Versión {version}"
-    },
-    "report": {
-        "message": "informar un problema"
-    }
+  "turn_off": {
+    "message": "desactivar"
+  },
+  "title": {
+    "message": "ajustes"
+  },
+  "actions_title": {
+    "message": "Comportamiento"
+  },
+  "ignore_host": {
+    "message": "Ignorar este anfitrión"
+  },
+  "reconsider_host": {
+    "message": "Reconsidere este anfitrión"
+  },
+  "ignore_host_description": {
+    "message": "Evitar pestañas duplicadas cuya dirección contiene el dominio {host}"
+  },
+  "reconsider_host_description": {
+    "message": "Las pestañas repetidas con el dominio {host} NO se considerarán duplicadas"
+  },
+  "ignore_url": {
+    "message": "Ignorar esta URL"
+  },
+  "reconsider_url": {
+    "message": "Reconsidere esta URL"
+  },
+  "ignore_url_description": {
+    "message": "Evitar pestañas duplicadas con la dirección {url}"
+  },
+  "reconsider_url_description": {
+    "message": "Las pestañas repetidas con la dirección {url} NO se considerarán duplicadas"
+  },
+  "sort_order_title": {
+    "message": "Orden de clasificación"
+  },
+  "close_olders_title": {
+    "message": "Cerrar viejos"
+  },
+  "close_olders_description": {
+    "message": "Cierra las pestañas antiguas y conserva la más reciente con el mismo URL"
+  },
+  "keep_active_title": {
+    "message": "Mantenga la pestaña que está activa"
+  },
+  "keep_active_description": {
+    "message": "No cierres las pestañas activas"
+  },
+  "urls_title": {
+    "message": "URLs"
+  },
+  "only_http_title": {
+    "message": "Solo HTTP"
+  },
+  "only_http_description": {
+    "message": "Cerrar solo pestañas con URL HTTP"
+  },
+  "querystring_title": {
+    "message": "querystring"
+  },
+  "querystring_description": {
+    "message": "Si está desactivado, ignora querystring en las URL, entonces este `http://foo/bar?baz` será equivalente a `http://foo/bar`"
+  },
+  "hash_title": {
+    "message": "hash"
+  },
+  "hash_description": {
+    "message": "Si está desactivado, ignora querystring en las URL, entonces este `http://foo/bar#baz` será equivalente a `http://foo/bar`"
+  },
+  "others_title": {
+    "message": "Otros"
+  },
+  "incognito_title": {
+    "message": "Incógnito"
+  },
+  "incognito_description": {
+    "message": "Verifique las pestañas repetidas en modo privado (requiere que las habilite manualmente en su navegador)"
+  },
+  "events_title": {
+    "message": "Eventos"
+  },
+  "start_event_title": {
+    "message": "comienzo"
+  },
+  "start_event_description": {
+    "message": "Cierre las pestañas repetidas cuando se inicia su navegador"
+  },
+  "update_event_title": {
+    "message": "update"
+  },
+  "update_event_description": {
+    "message": "Cerrar pestañas repetidas cuando se actualiza una pestaña"
+  },
+  "create_event_title": {
+    "message": "create"
+  },
+  "create_event_description": {
+    "message": "Cerrar pestañas repetidas cuando se crea una nueva pestaña"
+  },
+  "replace_event_title": {
+    "message": "replace"
+  },
+  "replace_event_description": {
+    "message": "Cierre las pestañas repetidas cuando una pestaña se reemplaza con otra pestaña debido a la reproducción previa o instantánea"
+  },
+  "datachange_event_title": {
+    "message": "datachange"
+  },
+  "datachange_event_description": {
+    "message": "Cierre las pestañas repetidas cuando cambie la configuración de \"Orden de clasificación\", \"URLs\", \"otros\" y \"eventos\""
+  },
+  "version": {
+    "message": "Versión {version}"
+  },
+  "report": {
+    "message": "informar un problema"
+  }
 }

@@ -1,0 +1,119 @@
+{
+  "turn_off": {
+    "message": "끄다"
+  },
+  "title": {
+    "message": "설정"
+  },
+  "actions_title": {
+    "message": "행위"
+  },
+  "ignore_host": {
+    "message": "이 호스트 무시"
+  },
+  "reconsider_host": {
+    "message": "이 호스트 재검토"
+  },
+  "ignore_host_description": {
+    "message": "주소에 `{host}`도메인이 포함 된 중복 탭 방지"
+  },
+  "reconsider_host_description": {
+    "message": "`{host}`도메인이있는 반복 된 탭은 중복으로 간주되지 않습니다"
+  },
+  "ignore_url": {
+    "message": "이 URL 무시"
+  },
+  "reconsider_url": {
+    "message": "이 URL 재검토"
+  },
+  "ignore_url_description": {
+    "message": "`{url}`주소로 중복 탭 방지"
+  },
+  "reconsider_url_description": {
+    "message": "`{url}`주소가있는 반복 탭은 중복으로 간주되지 않습니다"
+  },
+  "sort_order_title": {
+    "message": "정렬 순서"
+  },
+  "close_olders_title": {
+    "message": "가까운 노인"
+  },
+  "close_olders_description": {
+    "message": "이전 탭을 닫고 동일한 `http://foo/bar` 로 최신 탭을 유지합니다"
+  },
+  "keep_active_title": {
+    "message": "활성화 된 탭 유지"
+  },
+  "keep_active_description": {
+    "message": "활성 탭을 닫지 마십시오"
+  },
+  "urls_title": {
+    "message": "URLs"
+  },
+  "only_http_title": {
+    "message": "HTTP 만"
+  },
+  "only_http_description": {
+    "message": "HTTP URL이있는 탭만 닫기"
+  },
+  "querystring_title": {
+    "message": "querystring"
+  },
+  "querystring_description": {
+    "message": "비활성화 된 경우 (끄다) URL의 querystring를 무시하고이 `http://foo/bar?baz` 는이 NOHHHASSHH와 동일합니다"
+  },
+  "hash_title": {
+    "message": "Hash"
+  },
+  "hash_description": {
+    "message": "비활성화 된 경우 (끄다) URL의 querystring를 무시하고이 `http://foo/bar#baz` 는이 `http://foo/bar` 와 동일합니다"
+  },
+  "others_title": {
+    "message": "기타"
+  },
+  "incognito_title": {
+    "message": "가명"
+  },
+  "incognito_description": {
+    "message": "비공개 모드에서 반복되는 탭 확인 (브라우저에서 수동으로 활성화해야 함)"
+  },
+  "events_title": {
+    "message": "이벤트"
+  },
+  "start_event_title": {
+    "message": "start"
+  },
+  "start_event_description": {
+    "message": "브라우저가 시작될 때 반복되는 탭 닫기"
+  },
+  "update_event_title": {
+    "message": "update"
+  },
+  "update_event_description": {
+    "message": "탭이 업데이트되면 반복되는 탭 닫기"
+  },
+  "create_event_title": {
+    "message": "create"
+  },
+  "create_event_description": {
+    "message": "새 탭을 만들 때 반복되는 탭 닫기"
+  },
+  "replace_event_title": {
+    "message": "replace"
+  },
+  "replace_event_description": {
+    "message": "사전 렌더링 또는 인스턴트로 인해 탭이 다른 탭으로 교체 될 때 반복되는 탭 닫기"
+  },
+  "datachange_event_title": {
+    "message": "datachange"
+  },
+  "datachange_event_description": {
+    "message": "\"정렬 순서\", \"이벤트\", \"URL\"및 \"기타\"의 구성을 변경할 때 반복되는 탭을 닫습니다"
+  },
+  "version": {
+    "message": "버전 {version}"
+  },
+  "report": {
+    "message": "문제보고"
+  }
+}

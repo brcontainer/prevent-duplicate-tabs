@@ -1061,7 +1061,7 @@ body .markdown-body
 <p>You can add a host or URL to specify as an exception so that the extension/add-on does not close repeated tabs.</p>
 <p>The extension/add-on has support for closing repeated tabs in incognito/anonymous mode, but this works in isolation and will not share any information in anonymous mode with normal mode, being completely separate actions.</p>
 <p>Among the configurations you can choose to consider or disregard querystring and hashes in URLs as a factor to differentiate them.</p>
-<p><img alt="promocional" src="C:/Users/new_g/Documents/GitHub/brcontainer/prevent-duplicate-tabs/promo.png" /></p>
+<p><img alt="promocional" src="promo.png" /></p>
 <h2 id="supported-browsers">Supported browsers<a class="headerlink" href="#supported-browsers" title="Permanent link"></a></h2>
 <ul>
 <li>Chrome 30+</li>
@@ -1094,38 +1094,6 @@ body .markdown-body
 <tr>
 <td><code>keep the tab that is active</code></td>
 <td>Don&rsquo;t close active tabs</td>
-</tr>
-</tbody>
-</table>
-<h3 id="events">Events<a class="headerlink" href="#events" title="Permanent link"></a></h3>
-<p>The closing of the tabs works based on events from the Chrome API and you can disable or reactivate such events within the extension/add-on:</p>
-<table>
-<thead>
-<tr>
-<th>Event</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>start</code></td>
-<td>Close repeated tabs when your browser is launched</td>
-</tr>
-<tr>
-<td><code>update</code></td>
-<td>Close repeated tabs when a tab is updated, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onUpdated"><code>tabs.onUpdated.addListener</code></a></td>
-</tr>
-<tr>
-<td><code>create</code></td>
-<td>Close repeated tabs when a new tab is created, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onCreated"><code>tabs.onCreated.addListener</code></a></td>
-</tr>
-<tr>
-<td><code>replace</code></td>
-<td>Close repeated tabs when a tab is replaced with another tab due to prerendering or instant, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onReplaced"><code>tabs.onReplaced.addListener</code></a></td>
-</tr>
-<tr>
-<td><code>datachange</code></td>
-<td>Close repeated tabs when you change <code>Sort order</code>, <code>Events</code>, <code>URLs</code> and <code>Others</code> configurations from extension</td>
 </tr>
 </tbody>
 </table>
@@ -1166,4 +1134,48 @@ body .markdown-body
 <td>Check repeated anonymous tabs (requires you to manually enable in your browser)</td>
 </tr>
 </tbody>
-</table></article></body></html>
+</table>
+<h3 id="events">Events<a class="headerlink" href="#events" title="Permanent link"></a></h3>
+<p>The closing of the tabs works based on events from the Chrome API and you can disable or reactivate such events within the extension/add-on:</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start</code></td>
+<td>Close repeated tabs when your browser is launched</td>
+</tr>
+<tr>
+<td><code>update</code></td>
+<td>Close repeated tabs when a tab is updated, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onUpdated"><code>tabs.onUpdated.addListener</code></a></td>
+</tr>
+<tr>
+<td><code>create</code></td>
+<td>Close repeated tabs when a new tab is created, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onCreated"><code>tabs.onCreated.addListener</code></a></td>
+</tr>
+<tr>
+<td><code>replace</code></td>
+<td>Close repeated tabs when a tab is replaced with another tab due to prerendering or instant, more details in <a href="https://developer.chrome.com/extensions/tabs#event-onReplaced"><code>tabs.onReplaced.addListener</code></a></td>
+</tr>
+<tr>
+<td><code>datachange</code></td>
+<td>Close repeated tabs when you change <code>Sort order</code>, <code>Events</code>, <code>URLs</code> and <code>Others</code> configurations from extension</td>
+</tr>
+</tbody>
+</table>
+<h2 id="languages">Languages<a class="headerlink" href="#languages" title="Permanent link"></a></h2>
+<p>Supported languages:</p>
+<ul>
+<li><a href="chrome/_locales/de/messages.json">German (de)</a></li>
+<li><a href="chrome/_locales/en/messages.json">English (en)</a></li>
+<li><a href="chrome/_locales/es/messages.json">Spanish (es)</a></li>
+<li><a href="chrome/_locales/fr/messages.json">French (fr)</a></li>
+<li><a href="chrome/_locales/jp/messages.json">Japanese (jp)</a></li>
+<li><a href="chrome/_locales/ko/messages.json">Korean (ko)</a></li>
+<li><a href="chrome/_locales/pt/messages.json">Portuguese (pt)</a> (and <a href="chrome/_locales/pt_BR/messages.json">pt_BR</a>)</li>
+</ul>
+<p>I used automatic translations to generate the texts (<code>messages.json</code>), so there may be errors, the project is open-source, so feel free to send a pull-request with corrections in the translations.</p></article></body></html>

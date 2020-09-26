@@ -37,18 +37,6 @@ Configuration | Description
 `close olders` | Close the old tabs and keep the most recent one with the same URL
 `keep the tab that is active` | Don't close active tabs
 
-### Events
-
-The closing of the tabs works based on events from the Chrome API and you can disable or reactivate such events within the extension/add-on:
-
-Event | Description
---- | ---
-`start` | Close repeated tabs when your browser is launched
-`update` | Close repeated tabs when a tab is updated, more details in [`tabs.onUpdated.addListener`](https://developer.chrome.com/extensions/tabs#event-onUpdated)
-`create` | Close repeated tabs when a new tab is created, more details in [`tabs.onCreated.addListener`](https://developer.chrome.com/extensions/tabs#event-onCreated)
-`replace` | Close repeated tabs when a tab is replaced with another tab due to prerendering or instant, more details in [`tabs.onReplaced.addListener`](https://developer.chrome.com/extensions/tabs#event-onReplaced)
-`datachange` | Close repeated tabs when you change `Sort order`, `Events`, `URLs` and `Others` configurations from extension
-
 ### URLs
 
 Configuration | Description
@@ -62,3 +50,29 @@ Configuration | Description
 Configuration | Description
 --- | ---
 `incognito` | Check repeated anonymous tabs (requires you to manually enable in your browser)
+
+### Events
+
+The closing of the tabs works based on events from the Chrome API and you can disable or reactivate such events within the extension/add-on:
+
+Event | Description
+--- | ---
+`start` | Close repeated tabs when your browser is launched
+`update` | Close repeated tabs when a tab is updated, more details in [`tabs.onUpdated.addListener`](https://developer.chrome.com/extensions/tabs#event-onUpdated)
+`create` | Close repeated tabs when a new tab is created, more details in [`tabs.onCreated.addListener`](https://developer.chrome.com/extensions/tabs#event-onCreated)
+`replace` | Close repeated tabs when a tab is replaced with another tab due to prerendering or instant, more details in [`tabs.onReplaced.addListener`](https://developer.chrome.com/extensions/tabs#event-onReplaced)
+`datachange` | Close repeated tabs when you change `Sort order`, `Events`, `URLs` and `Others` configurations from extension
+
+## Languages
+
+Supported languages:
+
+- [German (de)](chrome/_locales/de/messages.json)
+- [English (en)](chrome/_locales/en/messages.json)
+- [Spanish (es)](chrome/_locales/es/messages.json)
+- [French (fr)](chrome/_locales/fr/messages.json)
+- [Japanese (jp)](chrome/_locales/jp/messages.json)
+- [Korean (ko)](chrome/_locales/ko/messages.json)
+- [Portuguese (pt)](chrome/_locales/pt/messages.json) (and [pt_BR](chrome/_locales/pt_BR/messages.json))
+
+I used automatic translations to generate the texts (`messages.json`), so there may be errors, the project is open-source, so feel free to send a pull-request with corrections in the translations.

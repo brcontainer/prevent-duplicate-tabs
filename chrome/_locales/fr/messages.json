@@ -1,0 +1,119 @@
+{
+  "turn_off": {
+    "message": "Éteindre"
+  },
+  "title": {
+    "message": "paramètres"
+  },
+  "actions_title": {
+    "message": "Actions"
+  },
+  "ignore_host": {
+    "message": "Ignorer cet hôte"
+  },
+  "reconsider_host": {
+    "message": "Reconsidérer cet hôte"
+  },
+  "ignore_host_description": {
+    "message": "Empêcher les onglets en double dont l'adresse contient le domaine {host}"
+  },
+  "reconsider_host_description": {
+    "message": "Les onglets répétés avec le domaine {host} ne seront PAS considérés comme des doublons"
+  },
+  "ignore_url": {
+    "message": "Ignorer cette URL"
+  },
+  "reconsider_url": {
+    "message": "Reconsidérer cette URL"
+  },
+  "ignore_url_description": {
+    "message": "Empêcher les onglets en double avec l'adresse {url}"
+  },
+  "reconsider_url_description": {
+    "message": "Les onglets répétés avec l'adresse {url} ne seront PAS considérés comme des doublons"
+  },
+  "sort_order_title": {
+    "message": "Ordre de tri"
+  },
+  "close_olders_title": {
+    "message": "Fermer les anciens"
+  },
+  "close_olders_description": {
+    "message": "Fermez les anciens onglets et conservez le plus récent avec le même URL"
+  },
+  "keep_active_title": {
+    "message": "Gardez l'onglet qui est actif"
+  },
+  "keep_active_description": {
+    "message": "Ne fermez pas les onglets actifs"
+  },
+  "urls_title": {
+    "message": "URLs"
+  },
+  "only_http_title": {
+    "message": "Seulement HTTP"
+  },
+  "only_http_description": {
+    "message": "Fermer uniquement les onglets avec des URL HTTP"
+  },
+  "querystring_title": {
+    "message": "querystring"
+  },
+  "querystring_description": {
+    "message": "S'il est désactivé (éteindre), il ignore querystring dans les URL, alors ce `http://foo/bar?baz` sera équivalent à `http://foo/bar`"
+  },
+  "hash_title": {
+    "message": "hash"
+  },
+  "hash_description": {
+    "message": "S'il est désactivé (éteindre), il ignore querystring dans les URL, alors ce `http://foo/bar#baz` sera équivalent à `http://foo/bar`"
+  },
+  "others_title": {
+    "message": "Autres"
+  },
+  "incognito_title": {
+    "message": "Incognito"
+  },
+  "incognito_description": {
+    "message": "Vérifier les onglets répétés en mode privé (vous oblige à activer manuellement dans votre navigateur)"
+  },
+  "events_title": {
+    "message": "Événements"
+  },
+  "start_event_title": {
+    "message": "Début"
+  },
+  "start_event_description": {
+    "message": "Fermez les onglets répétés lorsque votre navigateur est lancé"
+  },
+  "update_event_title": {
+    "message": "update"
+  },
+  "update_event_description": {
+    "message": "Fermer les onglets répétés lorsqu'un onglet est mis à jour"
+  },
+  "create_event_title": {
+    "message": "create"
+  },
+  "create_event_description": {
+    "message": "Fermer les onglets répétés lorsqu'un nouvel onglet est créé"
+  },
+  "replace_event_title": {
+    "message": "replace"
+  },
+  "replace_event_description": {
+    "message": "Fermez les onglets répétés lorsqu'un onglet est remplacé par un autre en raison d'un prérendu ou instantané"
+  },
+  "datachange_event_title": {
+    "message": "datachange"
+  },
+  "datachange_event_description": {
+    "message": "Fermez les onglets répétés lorsque vous modifiez la configuration de \"ordre de tri\", \"URLs\", \"autres\" et \"événements\""
+  },
+  "version": {
+    "message": "Version {version}"
+  },
+  "report": {
+    "message": "signaler un problème"
+  }
+}
