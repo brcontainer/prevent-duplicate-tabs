@@ -18,19 +18,19 @@
     "message": "Prevenir abas duplicadas cujo endereço contém o domínio `{host}`"
   },
   "reconsider_host_description": {
-    "message": "abas repetidas com domínio `{host}` NÃO serão consideradas duplicatas"
+    "message": "Abas repetidas com domínio `{host}` NÃO serão consideradas duplicatas"
   },
   "ignore_url": {
-    "message": "Ignore essa URL"
+    "message": "Ignorar essa URL"
   },
   "reconsider_url": {
     "message": "Reconsiderar essa URL"
   },
   "ignore_url_description": {
-    "message": "Evitando abas duplicadas com o endereço `{url}`"
+    "message": "Prevenir abas duplicadas com o endereço `{url}`"
   },
   "reconsider_url_description": {
-    "message": "abas repetidas com o endereço `{url}` NÃO serão consideradas duplicatas"
+    "message": "Abas repetidas com o endereço `{url}` NÃO serão consideradas duplicatas"
   },
   "sort_order_title": {
     "message": "Ordem de classificação"
@@ -39,13 +39,13 @@
     "message": "Fechar mais antigas"
   },
   "close_olders_description": {
-    "message": "Feche as abas antigas e mantenha a mais recente com a mesma URL"
+    "message": "Fechar as abas antigas e mantenha a mais recente com a mesma URL"
   },
   "keep_active_title": {
     "message": "Mantenha a aba que está ativa"
   },
   "keep_active_description": {
-    "message": "Não feche as abas ativas"
+    "message": "Não fechar as abas ativas"
   },
   "urls_title": {
     "message": "URLs"
@@ -54,13 +54,13 @@
     "message": "Apenas HTTP"
   },
   "only_http_description": {
-    "message": "Feche apenas abas com urls HTTP(s)"
+    "message": "Fechar apenas abas com urls HTTP(s)"
   },
   "querystring_title": {
     "message": "Querystring"
   },
   "querystring_description": {
-    "message": "Se desativado (desativado) é ignorar querystring em URLs, então este `http://foo/bar?baz` será equivalente a este `http://foo/bar`"
+    "message": "Se desativado irá ignorar querystring em URLs, então este `http://foo/bar?baz` será equivalente a este `http://foo/bar`"
   },
   "hash_title": {
     "message": "Hash"
@@ -84,7 +84,7 @@
     "message": "Start"
   },
   "start_event_description": {
-    "message": "Feche as abas repetidas quando o navegador for iniciado"
+    "message": "Fechar as abas repetidas quando o navegador for iniciado"
   },
   "update_event_title": {
     "message": "Update"
@@ -96,19 +96,19 @@
     "message": "Create"
   },
   "create_event_description": {
-    "message": "Feche as abas repetidas quando uma nova aba for criada"
+    "message": "Fechar as abas repetidas quando uma nova aba for criada"
   },
   "replace_event_title": {
     "message": "Replace"
   },
   "replace_event_description": {
-    "message": "Feche as abas repetidas quando uma aba for substituída por outra devido a pré-renderização ou instantâneo"
+    "message": "Fechar as abas repetidas quando uma aba for substituída por outra devido a pré-renderização ou instantâneo"
   },
   "datachange_event_title": {
     "message": "Datachange"
   },
   "datachange_event_description": {
-    "message": "Feche as abas repetidas ao alterar as configurações de \"ordem de classificação\", \"URLs\", \"outros\" e \"eventos\" da extensão"
+    "message": "Fechar as abas repetidas ao alterar as configurações de \"ordem de classificação\", \"URLs\", \"outros\" e \"eventos\" da extensão"
   },
   "version": {
     "message": "Versão {version}"

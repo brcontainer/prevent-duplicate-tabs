@@ -39,7 +39,7 @@
     "message": "Cerrar viejos"
   },
   "close_olders_description": {
-    "message": "Cierra las pestañas antiguas y conserva la más reciente con el mismo URL"
+    "message": "Cerrar las pestañas antiguas y conserva la más reciente con el mismo URL"
   },
   "keep_active_title": {
     "message": "Mantenga la pestaña que está activa"
@@ -84,7 +84,7 @@
     "message": "comienzo"
   },
   "start_event_description": {
-    "message": "Cierre las pestañas repetidas cuando se inicia su navegador"
+    "message": "Cerrar las pestañas repetidas cuando se inicia su navegador"
   },
   "update_event_title": {
     "message": "update"
@@ -102,13 +102,13 @@
     "message": "replace"
   },
   "replace_event_description": {
-    "message": "Cierre las pestañas repetidas cuando una pestaña se reemplaza con otra pestaña debido a la reproducción previa o instantánea"
+    "message": "Cerrar las pestañas repetidas cuando una pestaña se reemplaza con otra pestaña debido a la reproducción previa o instantánea"
   },
   "datachange_event_title": {
     "message": "datachange"
   },
   "datachange_event_description": {
-    "message": "Cierre las pestañas repetidas cuando cambie la configuración de \"Orden de clasificación\", \"URLs\", \"otros\" y \"eventos\""
+    "message": "Cerrar las pestañas repetidas cuando cambie la configuración de \"Orden de clasificación\", \"URLs\", \"otros\" y \"eventos\""
   },
   "version": {
     "message": "Versión {version}"

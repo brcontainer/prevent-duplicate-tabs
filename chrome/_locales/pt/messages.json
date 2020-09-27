@@ -18,19 +18,19 @@
     "message": "Prevenir guias duplicadas cujo endereço contém o domínio `{host}`"
   },
   "reconsider_host_description": {
-    "message": "guias repetidas com domínio `{host}` NÃO serão consideradas duplicatas"
+    "message": "Guias repetidas com domínio `{host}` NÃO serão consideradas duplicatas"
   },
   "ignore_url": {
-    "message": "Ignore essa URL"
+    "message": "Ignorar essa URL"
   },
   "reconsider_url": {
     "message": "Reconsiderar essa URL"
   },
   "ignore_url_description": {
-    "message": "Evitando guias duplicadas com o endereço `{url}`"
+    "message": "Prevenir guias duplicadas com o endereço `{url}`"
   },
   "reconsider_url_description": {
-    "message": "guias repetidas com o endereço `{url}` NÃO serão consideradas duplicatas"
+    "message": "Guias repetidas com o endereço `{url}` NÃO serão consideradas duplicatas"
   },
   "sort_order_title": {
     "message": "Ordem de classificação"
@@ -39,46 +39,13 @@
     "message": "Fechar mais antigas"
   },
   "close_olders_description": {
-    "message": "Feche as guias antigas e mantenha a mais recente com a mesma URL"
+    "message": "Fechar as guias antigas e mantenha a mais recente com a mesma URL"
   },
   "keep_active_title": {
     "message": "Mantenha a guia que está ativa"
   },
   "keep_active_description": {
-    "message": "Não feche as guias ativas"
-  },
-  "events_title": {
-    "message": "Eventos"
-  },
-  "start_event_title": {
-    "message": "Start"
-  },
-  "start_event_description": {
-    "message": "Feche as guias repetidas quando o navegador for iniciado"
-  },
-  "update_event_title": {
-    "message": "Update"
-  },
-  "update_event_description": {
-    "message": "Fechar guias repetidas quando uma guia é atualizada"
-  },
-  "create_event_title": {
-    "message": "Create"
-  },
-  "create_event_description": {
-    "message": "Feche as guias repetidas quando uma nova guia for criada"
-  },
-  "replace_event_title": {
-    "message": "Replace"
-  },
-  "replace_event_description": {
-    "message": "Feche as guias repetidas quando uma guia for substituída por outra devido a pré-renderização ou instantâneo"
-  },
-  "datachange_event_title": {
-    "message": "Datachange"
-  },
-  "datachange_event_description": {
-    "message": "Feche as guias repetidas ao alterar as configurações de \"ordem de classificação\", \"URLs\", \"outros\" e \"eventos\" da extensão"
+    "message": "Não fechar as guias ativas"
   },
   "urls_title": {
     "message": "URLs"
@@ -87,7 +54,7 @@
     "message": "Apenas HTTP"
   },
   "only_http_description": {
-    "message": "Feche apenas guias com urls HTTP(s)"
+    "message": "Fechar apenas guias com urls HTTP(s)"
   },
   "querystring_title": {
     "message": "Querystring"
@@ -109,6 +76,39 @@
   },
   "incognito_description": {
     "message": "Verifique as guias anônimas repetidas (requer que você as habilite manualmente em seu navegador)"
+  },
+  "events_title": {
+    "message": "Eventos"
+  },
+  "start_event_title": {
+    "message": "Start"
+  },
+  "start_event_description": {
+    "message": "Fechar as guias repetidas quando o navegador for iniciado"
+  },
+  "update_event_title": {
+    "message": "Update"
+  },
+  "update_event_description": {
+    "message": "Fechar guias repetidas quando uma guia é atualizada"
+  },
+  "create_event_title": {
+    "message": "Create"
+  },
+  "create_event_description": {
+    "message": "Fechar as guias repetidas quando uma nova guia for criada"
+  },
+  "replace_event_title": {
+    "message": "Replace"
+  },
+  "replace_event_description": {
+    "message": "Fechar as guias repetidas quando uma guia for substituída por outra devido a pré-renderização ou instantâneo"
+  },
+  "datachange_event_title": {
+    "message": "Datachange"
+  },
+  "datachange_event_description": {
+    "message": "Fechar as guias repetidas ao alterar as configurações de \"ordem de classificação\", \"URLs\", \"outros\" e \"eventos\" da extensão"
   },
   "version": {
     "message": "Versão {version}"
