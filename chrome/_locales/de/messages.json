@@ -41,9 +41,6 @@
   "close_olders_description": {
     "message": "Schließen Sie die alten Registerkarten und behalten Sie die neueste mit dem gleichen URL bei"
   },
-  "close_olders_description": {
-    "message": "Schließen Sie die alten Registerkarten und behalten Sie die neueste mit dem gleichen URL bei"
-  },
   "keep_active_title": {
     "message": "Behalten Sie die aktive Registerkarte bei"
   },
@@ -117,6 +114,6 @@
     "message": "Version {version}"
   },
   "report": {
-    "message": "ein Problem melden"
+    "message": "Problem melden"
   }
 }

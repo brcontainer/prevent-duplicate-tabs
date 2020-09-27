@@ -41,9 +41,6 @@
   "close_olders_description": {
     "message": "古いタブを閉じ、最新のタブを同じURLで保持します"
   },
-  "close_olders_description": {
-    "message": "古いタブを閉じ、最新のタブを同じURLで保持します"
-  },
   "keep_active_title": {
     "message": "アクティブなタブを保持する"
   },

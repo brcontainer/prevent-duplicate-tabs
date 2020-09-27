@@ -71,7 +71,7 @@ Supported languages:
 - [English (en)](chrome/_locales/en/messages.json)
 - [Spanish (es)](chrome/_locales/es/messages.json)
 - [French (fr)](chrome/_locales/fr/messages.json)
-- [Japanese (jp)](chrome/_locales/jp/messages.json)
+- [Japanese (ja)](chrome/_locales/ja/messages.json)
 - [Korean (ko)](chrome/_locales/ko/messages.json)
 - [Portuguese (pt)](chrome/_locales/pt/messages.json) (and [pt_BR](chrome/_locales/pt_BR/messages.json))
 

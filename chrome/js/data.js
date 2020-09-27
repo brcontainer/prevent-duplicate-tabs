@@ -142,7 +142,7 @@
     var locales = d.querySelectorAll("[data-i18n]");
 
     for (var i = locales.length - 1; i >= 0; i--) {
-        var el = locales[i], message = chrome.i18n.getMessage(el.dataset.i18n);
+        var el = locales[i], message = browser.i18n.getMessage(el.dataset.i18n);
 
         if (message) el.innerHTML = markdown(message);
     }
