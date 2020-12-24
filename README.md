@@ -50,6 +50,7 @@ Configuration | Description
 Configuration | Description
 --- | ---
 `incognito` | Check repeated anonymous tabs (requires you to manually enable in your browser)
+`containers` | If enabled it will ignore repeated tabs in different containers, treating them as if they were non-repeated tabs (only Firefox)
 
 ### Events
 
