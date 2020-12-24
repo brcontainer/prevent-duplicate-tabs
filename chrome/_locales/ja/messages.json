@@ -77,6 +77,12 @@
   "incognito_description": {
     "message": "プライベートモードで繰り返しタブを確認する（ブラウザーで手動で有効にする必要があります）"
   },
+  "containers_title": {
+    "message": "Containers"
+  },
+  "containers_description": {
+    "message": "有効にすると、異なる「containers」で繰り返されるタブが無視され、繰り返されないタブであるかのように扱われます。(推奨)"
+  },
   "events_title": {
     "message": "イベント"
   },

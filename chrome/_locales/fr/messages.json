@@ -77,6 +77,12 @@
   "incognito_description": {
     "message": "Vérifier les onglets répétés en mode privé (vous oblige à activer manuellement dans votre navigateur)"
   },
+  "containers_title": {
+    "message": "Containers"
+  },
+  "containers_description": {
+    "message": "S'il est activé, il ignorera les onglets répétés dans différents «containers», les traitant comme s'il s'agissait d'onglets non répétés (conseillé)"
+  },
   "events_title": {
     "message": "Événements"
   },

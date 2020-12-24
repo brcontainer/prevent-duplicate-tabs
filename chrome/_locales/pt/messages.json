@@ -77,6 +77,12 @@
   "incognito_description": {
     "message": "Verifique as guias anônimas repetidas (requer que você as habilite manualmente em seu navegador)"
   },
+  "containers_title": {
+    "message": "Containers"
+  },
+  "containers_description": {
+    "message": "Se habilitado irá ignorar guias repetidas em containers diferentes, tratando como se fossem guias não repetidas (recomendado)"
+  },
   "events_title": {
     "message": "Eventos"
   },

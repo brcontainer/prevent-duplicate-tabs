@@ -116,6 +116,14 @@
         }
     }
 
+    function containerConfigs() {
+        var configs = d.querySelectorAll(".support-containers");
+
+        for (var i = configs.length - 1; i >= 0; i--) {
+            configs[i].classList.toggle("supported-containers", true);
+        }
+    }
+
     browser.runtime.sendMessage({ "ignored": true }, function (response) {
         if (response) {
             browser.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
@@ -128,6 +136,8 @@
                     applyVars(["url", "host"]);
 
                     applyData(response.hosts, response.urls);
+
+                    if (tabs[0].cookieStoreId) containerConfigs();
                 }
             });
         }

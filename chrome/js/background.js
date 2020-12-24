@@ -78,7 +78,8 @@
             onlyHttp = configs.http,
             ignoreHash = !configs.hash,
             ignoreQuery = !configs.query,
-            ignoreIncognitos = !configs.incognito;
+            ignoreIncognitos = !configs.incognito,
+            diffContainers = configs.containers;
 
         for (var i = tabs.length - 1; i >= 0; i--) {
             tab = tabs[i];
@@ -99,7 +100,17 @@
 
             if (ignoreQuery) url = url.replace(removeQueryRE, "");
 
-            url = (tab.incognito ? "incognito" : "normal") + "::" + url;
+            var prefix;
+
+            if (tab.incognito) {
+                prefix = "incognito";
+            } else if (diffContainers && tab.cookieStoreId) {
+                prefix = String(tab.cookieStoreId);
+            } else {
+                prefix = "normal";
+            }
+
+            url = prefix + "::" + url;
 
             if (!groupTabs[url]) groupTabs[url] = [];
 
@@ -192,14 +203,14 @@
     }
 
     function toggleIgnoreIcon(tab, url) {
-        if (url === u) {
+        if (!url) {
             browser.tabs.get(tab, function (tab) {
                 if (tab) toggleIgnoreIcon(tab.id, tab.url);
             });
         } else {
             var icon;
 
-            if (isDisabled() || ignoreds.urls.indexOf(url) !== -1 || ignoreds.hosts.indexOf(new URL(url).host) !== -1) {
+            if (isDisabled() || isIgnored(url)) {
                 icon = "/images/disabled.png";
             } else {
                 icon = "/images/icon.png";
@@ -229,7 +240,8 @@
             "http": true,
             "query": true,
             "hash": false,
-            "incognito": false
+            "incognito": false,
+            "containers": true
         };
 
         for (var config in configs) {

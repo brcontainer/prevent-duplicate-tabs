@@ -77,6 +77,12 @@
   "incognito_description": {
     "message": "Check repeated anonymous tabs (requires you to manually enable in your browser)"
   },
+  "containers_title": {
+    "message": "Containers"
+  },
+  "containers_description": {
+    "message": "If enabled it will ignore repeated tabs in different containers, treating them as if they were non-repeated tabs (recommended)"
+  },
   "events_title": {
     "message": "Events"
   },

@@ -77,6 +77,12 @@
   "incognito_description": {
     "message": "Verifique las pestañas repetidas en modo privado (requiere que las habilite manualmente en su navegador)"
   },
+  "containers_title": {
+    "message": "Containers"
+  },
+  "containers_description": {
+    "message": "Si está habilitado, ignorará las pestañas repetidas en diferentes containers, tratándolas como si fueran pestañas no repetidas (recomendado)."
+  },
   "events_title": {
     "message": "Eventos"
   },
