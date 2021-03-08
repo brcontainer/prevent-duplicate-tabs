@@ -1,6 +1,6 @@
 /*
  * Prevent Duplicate Tabs
- * Copyright (c) 2020 Guilherme Nascimento (brcontainer@yahoo.com.br)
+ * Copyright (c) 2021 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
  * https://github.com/brcontainer/prevent-duplicate-tabs
@@ -164,7 +164,8 @@
             "http": getStorage("http"),
             "query": getStorage("query"),
             "hash": getStorage("hash"),
-            "incognito": getStorage("incognito")
+            "incognito": getStorage("incognito"),
+            "containers": getStorage("containers")
         };
     }
 
