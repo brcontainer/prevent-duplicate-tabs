@@ -117,10 +117,12 @@
     }
 
     function containerConfigs() {
-        var configs = d.querySelectorAll(".support-containers");
+        if (tabs[0].cookieStoreId) {
+            var configs = d.querySelectorAll(".support-containers");
 
-        for (var i = configs.length - 1; i >= 0; i--) {
-            configs[i].classList.toggle("supported-containers", true);
+            for (var i = configs.length - 1; i >= 0; i--) {
+                configs[i].classList.toggle("supported-containers", true);
+            }
         }
     }
 
@@ -137,7 +139,7 @@
 
                     applyData(response.hosts, response.urls);
 
-                    if (tabs[0].cookieStoreId) containerConfigs();
+                    containerConfigs();
                 }
             });
         }

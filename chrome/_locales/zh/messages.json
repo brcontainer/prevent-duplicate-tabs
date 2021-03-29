@@ -1,0 +1,125 @@
+{
+  "turn_off": {
+    "message": "關掉"
+  },
+  "title": {
+    "message": "設定"
+  },
+  "actions_title": {
+    "message": "動作"
+  },
+  "ignore_host": {
+    "message": "忽略此主機"
+  },
+  "reconsider_host": {
+    "message": "重新考慮此主機"
+  },
+  "ignore_host_description": {
+    "message": "防止地址包含`{host}`主機的重複選項卡"
+  },
+  "reconsider_host_description": {
+    "message": "帶有`{host}`主機的重複選項卡將不被視為重複項"
+  },
+  "ignore_url": {
+    "message": "忽略此URL"
+  },
+  "reconsider_url": {
+    "message": "重新考慮此URL"
+  },
+  "ignore_url_description": {
+    "message": "防止使用 `{url}` 地址複製選項卡"
+  },
+  "reconsider_url_description": {
+    "message": "地址為 `{url}` 的重複標籤不會被視為重複"
+  },
+  "sort_order_title": {
+    "message": "排序"
+  },
+  "close_olders_title": {
+    "message": "親近的長者"
+  },
+  "close_olders_description": {
+    "message": "關閉舊標籤並使用相同的網址保留最新標籤"
+  },
+  "keep_active_title": {
+    "message": "保持選項卡處於活動狀態"
+  },
+  "keep_active_description": {
+    "message": "不要關閉活動標籤"
+  },
+  "urls_title": {
+    "message": "網址"
+  },
+  "only_http_title": {
+    "message": "僅HTTP"
+  },
+  "only_http_description": {
+    "message": "僅關閉帶有HTTP網址的標籤"
+  },
+  "querystring_title": {
+    "message": "請求參數"
+  },
+  "querystring_description": {
+    "message": "如果禁用，則忽略URL中的哈希，則此 `http://foo/bar?baz` 將等效於此 `http://foo/bar`"
+  },
+  "hash_title": {
+    "message": "雜湊"
+  },
+  "hash_description": {
+    "message": "如果禁用，則忽略URL中的哈希，則此 `http://foo/bar#baz` 將等效於此 `http://foo/bar`"
+  },
+  "others_title": {
+    "message": "其他"
+  },
+  "incognito_title": {
+    "message": "隱身"
+  },
+  "incognito_description": {
+    "message": "檢查重複的匿名標籤（要求您在瀏覽器中手動啟用）"
+  },
+  "containers_title": {
+    "message": "貨櫃"
+  },
+  "containers_description": {
+    "message": "如果啟用，它將忽略不同容器中的重複標籤，將它們視為非重複標籤（推薦）"
+  },
+  "events_title": {
+    "message": "大事記"
+  },
+  "start_event_title": {
+    "message": "Start"
+  },
+  "start_event_description": {
+    "message": "啟動瀏覽器時關閉重複的選項卡"
+  },
+  "update_event_title": {
+    "message": "Update"
+  },
+  "update_event_description": {
+    "message": "標籤更新後關閉重複的標籤"
+  },
+  "create_event_title": {
+    "message": "Create"
+  },
+  "create_event_description": {
+    "message": "創建新標籤頁時關閉重複的標籤頁"
+  },
+  "replace_event_title": {
+    "message": "Replace"
+  },
+  "replace_event_description": {
+    "message": "當一個標籤由於預渲染或即時而被另一個標籤替換時，關閉重複的標籤"
+  },
+  "datachange_event_title": {
+    "message": "Datachange"
+  },
+  "datachange_event_description": {
+    "message": "從擴展名更改配置時，關閉重複的選項卡"
+  },
+  "version": {
+    "message": "版本{version}"
+  },
+  "report": {
+    "message": "報告問題"
+  }
+}

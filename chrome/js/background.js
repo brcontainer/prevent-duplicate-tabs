@@ -180,9 +180,8 @@
     }
 
     function toggleIgnoreData(type, ignore, value) {
-        var contents = getStorage(type);
-
-        type = type === "url" ? "urls" : "hosts";
+        var storage = type + "s",
+            contents = getStorage(storage);
 
         if (!Array.isArray(contents)) contents = [];
 
@@ -196,9 +195,9 @@
             }
         }
 
-        setStorage(type, contents);
+        setStorage(storage, contents);
 
-        ignoreds[type] = contents;
+        ignoreds[storage] = contents;
 
         contents = null;
     }
