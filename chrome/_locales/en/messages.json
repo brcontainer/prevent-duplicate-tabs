@@ -116,6 +116,18 @@
   "datachange_event_description": {
     "message": "Close repeated tabs when you change \"sort order\", \"URLs\", \"others\" and \"events\" configurations from extension"
   },
+  "color_scheme_title": {
+    "message": "Choose theme"
+  },
+  "color_scheme_dark": {
+    "message": "dark"
+  },
+  "color_scheme_device": {
+    "message": "device"
+  },
+  "color_scheme_light": {
+    "message": "light"
+  },
   "version": {
     "message": "Version {version}"
   },

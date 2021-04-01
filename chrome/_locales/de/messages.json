@@ -116,6 +116,18 @@
   "datachange_event_description": {
     "message": "Schließen Sie wiederholte Registerkarten, wenn Sie die Konfiguration von \"Sortierung\", \"Veranstaltungen\", \"URLs\" und \"Andere\" ändern"
   },
+  "color_scheme_title": {
+    "message": "Erscheinung"
+  },
+  "color_scheme_dark": {
+    "message": "dark"
+  },
+  "color_scheme_device": {
+    "message": "device"
+  },
+  "color_scheme_light": {
+    "message": "light"
+  },
   "version": {
     "message": "Version {version}"
   },

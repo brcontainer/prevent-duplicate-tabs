@@ -116,6 +116,18 @@
   "datachange_event_description": {
     "message": "Fechar as abas repetidas ao alterar as configurações de \"ordem de classificação\", \"URLs\", \"outros\" e \"eventos\" da extensão"
   },
+  "color_scheme_title": {
+    "message": "Aparência"
+  },
+  "color_scheme_dark": {
+    "message": "dark"
+  },
+  "color_scheme_device": {
+    "message": "device"
+  },
+  "color_scheme_light": {
+    "message": "light"
+  },
   "version": {
     "message": "Versão {version}"
   },

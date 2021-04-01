@@ -1,0 +1,121 @@
+/*
+ * Prevent Duplicate Tabs
+ * Copyright (c) 2021 Guilherme Nascimento (brcontainer@yahoo.com.br)
+ * Released under the MIT license
+ *
+ * https://github.com/brcontainer/prevent-duplicate-tabs
+ */
+
+body {
+    background-color: #303030 !important;
+}
+
+body, a {
+    color: #fff;
+}
+
+var {
+    font-style: normal;
+}
+
+h1 {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+h1 > .global-config {
+    color: #c0c0c0;
+}
+
+h1::after {
+    border-color: rgba(250, 247, 247, 0);
+    border-bottom-color: #333;
+}
+
+h1::before {
+    border-color: rgba(222, 218, 218, 0);
+    border-bottom-color: #252525;
+}
+
+.ico.setup {
+    background-image: url(../images/setup.svg);
+}
+.ico.bug {
+    background-image: url(../images/bug.svg);
+}
+.ico.knowed {
+    background-image: url(../images/observer.svg#invert-knowed);
+}
+.ico.ignored {
+    background-image: url(../images/observer.svg#invert-ignored);
+}
+
+code {
+    color: #fff;
+    background-color: rgba(255,255,255,.2);
+}
+
+.group {
+    background-color: #404040;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.04);
+}
+
+.group:hover {
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.04),
+                0 0 8px 0 rgba(0, 0, 0, 0.04),
+                0 0 15px 0 rgba(0, 0, 0, 0.01),
+                0 0 20px 4px rgba(0, 0, 0, 0.02);
+}
+
+.row:hover {
+    background-color: #565555;
+}
+
+.themes input:checked + div::after {
+    background: #fff;
+}
+
+main > footer, main > footer a, .row > .col > p {
+    color: #b1a9a9;
+}
+
+h1, .group, .row, main > footer {
+    border-color: #252525;
+}
+
+[data-ignored] button {
+    background: rgba(0,0,0,0);
+}
+
+[data-ignored] button:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+.row.data-ignored {
+    background-color: #860e0e;
+}
+
+.row.data-ignored:hover {
+    background-color: #ab1212;
+}
+
+html, html * {
+    scrollbar-color: rgba(0,0,0,.2) #383434;
+}
+
+::-webkit-scrollbar {
+    background-color: #383434;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0,0,0,.5);
+}
+
+html:target h1,
+html:target body,
+html:target .row {
+    background-color: transparent;
+}

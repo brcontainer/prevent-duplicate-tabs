@@ -25,7 +25,7 @@
             "version": browser.runtime.getManifest().version
         };
 
-    function applyData(hosts, urls) {
+    function applyIgnoredData(hosts, urls) {
         var http = isHttpRE.test(variables.url);
 
         if (!http) return;
@@ -63,19 +63,19 @@
     function addRemoveUrl(e) {
         var target = e.target;
 
-        if (target && browser && browser.runtime && browser.runtime.sendMessage) {
+        if (target && w.runtimeConnected()) {
             sync = true;
 
             var type = target.dataset.type,
                 ignore = !target.closest("[data-ignored]").classList.contains("data-ignored");
 
-            browser.runtime.sendMessage({
+            sendMessage({
                 "type": type,
                 "value": type === "url" ? variables.url : variables.host,
                 "ignore": ignore,
                 "tabId": tabId,
                 "url": variables.url
-            }, function (response) {});
+            });
 
             toggleIgnore(type, ignore);
         }
@@ -95,7 +95,7 @@
                             .replace(/(^|\s|[>])\*(.*?)\*($|\s|[<])/g, '$1<strong>$2<\/strong>$3');
     }
 
-    function applyVars(vars) {
+    function applyIgnoredVars(vars) {
         var query;
 
         if (vars) {
@@ -116,8 +116,8 @@
         }
     }
 
-    function containerConfigs() {
-        if (tabs[0].cookieStoreId) {
+    function containerConfigs(tab) {
+        if (tab.cookieStoreId) {
             var configs = d.querySelectorAll(".support-containers");
 
             for (var i = configs.length - 1; i >= 0; i--) {
@@ -126,7 +126,7 @@
         }
     }
 
-    browser.runtime.sendMessage({ "ignored": true }, function (response) {
+    sendMessage({ "ignored": true }, function (response) {
         if (response) {
             browser.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
                 if (tabs[0]) {
@@ -135,11 +135,10 @@
                     variables.url = tabs[0].url;
                     variables.host = new URL(variables.url).host;
 
-                    applyVars(["url", "host"]);
+                    applyIgnoredVars(["url", "host"]);
+                    applyIgnoredData(response.hosts, response.urls);
 
-                    applyData(response.hosts, response.urls);
-
-                    containerConfigs();
+                    containerConfigs(tabs[0]);
                 }
             });
         }
@@ -159,5 +158,5 @@
         if (message) el.innerHTML = markdown(message);
     }
 
-    applyVars();
+    applyIgnoredVars();
 })(window, document);

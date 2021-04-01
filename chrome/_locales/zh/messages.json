@@ -116,6 +116,18 @@
   "datachange_event_description": {
     "message": "從擴展名更改配置時，關閉重複的選項卡"
   },
+  "color_scheme_title": {
+    "message": "顯示方式"
+  },
+  "color_scheme_dark": {
+    "message": "dark"
+  },
+  "color_scheme_device": {
+    "message": "device"
+  },
+  "color_scheme_light": {
+    "message": "light"
+  },
   "version": {
     "message": "版本{version}"
   },

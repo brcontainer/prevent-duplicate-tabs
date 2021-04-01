@@ -116,6 +116,18 @@
   "datachange_event_description": {
     "message": "\"정렬 순서\", \"이벤트\", \"URL\"및 \"기타\"의 구성을 변경할 때 반복되는 탭을 닫습니다"
   },
+  "color_scheme_title": {
+    "message": "테마 선택"
+  },
+  "color_scheme_dark": {
+    "message": "dark"
+  },
+  "color_scheme_device": {
+    "message": "device"
+  },
+  "color_scheme_light": {
+    "message": "light"
+  },
   "version": {
     "message": "버전 {version}"
   },

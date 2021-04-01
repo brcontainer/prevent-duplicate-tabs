@@ -2,7 +2,7 @@
     "author": "Guilherme Nascimento",
     "name": "Prevent Duplicate Tabs",
     "description": "Prevent duplicate tabs",
-    "version": "0.7.4",
+    "version": "0.7.5",
     "manifest_version": 2,
     "default_locale": "en",
     "icons": {
@@ -20,6 +20,7 @@
     },
     "background": {
         "scripts": [
+            "js/boot.js",
             "js/background.js"
         ]
     },

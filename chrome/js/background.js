@@ -20,26 +20,9 @@
         timeout,
         isHttpRE = /^https?:\/\/\w/i,
         isNewTabRE = /^(about:blank|chrome:\/+?(newtab|startpageshared)\/?)$/i,
-        linkJsonRE = /^\{[\s\S]+?\}$/,
         removeHashRE = /#[\s\S]+?$/,
         removeQueryRE = /\?[\s\S]+?$/,
         browser = w.browser;
-
-    function empty() {}
-
-    function setStorage(key, value) {
-        localStorage.setItem(key, JSON.stringify({ "value": value }));
-    }
-
-    function getStorage(key) {
-        var itemValue = localStorage[key];
-
-        if (!itemValue && !linkJsonRE.test(itemValue)) return false;
-
-        var current = JSON.parse(itemValue);
-
-        return current ? current.value : itemValue;
-    }
 
     function checkTabs(type) {
         if (configs[type]) browser.tabs.query({}, preGetTabs);
@@ -152,7 +135,7 @@
     }
 
     function getConfigs() {
-        return {
+        var configs = {
             "turnoff": getStorage("turnoff"),
             "old": getStorage("old"),
             "active": getStorage("active"),
@@ -167,6 +150,24 @@
             "incognito": getStorage("incognito"),
             "containers": getStorage("containers")
         };
+
+        return configs;
+    }
+
+    function getExtraData()
+    {
+        var data = [];
+
+        for (var key in localStorage) {
+            if (key.indexOf("data:") === 0) {
+                data.push({
+                    "id": key.substr(5),
+                    "value": getStorage(key)
+                });
+            }
+        }
+
+        return data;
     }
 
     function getIgnored() {
@@ -272,6 +273,12 @@
             configs[request.setup] = request.enable;
             setStorage(request.setup, request.enable);
             browser.tabs.query({ active: true, lastFocusedWindow: true }, updateCurrentIcon);
+        } else if (request.data) {
+            var key = 'data:' + request.data;
+            configs[key] = request.value;
+            setStorage(key, request.value);
+        } else if (request.extra) {
+            sendResponse(getExtraData());
         } else if (request.configs) {
             sendResponse(getConfigs());
         } else if (request.ignored) {

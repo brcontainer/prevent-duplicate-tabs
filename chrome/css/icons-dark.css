@@ -1,0 +1,17 @@
+/*
+ * Prevent Duplicate Tabs
+ * Copyright (c) 2021 Guilherme Nascimento (brcontainer@yahoo.com.br)
+ * Released under the MIT license
+ *
+ * https://github.com/brcontainer/prevent-duplicate-tabs
+ */
+
+.ico.color-scheme-device {
+    background-image: url(../images/color-scheme.svg#invert-device);
+}
+.ico.color-scheme-light {
+    background-image: url(../images/color-scheme.svg#invert-light);
+}
+.ico.color-scheme-dark {
+    background-image: url(../images/color-scheme.svg#invert-dark);
+}

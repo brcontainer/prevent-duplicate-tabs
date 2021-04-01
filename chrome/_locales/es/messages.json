@@ -116,6 +116,21 @@
   "datachange_event_description": {
     "message": "Cerrar las pestañas repetidas cuando cambie la configuración de \"Orden de clasificación\", \"URLs\", \"otros\" y \"eventos\""
   },
+  "color_scheme_title": {
+    "message": "Tema"
+  },
+  "color_scheme_description": {
+    "message": "Elegir tema"
+  },
+  "color_scheme_dark": {
+    "message": "dark"
+  },
+  "color_scheme_device": {
+    "message": "device"
+  },
+  "color_scheme_light": {
+    "message": "light"
+  },
   "version": {
     "message": "Versión {version}"
   },

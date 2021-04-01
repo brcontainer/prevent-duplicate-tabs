@@ -1,0 +1,45 @@
+/*
+ * Prevent Duplicate Tabs
+ * Copyright (c) 2021 Guilherme Nascimento (brcontainer@yahoo.com.br)
+ * Released under the MIT license
+ *
+ * https://github.com/brcontainer/prevent-duplicate-tabs
+ */
+
+.ico {
+    background: center center no-repeat;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+    height: 24px;
+    width: 24px;
+}
+.ico.setup {
+    background-position: right center;
+    background-image: url(../images/setup.svg);
+}
+.ico.bug {
+    background-image: url(../images/bug.svg);
+    height: 16px;
+    width: 16px;
+    margin-right: 5px;
+}
+.ico.knowed {
+    background-image: url(../images/observer.svg#knowed);
+}
+.ico.ignored {
+    background-image: url(../images/observer.svg#ignored);
+}
+.ico.ignored {
+    background-image: url(../images/observer.svg#ignored);
+}
+
+.ico.color-scheme-device {
+    background-image: url(../images/color-scheme.svg#device);
+}
+.ico.color-scheme-light {
+    background-image: url(../images/color-scheme.svg#light);
+}
+.ico.color-scheme-dark {
+    background-image: url(../images/color-scheme.svg#dark);
+}

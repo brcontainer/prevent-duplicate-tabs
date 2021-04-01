@@ -53,4 +53,18 @@
 
         browser.tabs.create({ "url": el.href });
     });
+
+    var se = d.scrollingElement || d.body;
+
+    setTimeout(function () {
+        se.style.transform = 'scale(2)';
+
+        setTimeout(function () {
+            se.style.transform = 'scale(1)';
+
+            setTimeout(function () {
+                se.style.transform = null;
+            }, 10);
+        }, 10);
+    }, 10);
 })(window, document);
