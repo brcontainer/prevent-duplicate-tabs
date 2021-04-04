@@ -68,12 +68,13 @@ Event | Description
 
 Supported languages:
 
-- [German (de)](chrome/_locales/de/messages.json)
+- [Chinese (zh)](chrome/_locales/zh/messages.json))
 - [English (en)](chrome/_locales/en/messages.json)
-- [Spanish (es)](chrome/_locales/es/messages.json)
 - [French (fr)](chrome/_locales/fr/messages.json)
+- [German (de)](chrome/_locales/de/messages.json)
 - [Japanese (ja)](chrome/_locales/ja/messages.json)
 - [Korean (ko)](chrome/_locales/ko/messages.json)
-- [Portuguese (pt)](chrome/_locales/pt/messages.json) (and [pt_BR](chrome/_locales/pt_BR/messages.json))
+- [Portuguese (pt)](chrome/_locales/pt/messages.json) (and [Brazilian Portuguese (pt_BR)](chrome/_locales/pt_BR/messages.json))
+- [Spanish (es)](chrome/_locales/es/messages.json)
 
 I used automatic translations to generate the texts (`messages.json`), so there may be errors, the project is open-source, so feel free to send a pull-request with corrections in the translations.
