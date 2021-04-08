@@ -71,7 +71,7 @@ h1 {
     font-size: 10pt;
     font-weight: bolder;
     border-bottom: 1px solid;
-    background-color: rgba(255, 255, 255, 0.96);
+    background-color: rgba(255,255,255,.96);
 }
 
 h1 > .ico {
@@ -125,14 +125,14 @@ h1::after, h1::before {
 }
 
 h1::after {
-    border-color: rgba(250, 247, 247, 0);
+    border-color: rgba(250,247,247,0);
     border-bottom-color: #faf7f7;
     border-width: 5px;
     margin-left: -5px;
 }
 
 h1::before {
-    border-color: rgba(222, 218, 218, 0);
+    border-color: rgba(222,218,218,0);
     border-bottom-color: #dedada;
     border-width: 6px;
     margin-left: -6px;
@@ -159,7 +159,7 @@ code {
     color: #383535;
     font-size: 85%;
     font-weight: bold;
-    background-color: rgba(27,31,35,0.05);
+    background-color: rgba(27,31,35,.05);
     border-radius: 3px;
     overflow: hidden;
     max-width: 100%;
@@ -175,15 +175,15 @@ code {
     background-color: #fff;
     border: 1px solid;
     border-radius: 3px;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 3px rgba(0,0,0,.04);
     transition: all .1s ease;
 }
 
 .group:hover {
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.04),
-                0 0 8px 0 rgba(0, 0, 0, 0.04),
-                0 0 15px 0 rgba(0, 0, 0, 0.01),
-                0 0 20px 4px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 2px 3px rgba(0,0,0,.04),
+                0 0 8px 0 rgba(0,0,0,.04),
+                0 0 15px 0 rgba(0,0,0,.01),
+                0 0 20px 4px rgba(0,0,0,.02);
 }
 
 .row {
@@ -253,7 +253,7 @@ code {
 
 .themes label * {
     text-align: inherit;
-    transition: .2s all ease-out;
+    transition: all .1s ease-out;
 }
 
 .themes label > div {
@@ -367,7 +367,7 @@ h1, .group, .row, main > footer {
 
 [data-ignored] button:hover {
     transform: scale(1.1);
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0,0,0,.05);
 }
 
 .row.data-ignored {

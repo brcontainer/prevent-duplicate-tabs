@@ -24,10 +24,10 @@
     height: 26px;
     width: 52px;
     background-color: #dbddde;
-    box-shadow: 0 0 1px rgba(0,0,0,0.3) inset;
+    box-shadow: 0 0 1px rgba(0,0,0,.3) inset;
     border-radius: 100px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all .3s ease;
 }
 
 .toggle > label::after {
@@ -41,13 +41,13 @@
     border-radius: 100px;
     background: #fff;
     content: "";
-    box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
+    box-shadow: 0px 3px 3px rgba(0,0,0,.05);
+    transition: all .3s ease;
 }
 
 .toggle > label:active::after,
 .toggle > input:focus ~ label::after {
-    transform: scale(1, 0.85);
+    transform: scale(1,.85);
 }
 
 .toggle > input:checked ~ label {
@@ -65,7 +65,7 @@
 }
 
 .toggle > input:disabled ~ label::after {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255,255,255,.3);
 }
 
 .toggle.red > input:checked ~ label {

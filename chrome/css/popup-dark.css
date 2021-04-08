@@ -19,7 +19,7 @@ var {
 }
 
 h1 {
-    background-color: rgba(255, 255, 255, .1);
+    background-color: rgba(255,255,255,.1);
 }
 
 h1 > .global-config {
@@ -27,12 +27,12 @@ h1 > .global-config {
 }
 
 h1::after {
-    border-color: rgba(250, 247, 247, 0);
+    border-color: rgba(250,247,247,0);
     border-bottom-color: #333;
 }
 
 h1::before {
-    border-color: rgba(222, 218, 218, 0);
+    border-color: rgba(222,218,218,0);
     border-bottom-color: #252525;
 }
 
@@ -56,14 +56,14 @@ code {
 
 .group {
     background-color: #404040;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 3px rgba(0,0,0,.04);
 }
 
 .group:hover {
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.04),
-                0 0 8px 0 rgba(0, 0, 0, 0.04),
-                0 0 15px 0 rgba(0, 0, 0, 0.01),
-                0 0 20px 4px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 2px 3px rgba(0,0,0,.04),
+                0 0 8px 0 rgba(0,0,0,.04),
+                0 0 15px 0 rgba(0,0,0,.01),
+                0 0 20px 4px rgba(0,0,0,.02);
 }
 
 .row:hover {
@@ -87,7 +87,7 @@ h1, .group, .row, main > footer {
 }
 
 [data-ignored] button:hover {
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0,0,0,.05);
 }
 
 .row.data-ignored {

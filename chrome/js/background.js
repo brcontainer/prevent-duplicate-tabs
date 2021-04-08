@@ -181,24 +181,26 @@
     }
 
     function toggleIgnoreData(type, ignore, value) {
-        var storage = type + "s",
+        var changed = true,
+            storage = type + "s",
             contents = getStorage(storage);
 
         if (!Array.isArray(contents)) contents = [];
 
         var index = contents.indexOf(value);
 
-        if (index === -1) {
-            if (ignore) {
-                contents.push(value);
-            } else {
-                contents.splice(index, 1);
-            }
+        if (ignore && index === -1) {
+            contents.push(value);
+        } else if (!ignore && index !== -1) {
+            contents.splice(index, 1);
+        } else {
+            changed = false;
         }
 
-        setStorage(storage, contents);
-
-        ignoreds[storage] = contents;
+        if (changed) {
+            setStorage(storage, contents);
+            ignoreds[storage] = contents;
+        }
 
         contents = null;
     }
