@@ -13,16 +13,12 @@ function setColorScheme(darkPrefer, userPrefer) {
     }
 
     for (var i = links.length - 1; i >= 0; i--) {
-        links[i].disabled = disable;
+        links[i].rel = disable ? "preload" : "stylesheet";
     }
 }
 
 (function () {
     var media = window.matchMedia("(prefers-color-scheme: dark)");
-
-    media.addEventListener("change", function (e) {
-        setColorScheme(e.matches);
-    });
 
     if (!getStorage("data:color-scheme")) {
         setStorage("data:color-scheme", "default");
@@ -35,4 +31,8 @@ function setColorScheme(darkPrefer, userPrefer) {
             setTimeout(setColorScheme, 100, media.matches, e.detail.value);
         }
     });
+
+    media.onchange = function (e) {
+        setColorScheme(e.matches);
+    };
 })();
