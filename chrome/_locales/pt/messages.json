@@ -93,31 +93,37 @@
     "message": "Eventos"
   },
   "start_event_title": {
-    "message": "Start"
+    "message": "start"
   },
   "start_event_description": {
     "message": "Fechar as guias repetidas quando o navegador for iniciado"
   },
   "update_event_title": {
-    "message": "Update"
+    "message": "update"
   },
   "update_event_description": {
     "message": "Fechar guias repetidas quando uma guia é atualizada"
   },
   "create_event_title": {
-    "message": "Create"
+    "message": "create"
   },
   "create_event_description": {
     "message": "Fechar as guias repetidas quando uma nova guia for criada"
   },
   "replace_event_title": {
-    "message": "Replace"
+    "message": "replace"
   },
   "replace_event_description": {
     "message": "Fechar as guias repetidas quando uma guia for substituída por outra devido a pré-renderização ou instantâneo"
   },
+  "attached_event_title": {
+    "message": "attach"
+  },
+  "attached_event_description": {
+    "message": "Fechar guias repetidas quando uma guia é anexada a outra janela ou desanexada (criando uma nova janela)"
+  },
   "datachange_event_title": {
-    "message": "Datachange"
+    "message": "datachange"
   },
   "datachange_event_description": {
     "message": "Fechar as guias repetidas ao alterar as configurações de \"ordem de classificação\", \"URLs\", \"outros\" e \"eventos\" da extensão"

@@ -116,6 +116,12 @@
   "replace_event_description": {
     "message": "Schließen Sie wiederholte Registerkarten, wenn eine Registerkarte aufgrund von Vorrendern oder sofortigem Ersetzen durch eine andere ersetzt wird"
   },
+  "attached_event_title": {
+    "message": "attach"
+  },
+  "attached_event_description": {
+    "message": "Schließen Sie wiederholte Registerkarten, wenn eine Registerkarte an ein anderes Fenster angehängt oder getrennt wird (Erstellen eines neuen Fensters)."
+  },
   "datachange_event_title": {
     "message": "datachange"
   },

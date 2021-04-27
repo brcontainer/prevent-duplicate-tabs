@@ -30,6 +30,7 @@
             "replace": true,
             "update": true,
             "create": true,
+            "attach": true,
             "datachange": true,
             "http": true,
             "query": true,
@@ -61,6 +62,7 @@
             !configs.replace &&
             !configs.update &&
             !configs.create &&
+            !configs.attach &&
             !configs.datachange
         );
     }
@@ -145,9 +147,9 @@
         }
     }
 
-    function createEvent(type) {
+    function createEvent(type, timeout) {
         return function (tab) {
-            setTimeout(checkTabs, 10, type);
+            setTimeout(checkTabs, timeout, type);
             setTimeout(toggleIgnoreIcon, 100, tab.id || tab.tabId || tab, tab.url);
         };
     }
@@ -161,6 +163,7 @@
             "replace": getStorage("replace", configs.replace),
             "update": getStorage("update", configs.update),
             "create": getStorage("create", configs.create),
+            "attach": getStorage("attach", configs.attach),
             "datachange": getStorage("datachange", configs.datachange),
             "http": getStorage("http", configs.http),
             "query": getStorage("query", configs.query),
@@ -260,9 +263,10 @@
     setTimeout(checkTabs, 100, "start");
     setTimeout(getIgnored, 200);
 
-    browser.tabs.onUpdated.addListener(createEvent("update"));
-    browser.tabs.onCreated.addListener(createEvent("create"));
-    browser.tabs.onReplaced.addListener(createEvent("replace"));
+    browser.tabs.onAttached.addListener(createEvent("attach", 500));
+    browser.tabs.onCreated.addListener(createEvent("create", 10));
+    browser.tabs.onReplaced.addListener(createEvent("replace", 10));
+    browser.tabs.onUpdated.addListener(createEvent("update", 10));
 
     browser.tabs.onActivated.addListener(function (tab) {
         toggleIgnoreIcon(tab.tabId);

@@ -93,31 +93,37 @@
     "message": "大事記"
   },
   "start_event_title": {
-    "message": "Start"
+    "message": "start"
   },
   "start_event_description": {
     "message": "啟動瀏覽器時關閉重複的選項卡"
   },
   "update_event_title": {
-    "message": "Update"
+    "message": "update"
   },
   "update_event_description": {
     "message": "標籤更新後關閉重複的標籤"
   },
   "create_event_title": {
-    "message": "Create"
+    "message": "create"
   },
   "create_event_description": {
     "message": "創建新標籤頁時關閉重複的標籤頁"
   },
   "replace_event_title": {
-    "message": "Replace"
+    "message": "replace"
   },
   "replace_event_description": {
     "message": "當一個標籤由於預渲染或即時而被另一個標籤替換時，關閉重複的標籤"
   },
+  "attached_event_title": {
+    "message": "attach"
+  },
+  "attached_event_description": {
+    "message": "當一個選項卡附加到另一個窗口或分離（創建一個新窗口）時，關閉重複的選項卡"
+  },
   "datachange_event_title": {
-    "message": "Datachange"
+    "message": "datachange"
   },
   "datachange_event_description": {
     "message": "從擴展名更改配置時，關閉重複的選項卡"

@@ -116,6 +116,12 @@
   "replace_event_description": {
     "message": "事前レンダリングまたはインスタントのためにタブが別のタブに置き換えられた場合、繰り返されるタブを閉じる"
   },
+  "attached_event_title": {
+    "message": "attach"
+  },
+  "attached_event_description": {
+    "message": "タブが別のウィンドウにアタッチされているか、切り離されている（新しいウィンドウを作成している）ときに、繰り返されるタブを閉じます"
+  },
   "datachange_event_title": {
     "message": "datachange"
   },

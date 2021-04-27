@@ -93,31 +93,37 @@
     "message": "Events"
   },
   "start_event_title": {
-    "message": "Start"
+    "message": "start"
   },
   "start_event_description": {
     "message": "Close repeated tabs when your browser is launched"
   },
   "update_event_title": {
-    "message": "Update"
+    "message": "update"
   },
   "update_event_description": {
     "message": "Close repeated tabs when a tab is updated"
   },
   "create_event_title": {
-    "message": "Create"
+    "message": "create"
   },
   "create_event_description": {
     "message": "Close repeated tabs when a new tab is created"
   },
   "replace_event_title": {
-    "message": "Replace"
+    "message": "replace"
   },
   "replace_event_description": {
     "message": "Close repeated tabs when a tab is replaced with another tab due to prerendering or instant"
   },
+  "attached_event_title": {
+    "message": "attach"
+  },
+  "attached_event_description": {
+    "message": "Close repeated tabs when a tab is attached to another window or detached (creating a new window)"
+  },
   "datachange_event_title": {
-    "message": "Datachange"
+    "message": "datachange"
   },
   "datachange_event_description": {
     "message": "Close repeated tabs when you change \"sort order\", \"URLs\", \"others\" and \"events\" configurations from extension"

@@ -116,6 +116,12 @@
   "replace_event_description": {
     "message": "Cerrar las pestañas repetidas cuando una pestaña se reemplaza con otra pestaña debido a la reproducción previa o instantánea"
   },
+  "attached_event_title": {
+    "message": "attach"
+  },
+  "attached_event_description": {
+    "message": "Cerrar pestañas repetidas cuando una pestaña se adjunta a otra ventana o se separa (creando una nueva ventana)"
+  },
   "datachange_event_title": {
     "message": "datachange"
   },

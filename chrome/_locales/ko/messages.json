@@ -116,6 +116,12 @@
   "replace_event_description": {
     "message": "사전 렌더링 또는 인스턴트로 인해 탭이 다른 탭으로 교체 될 때 반복되는 탭 닫기"
   },
+  "attached_event_title": {
+    "message": "attach"
+  },
+  "attached_event_description": {
+    "message": "탭이 다른 창에 연결되거나 분리 (새 창 생성) 될 때 반복되는 탭을 닫습니다"
+  },
   "datachange_event_title": {
     "message": "datachange"
   },

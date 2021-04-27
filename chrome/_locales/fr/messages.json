@@ -116,6 +116,12 @@
   "replace_event_description": {
     "message": "Fermez les onglets répétés lorsqu'un onglet est remplacé par un autre en raison d'un prérendu ou instantané"
   },
+  "attached_event_title": {
+    "message": "attach"
+  },
+  "attached_event_description": {
+    "message": "Fermez les onglets répétés lorsqu'un onglet est attaché à une autre fenêtre ou détaché (création d'une nouvelle fenêtre)."
+  },
   "datachange_event_title": {
     "message": "datachange"
   },
