@@ -99,11 +99,11 @@ h1, .group, .row, main > footer {
 }
 
 html, html * {
-    scrollbar-color: rgba(0,0,0,.2) #383434;
+    scrollbar-color: rgba(0,0,0,.5) rgba(0,0,0,.2);
 }
 
 ::-webkit-scrollbar {
-    background-color: #383434;
+    background-color: rgba(0,0,0,.2);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -111,7 +111,7 @@ html, html * {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0,0,0,.9);
 }
 
 html:target h1,

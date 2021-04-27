@@ -77,6 +77,12 @@
   "incognito_description": {
     "message": "檢查重複的匿名標籤（要求您在瀏覽器中手動啟用）"
   },
+  "windows_title": {
+    "message": "視窗"
+  },
+  "windows_description": {
+    "message": "僅關閉同一窗口中的重複選項卡（推薦）"
+  },
   "containers_title": {
     "message": "貨櫃"
   },

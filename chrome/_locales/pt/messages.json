@@ -77,6 +77,12 @@
   "incognito_description": {
     "message": "Verifique as guias anônimas repetidas (requer que você as habilite manualmente em seu navegador)"
   },
+  "windows_title": {
+    "message": "Janelas"
+  },
+  "windows_description": {
+    "message": "Feche apenas as guias repetidas da mesma janela (recomendado)"
+  },
   "containers_title": {
     "message": "Containers"
   },

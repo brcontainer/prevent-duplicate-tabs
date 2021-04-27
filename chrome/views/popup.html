@@ -2,14 +2,14 @@
 <html id="config">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no">
     <title>Prevent Duplicate Tabs</title>
     <link rel="stylesheet" type="text/css" href="../css/popup.css">
     <link rel="stylesheet" type="text/css" href="../css/toggle.css">
     <link rel="stylesheet" type="text/css" href="../css/icons.css">
-    <link rel="preload" type="text/css" href="../css/popup-dark.css">
-    <link rel="preload" type="text/css" href="../css/toggle-dark.css">
-    <link rel="preload" type="text/css" href="../css/icons-dark.css">
+    <link rel="preload" type="text/css" href="../css/popup-dark.css" as="style">
+    <link rel="preload" type="text/css" href="../css/toggle-dark.css" as="style">
+    <link rel="preload" type="text/css" href="../css/icons-dark.css" as="style">
     <link rel="icon" type="image/png" href="../images/icon.png">
     <script type="text/javascript" src="../js/boot.js"></script>
     <script type="text/javascript" src="../js/color-scheme.js"></script>
@@ -159,6 +159,18 @@
                 <div class="col">
                     <h3 data-i18n="incognito_title"></h3>
                     <p data-i18n="incognito_description"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="toggle">
+                        <input type="checkbox" id="windows" disabled>
+                        <label for="windows"></label>
+                    </div>
+                </div>
+                <div class="col">
+                    <h3 data-i18n="windows_title"></h3>
+                    <p data-i18n="windows_description"></p>
                 </div>
             </div>
             <div class="row support-containers">

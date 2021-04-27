@@ -77,6 +77,12 @@
   "incognito_description": {
     "message": "Check repeated anonymous tabs (requires you to manually enable in your browser)"
   },
+  "windows_title": {
+    "message": "Windows"
+  },
+  "windows_description": {
+    "message": "Close only repeated tabs from the same window (recommended)"
+  },
   "containers_title": {
     "message": "Containers"
   },

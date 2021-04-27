@@ -77,11 +77,17 @@
   "incognito_description": {
     "message": "비공개 모드에서 반복되는 탭 확인 (브라우저에서 수동으로 활성화해야 함)"
   },
+  "windows_title": {
+    "message": "창을"
+  },
+  "windows_description": {
+    "message": "같은 창에서 반복되는 탭만 닫기 (권장)"
+  },
   "containers_title": {
-    "message": "Containers"
+    "message": "컨테이너"
   },
   "containers_description": {
-    "message": "활성화하면 다른 \"containers\"의 반복 된 탭을 무시하고 반복되지 않는 탭인 것처럼 처리합니다. (추천)"
+    "message": "활성화하면 다른 \"컨테이너\"의 반복 된 탭을 무시하고 반복되지 않는 탭인 것처럼 처리합니다. (추천)"
   },
   "events_title": {
     "message": "이벤트"

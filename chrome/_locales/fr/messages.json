@@ -77,6 +77,12 @@
   "incognito_description": {
     "message": "Vérifier les onglets répétés en mode privé (vous oblige à activer manuellement dans votre navigateur)"
   },
+  "windows_title": {
+    "message": "Fenêtre"
+  },
+  "windows_description": {
+    "message": "Fermer uniquement les onglets répétés de la même fenêtre (recommandé)"
+  },
   "containers_title": {
     "message": "Containers"
   },

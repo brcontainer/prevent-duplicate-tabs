@@ -77,6 +77,12 @@
   "incognito_description": {
     "message": "Verifique las pestañas repetidas en modo privado (requiere que las habilite manualmente en su navegador)"
   },
+  "windows_title": {
+    "message": "Ventana"
+  },
+  "windows_description": {
+    "message": "Cierre solo las pestañas repetidas de la misma ventana (recomendado) "
+  },
   "containers_title": {
     "message": "Containers"
   },

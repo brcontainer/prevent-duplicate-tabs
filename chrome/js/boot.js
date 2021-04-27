@@ -12,16 +12,16 @@ function setStorage(key, value) {
     localStorage.setItem(key, JSON.stringify({ "value": value }));
 }
 
-function getStorage(key) {
+function getStorage(key, fallback) {
     var value = localStorage[key];
 
     if (!value || value[0] !== "{" || value.substr(-1) !== "}") {
-        return;
+        return fallback;
     }
 
     var current = JSON.parse(value);
 
-    return current ? current.value : value;
+    return current ? current.value : fallback;
 }
 
 function runtimeConnected() {

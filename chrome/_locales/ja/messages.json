@@ -77,6 +77,12 @@
   "incognito_description": {
     "message": "プライベートモードで繰り返しタブを確認する（ブラウザーで手動で有効にする必要があります）"
   },
+  "windows_title": {
+    "message": "ウィンドウズ"
+  },
+  "windows_description": {
+    "message": "同じウィンドウから繰り返されるタブのみを閉じる（推奨）"
+  },
   "containers_title": {
     "message": "Containers"
   },

@@ -15,17 +15,34 @@
         w.browser = browser;
     }
 
-    var configs,
-        ignoreds,
+    var ignoreds,
         timeout,
         isHttpRE = /^https?:\/\/\w/i,
         isNewTabRE = /^(about:blank|chrome:\/+?(newtab|startpageshared)\/?)$/i,
         removeHashRE = /#[\s\S]+?$/,
         removeQueryRE = /\?[\s\S]+?$/,
-        browser = w.browser;
+        browser = w.browser,
+        configs = {
+            "turnoff": false,
+            "old": true,
+            "active": true,
+            "start": true,
+            "replace": true,
+            "update": true,
+            "create": true,
+            "datachange": true,
+            "http": true,
+            "query": true,
+            "hash": false,
+            "incognito": false,
+            "windows": true,
+            "containers": true
+        };
 
     function checkTabs(type) {
-        if (configs[type]) browser.tabs.query({}, preGetTabs);
+        if (configs[type]) {
+            browser.tabs.query(configs.windows ? { "lastFocusedWindow": true } : {}, preGetTabs);
+        }
     }
 
     function preGetTabs(tabs) {
@@ -35,11 +52,7 @@
     }
 
     function isIgnored(url) {
-        if (ignoreds) {
-            return ignoreds.urls.indexOf(url) !== -1 || ignoreds.hosts.indexOf(new URL(url).host) !== -1;
-        } else {
-            return false;
-        }
+        return ignoreds && (ignoreds.urls.indexOf(url) !== -1 || ignoreds.hosts.indexOf(new URL(url).host) !== -1);
     }
 
     function isDisabled() {
@@ -62,6 +75,7 @@
             ignoreHash = !configs.hash,
             ignoreQuery = !configs.query,
             ignoreIncognitos = !configs.incognito,
+            diffWindows = configs.windows,
             diffContainers = configs.containers;
 
         for (var i = tabs.length - 1; i >= 0; i--) {
@@ -93,7 +107,11 @@
                 prefix = "normal";
             }
 
-            url = prefix + "::" + url;
+            if (diffWindows) {
+                url = prefix + "::" + tab.windowId + "::" + url;
+            } else {
+                url = prefix + "::" + url;
+            }
 
             if (!groupTabs[url]) groupTabs[url] = [];
 
@@ -135,23 +153,22 @@
     }
 
     function getConfigs() {
-        var configs = {
-            "turnoff": getStorage("turnoff"),
-            "old": getStorage("old"),
-            "active": getStorage("active"),
-            "start": getStorage("start"),
-            "replace": getStorage("replace"),
-            "update": getStorage("update"),
-            "create": getStorage("create"),
-            "datachange": getStorage("datachange"),
-            "http": getStorage("http"),
-            "query": getStorage("query"),
-            "hash": getStorage("hash"),
-            "incognito": getStorage("incognito"),
-            "containers": getStorage("containers")
+        return {
+            "turnoff": getStorage("turnoff", configs.turnoff),
+            "old": getStorage("old", configs.old),
+            "active": getStorage("active", configs.active),
+            "start": getStorage("start", configs.start),
+            "replace": getStorage("replace", configs.replace),
+            "update": getStorage("update", configs.update),
+            "create": getStorage("create", configs.create),
+            "datachange": getStorage("datachange", configs.datachange),
+            "http": getStorage("http", configs.http),
+            "query": getStorage("query", configs.query),
+            "hash": getStorage("hash", configs.hash),
+            "incognito": getStorage("incognito", configs.incognito),
+            "windows": getStorage("windows", configs.windows),
+            "containers": getStorage("containers", configs.containers)
         };
-
-        return configs;
     }
 
     function getExtraData()
@@ -220,33 +237,17 @@
             }
 
             browser.browserAction.setIcon({
-                tabId: tab,
-                path: icon
+                "tabId": tab,
+                "path": icon
             });
         }
     }
 
     function updateCurrentIcon(tabs) {
-        if (tabs[0]) toggleIgnoreIcon(tabs[0].id, tabs[0].url);
+        if (tabs && tabs[0]) toggleIgnoreIcon(tabs[0].id, tabs[0].url);
     }
 
     if (!getStorage("firstrun")) {
-        configs = {
-            "turnoff": false,
-            "old": true,
-            "active": true,
-            "start": true,
-            "replace": true,
-            "update": true,
-            "create": true,
-            "datachange": true,
-            "http": true,
-            "query": true,
-            "hash": false,
-            "incognito": false,
-            "containers": true
-        };
-
         for (var config in configs) {
             setStorage(config, configs[config]);
         }
@@ -274,9 +275,9 @@
         } else if (request.setup) {
             configs[request.setup] = request.enable;
             setStorage(request.setup, request.enable);
-            browser.tabs.query({ active: true, lastFocusedWindow: true }, updateCurrentIcon);
+            browser.tabs.query({ "active": true, "lastFocusedWindow": true }, updateCurrentIcon);
         } else if (request.data) {
-            var key = 'data:' + request.data;
+            var key = "data:" + request.data;
             configs[key] = request.value;
             setStorage(key, request.value);
         } else if (request.extra) {

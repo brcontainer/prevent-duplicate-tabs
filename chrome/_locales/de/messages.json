@@ -77,6 +77,12 @@
   "incognito_description": {
     "message": "Überprüfen Sie wiederholte Registerkarten im privaten Modus (erfordert die manuelle Aktivierung in Ihrem Browser)"
   },
+  "windows_title": {
+    "message": "Fenster"
+  },
+  "windows_description": {
+    "message": "Schließen Sie nur wiederholte Registerkarten aus demselben Fenster (empfohlen)"
+  },
   "containers_title": {
     "message": "Containers"
   },
