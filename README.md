@@ -50,7 +50,8 @@ Configuration | Description
 Configuration | Description
 --- | ---
 `incognito` | Check repeated anonymous tabs (requires you to manually enable in your browser)
-`containers` | If enabled it will ignore repeated tabs in different containers, treating them as if they were non-repeated tabs (only Firefox)
+`windows` | Close only repeated tabs from the same window (recommended)
+`containers` | If enabled it will ignore repeated tabs in different containers, treating them as if they were non-repeated tabs (recommended), only Firefox
 
 ### Events
 
@@ -62,13 +63,14 @@ Event | Description
 `update` | Close repeated tabs when a tab is updated, more details in [`tabs.onUpdated.addListener`](https://developer.chrome.com/extensions/tabs#event-onUpdated)
 `create` | Close repeated tabs when a new tab is created, more details in [`tabs.onCreated.addListener`](https://developer.chrome.com/extensions/tabs#event-onCreated)
 `replace` | Close repeated tabs when a tab is replaced with another tab due to prerendering or instant, more details in [`tabs.onReplaced.addListener`](https://developer.chrome.com/extensions/tabs#event-onReplaced)
-`datachange` | Close repeated tabs when you change `Sort order`, `Events`, `URLs` and `Others` configurations from extension
+`attach` | Close repeated tabs when a tab is attached to another window or detached (creating a new window), more details in [`tabs.onReplaced.addListener`](https://developer.chrome.com/extensions/tabs#event-onAttached)
+`datachange` | Close repeated tabs when you change `sort order`, `URLs`, `others` and `events` configurations from extension
 
 ## Languages
 
 Supported languages:
 
-- [Chinese (zh)](chrome/_locales/zh/messages.json))
+- [Chinese (zh)](chrome/_locales/zh/messages.json)
 - [English (en)](chrome/_locales/en/messages.json)
 - [French (fr)](chrome/_locales/fr/messages.json)
 - [German (de)](chrome/_locales/de/messages.json)
