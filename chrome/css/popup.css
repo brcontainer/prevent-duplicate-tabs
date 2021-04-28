@@ -117,7 +117,7 @@ h1::after, h1::before {
     bottom: -1px;
     left: 19px;
     border: solid transparent;
-    content: " ";
+    content: "";
     height: 0;
     width: 0;
     position: absolute;
@@ -418,7 +418,7 @@ html:target main {
 html:target h1 {
     position: static;
     position: relative;
-    background-color: #fff;
+    background-color: transparent;
     padding-right: 2px;
     padding-left: 2px;
     margin-right: 8px;
