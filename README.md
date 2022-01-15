@@ -22,7 +22,7 @@ Among the configurations you can choose to consider or disregard querystring and
 ## Install
 
 - [Chrome](https://chrome.google.com/webstore/detail/prevent-duplicate-tabs/eednccpckdkpojaiemedoejdngappaag)
-- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/smart-prevent-duplicate-tabs/)
+- [Firefox](https://addons.mozilla.org/firefox/addon/smart-prevent-duplicate-tabs/)
 - [Edge](https://microsoftedge.microsoft.com/addons/detail/prevent-duplicate-tabs/iijplllphnkkeepcinimpjobncicbbmb)
 - [Opera](https://addons.opera.com/en/extensions/details/prevent-duplicate-tabs/)
 
