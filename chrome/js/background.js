@@ -228,7 +228,10 @@
     function toggleIgnoreIcon(tab, url) {
         if (!url) {
             browser.tabs.get(tab, function (tab) {
-                if (tab) toggleIgnoreIcon(tab.id, tab.url);
+                if (tab) {
+                    var url = tab.url || tab.pendingUrl;
+                    setTimeout(toggleIgnoreIcon, url ? 0 : 500, tab.id, url);
+                }
             });
         } else {
             var icon;
