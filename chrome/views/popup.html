@@ -31,7 +31,6 @@
     <main>
         <div id="actions">
             <h2 data-i18n="actions_title"></h2>
-
             <div class="group">
                 <div class="row" data-ignored="hosts[host]">
                     <div class="col">
@@ -73,229 +72,234 @@
             </div>
         </div>
 
-        <h2 data-i18n="sort_order_title"></h2>
-
-        <div class="group">
-            <div class="row">
-                <div class="col">
-                    <div class="toggle">
-                        <input type="checkbox" id="old" disabled>
-                        <label for="old"></label>
+        <details open>
+            <summary data-i18n="sort_order_title"></summary>
+            <div class="group">
+                <div class="row">
+                    <div class="col">
+                        <div class="toggle">
+                            <input type="checkbox" id="old" disabled>
+                            <label for="old"></label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 data-i18n="close_olders_title"></h3>
+                        <p data-i18n="close_olders_description"></p>
                     </div>
                 </div>
-                <div class="col">
-                    <h3 data-i18n="close_olders_title"></h3>
-                    <p data-i18n="close_olders_description"></p>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="toggle">
+                            <input type="checkbox" id="active" disabled>
+                            <label for="active"></label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 data-i18n="keep_active_title"></h3>
+                        <p data-i18n="keep_active_description"></p>
+                    </div>
                 </div>
             </div>
+        </details>
 
-            <div class="row">
-                <div class="col">
-                    <div class="toggle">
-                        <input type="checkbox" id="active" disabled>
-                        <label for="active"></label>
+        <details open>
+            <summary data-i18n="urls_title"></summary>
+            <div class="group">
+                <div class="row">
+                    <div class="col">
+                        <div class="toggle">
+                            <input type="checkbox" id="http" disabled>
+                            <label for="http"></label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 data-i18n="only_http_title"></h3>
+                        <p data-i18n="only_http_description"></p>
                     </div>
                 </div>
-                <div class="col">
-                    <h3 data-i18n="keep_active_title"></h3>
-                    <p data-i18n="keep_active_description"></p>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="toggle">
+                            <input type="checkbox" id="query" disabled>
+                            <label for="query"></label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 data-i18n="querystring_title"></h3>
+                        <p data-i18n="querystring_description"></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="toggle">
+                            <input type="checkbox" id="hash" disabled>
+                            <label for="hash"></label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 data-i18n="hash_title"></h3>
+                        <p data-i18n="hash_description"></p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </details>
 
-        <h2 data-i18n="urls_title"></h2>
-
-        <div class="group">
-            <div class="row">
-                <div class="col">
-                    <div class="toggle">
-                        <input type="checkbox" id="http" disabled>
-                        <label for="http"></label>
+        <details open>
+            <summary data-i18n="others_title"></summary>
+            <div class="group">
+                <div class="row">
+                    <div class="col">
+                        <div class="toggle">
+                            <input type="checkbox" id="incognito" disabled>
+                            <label for="incognito"></label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 data-i18n="incognito_title"></h3>
+                        <p data-i18n="incognito_description"></p>
                     </div>
                 </div>
-                <div class="col">
-                    <h3 data-i18n="only_http_title"></h3>
-                    <p data-i18n="only_http_description"></p>
+                <div class="row">
+                    <div class="col">
+                        <div class="toggle">
+                            <input type="checkbox" id="windows" disabled>
+                            <label for="windows"></label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 data-i18n="windows_title"></h3>
+                        <p data-i18n="windows_description"></p>
+                    </div>
+                </div>
+                <div class="row support-containers">
+                    <div class="col">
+                        <div class="toggle">
+                            <input type="checkbox" id="containers" disabled>
+                            <label for="containers"></label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 data-i18n="containers_title"></h3>
+                        <p data-i18n="containers_description"></p>
+                    </div>
                 </div>
             </div>
+        </details>
 
-            <div class="row">
-                <div class="col">
-                    <div class="toggle">
-                        <input type="checkbox" id="query" disabled>
-                        <label for="query"></label>
+        <details open>
+            <summary data-i18n="events_title"></summary>
+            <div class="group">
+                <div class="row">
+                    <div class="col">
+                        <div class="toggle">
+                            <input type="checkbox" id="start" disabled>
+                            <label for="start"></label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 data-i18n="start_event_title"></h3>
+                        <p data-i18n="start_event_description"></p>
                     </div>
                 </div>
-                <div class="col">
-                    <h3 data-i18n="querystring_title"></h3>
-                    <p data-i18n="querystring_description"></p>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="toggle">
+                            <input type="checkbox" id="update" disabled>
+                            <label for="update"></label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 data-i18n="update_event_title"></h3>
+                        <p data-i18n="update_event_description"></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="toggle">
+                        <input type="checkbox" id="create" disabled>
+                        <label for="create"></label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 data-i18n="create_event_title"></h3>
+                        <p data-i18n="create_event_description"></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="toggle">
+                            <input type="checkbox" id="replace" disabled>
+                            <label for="replace"></label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 data-i18n="replace_event_title"></h3>
+                        <p data-i18n="replace_event_description"></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="toggle">
+                            <input type="checkbox" id="attach" disabled>
+                            <label for="attach"></label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 data-i18n="attached_event_title"></h3>
+                        <p data-i18n="attached_event_description"></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="toggle">
+                            <input type="checkbox" id="datachange" disabled>
+                            <label for="datachange"></label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 data-i18n="datachange_event_title"></h3>
+                        <p data-i18n="datachange_event_description"></p>
+                    </div>
                 </div>
             </div>
+        </details>
 
-            <div class="row">
-                <div class="col">
-                    <div class="toggle">
-                        <input type="checkbox" id="hash" disabled>
-                        <label for="hash"></label>
-                    </div>
-                </div>
-                <div class="col">
-                    <h3 data-i18n="hash_title"></h3>
-                    <p data-i18n="hash_description"></p>
+        <details open>
+            <summary data-i18n="color_scheme_title"></summary>
+            <div class="group">
+                <div class="grid radio themes">
+                    <label>
+                        <input type="radio" name="color-scheme" value="dark">
+                        <div>
+                            <i class="ico color-scheme-dark"></i>
+                            <h4 data-i18n="color_scheme_dark"></h4>
+                        </div>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-scheme" value="default">
+                        <div>
+                            <i class="ico color-scheme-device"></i>
+                            <h4 data-i18n="color_scheme_device"></h4>
+                        </div>
+                    </label>
+                    <label>
+                        <input type="radio" name="color-scheme" value="light">
+                        <div>
+                            <i class="ico color-scheme-light"></i>
+                            <h4 data-i18n="color_scheme_light"></h4>
+                        </div>
+                    </label>
                 </div>
             </div>
-        </div>
-
-        <h2 data-i18n="others_title"></h2>
-
-        <div class="group">
-            <div class="row">
-                <div class="col">
-                    <div class="toggle">
-                        <input type="checkbox" id="incognito" disabled>
-                        <label for="incognito"></label>
-                    </div>
-                </div>
-                <div class="col">
-                    <h3 data-i18n="incognito_title"></h3>
-                    <p data-i18n="incognito_description"></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="toggle">
-                        <input type="checkbox" id="windows" disabled>
-                        <label for="windows"></label>
-                    </div>
-                </div>
-                <div class="col">
-                    <h3 data-i18n="windows_title"></h3>
-                    <p data-i18n="windows_description"></p>
-                </div>
-            </div>
-            <div class="row support-containers">
-                <div class="col">
-                    <div class="toggle">
-                        <input type="checkbox" id="containers" disabled>
-                        <label for="containers"></label>
-                    </div>
-                </div>
-                <div class="col">
-                    <h3 data-i18n="containers_title"></h3>
-                    <p data-i18n="containers_description"></p>
-                </div>
-            </div>
-        </div>
-
-        <h2 data-i18n="events_title"></h2>
-
-        <div class="group">
-            <div class="row">
-                <div class="col">
-                    <div class="toggle">
-                        <input type="checkbox" id="start" disabled>
-                        <label for="start"></label>
-                    </div>
-                </div>
-                <div class="col">
-                    <h3 data-i18n="start_event_title"></h3>
-                    <p data-i18n="start_event_description"></p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <div class="toggle">
-                        <input type="checkbox" id="update" disabled>
-                        <label for="update"></label>
-                    </div>
-                </div>
-                <div class="col">
-                    <h3 data-i18n="update_event_title"></h3>
-                    <p data-i18n="update_event_description"></p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <div class="toggle">
-                    <input type="checkbox" id="create" disabled>
-                    <label for="create"></label>
-                    </div>
-                </div>
-                <div class="col">
-                    <h3 data-i18n="create_event_title"></h3>
-                    <p data-i18n="create_event_description"></p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <div class="toggle">
-                        <input type="checkbox" id="replace" disabled>
-                        <label for="replace"></label>
-                    </div>
-                </div>
-                <div class="col">
-                    <h3 data-i18n="replace_event_title"></h3>
-                    <p data-i18n="replace_event_description"></p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <div class="toggle">
-                        <input type="checkbox" id="attach" disabled>
-                        <label for="attach"></label>
-                    </div>
-                </div>
-                <div class="col">
-                    <h3 data-i18n="attached_event_title"></h3>
-                    <p data-i18n="attached_event_description"></p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <div class="toggle">
-                        <input type="checkbox" id="datachange" disabled>
-                        <label for="datachange"></label>
-                    </div>
-                </div>
-                <div class="col">
-                    <h3 data-i18n="datachange_event_title"></h3>
-                    <p data-i18n="datachange_event_description"></p>
-                </div>
-            </div>
-        </div>
-
-        <h2 data-i18n="color_scheme_title"></h2>
-
-        <div class="group">
-            <div class="grid radio themes">
-                <label>
-                    <input type="radio" name="color-scheme" value="dark">
-                    <div>
-                        <i class="ico color-scheme-dark"></i>
-                        <h4 data-i18n="color_scheme_dark"></h4>
-                    </div>
-                </label>
-                <label>
-                    <input type="radio" name="color-scheme" value="default">
-                    <div>
-                        <i class="ico color-scheme-device"></i>
-                        <h4 data-i18n="color_scheme_device"></h4>
-                    </div>
-                </label>
-                <label>
-                    <input type="radio" name="color-scheme" value="light">
-                    <div>
-                        <i class="ico color-scheme-light"></i>
-                        <h4 data-i18n="color_scheme_light"></h4>
-                    </div>
-                </label>
-            </div>
-        </div>
+        </details>
 
         <footer>
             <span id="version" data-i18n="version"></span>
@@ -308,6 +312,7 @@
 
     <script type="text/javascript" src="../js/popup.js"></script>
     <script type="text/javascript" src="../js/toggle.js"></script>
+    <script type="text/javascript" src="../js/summary.js"></script>
     <script type="text/javascript" src="../js/data.js"></script>
 </body>
 </html>

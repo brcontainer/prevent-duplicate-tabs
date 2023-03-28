@@ -1,6 +1,6 @@
 /*
  * Prevent Duplicate Tabs
- * Copyright (c) 2021 Guilherme Nascimento (brcontainer@yahoo.com.br)
+ * Copyright (c) 2023 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
  * https://github.com/brcontainer/prevent-duplicate-tabs
@@ -13,7 +13,7 @@ html, body {
 
 html:not(:target), html:not(:target) body {
     overflow: hidden;
-    width: 380px;
+    width: 320px;
 }
 
 main {
@@ -21,7 +21,7 @@ main {
     overflow: hidden;
     overflow-y: auto;
     min-height: 300px;
-    max-height: 500px;
+    max-height: 400px;
     scroll-behavior: smooth;
 }
 
@@ -52,7 +52,7 @@ var {
     font-style: normal;
 }
 
-h1, h2, h3 {
+h1, h2, h3, summary {
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 0;
@@ -64,7 +64,7 @@ h1 {
     left: 0;
     top: 0;
     z-index: 100;
-    width: 380px;
+    width: 320px;
     height: 57px;
     margin: 0;
     padding: 7px 6px;
@@ -81,6 +81,7 @@ h1 > .ico {
 }
 
 h1 > span {
+    font-size: 8pt;
     vertical-align: middle;
     position: relative;
     top: 4px;
@@ -138,14 +139,23 @@ h1::before {
     margin-left: -6px;
 }
 
-h2 {
+h2, summary {
+    font-weight: bold;
     font-size: 10pt;
-    padding: 12px 12px 12px 12px;
+    padding: 10px 12px;
 }
 
 h3 {
     font-size: 9pt;
     padding: 5px 0;
+}
+
+details {
+    padding: 0 0 6px 0;
+}
+
+summary {
+    cursor: pointer;
 }
 
 button * {
@@ -171,7 +181,7 @@ code {
 }
 
 .group {
-    margin: 0 10px 20px 10px;
+    margin: 0 10px;
     background-color: #fff;
     border: 1px solid;
     border-radius: 3px;
@@ -202,13 +212,13 @@ code {
 
 .row > .col:first-child {
     float: left;
-    width: 75px;
+    width: 64px;
     text-align: center;
     padding-top: 2px;
 }
 
 .row > .col:last-child {
-    margin: 0 10px 0 80px;
+    margin: 0 8px 0 64px;
 }
 
 .row > .col > p {
@@ -218,7 +228,7 @@ code {
 }
 
 .grid {
-    padding: 12px 12px 12px 12px;
+    padding: 4px;
 }
 
 .grid > * {

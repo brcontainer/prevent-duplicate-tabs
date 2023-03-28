@@ -1,6 +1,6 @@
 /*
  * Prevent Duplicate Tabs
- * Copyright (c) 2021 Guilherme Nascimento (brcontainer@yahoo.com.br)
+ * Copyright (c) 2023 Guilherme Nascimento (brcontainer@yahoo.com.br)
  * Released under the MIT license
  *
  * https://github.com/brcontainer/prevent-duplicate-tabs
@@ -87,14 +87,6 @@
                 .toggle("data-ignored", ignore);
     }
 
-    function markdown(message) {
-        return message
-                .replace(/(^|\s|[>])_(.*?)_($|\s|[<])/g, '$1<i>$2<\/i>$3')
-                    .replace(/(^|\s|[>])`(.*?)`($|\s|[<])/g, '$1<code>$2<\/code>$3')
-                        .replace(/\{([a-z])(\w+)?\}/gi, '<var name="$1$2"><\/var>')
-                            .replace(/(^|\s|[>])\*(.*?)\*($|\s|[<])/g, '$1<strong>$2<\/strong>$3');
-    }
-
     function applyIgnoredVars(vars) {
         var query;
 
@@ -149,14 +141,6 @@
 
         sync = false;
     });
-
-    var locales = d.querySelectorAll("[data-i18n]");
-
-    for (var i = locales.length - 1; i >= 0; i--) {
-        var el = locales[i], message = browser.i18n.getMessage(el.dataset.i18n);
-
-        if (message) el.innerHTML = markdown(message);
-    }
 
     applyIgnoredVars();
 })(window, document);
