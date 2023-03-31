@@ -145,5 +145,8 @@
   },
   "report": {
     "message": "signaler un problème"
+  },
+  "unavailable": {
+    "message": "indisponible"
   }
 }

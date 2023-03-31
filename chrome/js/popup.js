@@ -71,6 +71,14 @@
         }
     });
 
+    if (browser.extension && browser.extension.isAllowedIncognitoAccess) {
+        var incognitoWarn = d.getElementById("incognito_warn");
+
+        browser.extension.isAllowedIncognitoAccess(function (allowed) {
+            incognitoWarn.classList.toggle("hide", allowed === true);
+        });
+    }
+
     var se = d.scrollingElement || d.body;
 
     setTimeout(function () {

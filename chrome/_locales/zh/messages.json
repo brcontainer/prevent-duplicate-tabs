@@ -145,5 +145,8 @@
   },
   "report": {
     "message": "報告問題"
+  },
+  "unavailable": {
+    "message": "不可用"
   }
 }

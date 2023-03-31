@@ -171,6 +171,10 @@ code {
     line-height: 0.9;
 }
 
+.hide {
+    display: none;
+}
+
 .group {
     margin: 0 10px;
     background-color: #fff;
@@ -225,8 +229,8 @@ code {
 
 .row > .col > .warn {
     position: absolute;
-    right: -2px;
-    bottom: -8px;
+    right: -4px;
+    top: 0;
     border-radius: 1rem;
     background: #fc0;
     padding: .15rem .5rem;
@@ -473,5 +477,5 @@ html:target #actions, #actions:not(.show) {
 }
 
 :focus, .toggle > input:focus ~ label::after {
-    outline: .15rem solid rgba(32, 0, 255, .5);
+    outline: .15rem solid #634dff;
 }

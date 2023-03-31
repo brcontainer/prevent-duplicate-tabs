@@ -145,5 +145,8 @@
   },
   "report": {
     "message": "문제보고"
+  },
+  "unavailable": {
+    "message": "없는"
   }
 }

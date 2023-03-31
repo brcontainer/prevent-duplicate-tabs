@@ -119,3 +119,7 @@ html:target body,
 html:target .row {
     background-color: transparent;
 }
+
+:focus, .toggle > input:focus ~ label::after {
+    outline: .15rem solid #fc612d;
+}
