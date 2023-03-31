@@ -42,7 +42,7 @@
     "message": "關閉舊標籤並使用相同的網址保留最新標籤"
   },
   "keep_active_title": {
-    "message": "保持選項卡處於活動狀態"
+    "message": "保留活動標籤"
   },
   "keep_active_description": {
     "message": "不要關閉活動標籤"

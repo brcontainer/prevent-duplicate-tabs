@@ -16,21 +16,14 @@
     }
 
     var sync = false, browser = w.browser;
-
     var dataChange = { "data": u, "value": u };
-
-    var dataEvent = new CustomEvent("change:data", {
-        "detail": dataChange
-    });
+    var dataEvent = new CustomEvent("change:data", { "detail": dataChange });
 
     function changeSwitch(e) {
         if (runtimeConnected()) {
             sync = true;
 
-            sendMessage({
-                "enable": this.checked,
-                "setup": this.id
-            });
+            sendMessage({ "enable": this.checked, "setup": this.id });
         }
     }
 
@@ -38,11 +31,7 @@
         if (runtimeConnected()) {
             sync = true;
 
-            sendMessage({
-                "data": this.name,
-                "value": this.value
-            });
-
+            sendMessage({ "data": this.name, "value": this.value });
             triggerEvent(this.name, this.value);
         }
     }
@@ -55,9 +44,7 @@
 
             current.disabled = false;
 
-            if (current.value === value) {
-                current.checked = true;
-            }
+            if (current.value === value) current.checked = true;
         }
     }
 

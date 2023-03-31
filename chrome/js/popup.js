@@ -17,7 +17,6 @@
 
     var debugMode = false,
         browser = w.browser,
-        isHttpRE = /^https?:\/\/[^\/]/i,
         manifest = browser.runtime.getManifest();
 
     if (browser.runtime.id && !("requestUpdateCheck" in browser.runtime)) {
@@ -63,11 +62,13 @@
             if (!el) return;
         }
 
-        if (!isHttpRE.test(el.href)) return;
+        var protocol = el.protocol;
 
-        e.preventDefault();
+        if (protocol === "http:" || protocol === "https:") {
+            e.preventDefault();
 
-        browser.tabs.create({ "url": el.href });
+            browser.tabs.create({ "url": el.href });
+        }
     });
 
     var se = d.scrollingElement || d.body;

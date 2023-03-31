@@ -42,7 +42,7 @@
     "message": "Fermez les anciens onglets et conservez le plus récent avec le même URL"
   },
   "keep_active_title": {
-    "message": "Gardez l'onglet qui est actif"
+    "message": "Conserver l'onglet actif"
   },
   "keep_active_description": {
     "message": "Ne fermez pas les onglets actifs"

@@ -42,7 +42,7 @@
     "message": "이전 탭을 닫고 동일한 `http://foo/bar` 로 최신 탭을 유지합니다"
   },
   "keep_active_title": {
-    "message": "활성화 된 탭 유지"
+    "message": "활성 탭 유지"
   },
   "keep_active_description": {
     "message": "활성 탭을 닫지 마십시오"

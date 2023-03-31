@@ -42,7 +42,7 @@
     "message": "Close the old tabs and keep the most recent one with the same URL"
   },
   "keep_active_title": {
-    "message": "Keep the tab that is active"
+    "message": "Preserve active tab"
   },
   "keep_active_description": {
     "message": "Don't close active tabs"

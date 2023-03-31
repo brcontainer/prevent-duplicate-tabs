@@ -42,7 +42,7 @@
     "message": "古いタブを閉じ、最新のタブを同じURLで保持します"
   },
   "keep_active_title": {
-    "message": "アクティブなタブを保持する"
+    "message": "アクティブなタブを保持"
   },
   "keep_active_description": {
     "message": "アクティブなタブを閉じないでください"

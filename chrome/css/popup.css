@@ -35,7 +35,7 @@ main {
 body {
     padding: 57px 0 0 0;
     background-color: #faf7f7 !important;
-    font-size: 10pt;
+    font-size: 16px;
     -webkit-touch-callout: none;
       -webkit-user-select: none;
        -khtml-user-select: none;
@@ -88,7 +88,7 @@ h1 > span {
 }
 
 h1 > .global-config {
-    margin-top: 11px;
+    margin: 14px 4px 0 0;
     float: right;
     font-size: 8pt;
     color: #c0c0c0;
@@ -100,18 +100,9 @@ h1 > .global-config > .toggle {
     padding: 0;
 }
 
-h1 > .global-config > .toggle > label {
-    height: 20px;
-    width: 42px;
-}
-
-h1 > .global-config > .toggle > label::after {
-    height: 16px;
-    width: 16px;
-}
-
-h1 > .global-config > .toggle > input:checked ~ label::after {
-    left: 24px;
+h1 > .global-config > .toggle {
+    margin-left: 5px;
+    font-size: 7pt;
 }
 
 h1::after, h1::before {
@@ -212,19 +203,38 @@ code {
 
 .row > .col:first-child {
     float: left;
-    width: 64px;
+    width: 80px;
     text-align: center;
     padding-top: 2px;
 }
 
 .row > .col:last-child {
-    margin: 0 8px 0 64px;
+    margin: 0 8px 0 84px;
 }
 
 .row > .col > p {
     padding: 0;
     margin: 0;
+    font-size: 80%;
     line-height: 1.3;
+}
+
+.row > .col {
+    position: relative;
+}
+
+.row > .col > .warn {
+    position: absolute;
+    right: -2px;
+    bottom: -8px;
+    border-radius: 1rem;
+    background: #fc0;
+    padding: .15rem .5rem;
+    font-size: 55%;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: bold;
+    letter-spacing: .05rem;
 }
 
 .grid {
@@ -328,9 +338,10 @@ code {
 
 main > footer {
     padding: 16px 4px;
-    margin: 0 12px;
+    margin: 12px 12px 0 12px;
     text-align: center;
     border-top: 1px solid;
+    font-size: 80%;
 }
 
 main > footer a {
@@ -461,3 +472,6 @@ html:target #actions, #actions:not(.show) {
     display: block;
 }
 
+:focus, .toggle > input:focus ~ label::after {
+    outline: .15rem solid rgba(32, 0, 255, .5);
+}
