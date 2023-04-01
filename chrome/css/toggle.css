@@ -7,7 +7,6 @@
  */
 
 .toggle {
-    margin-bottom: 1rem;
     position: relative;
     display: inline-block;
     z-index: 1;
@@ -47,11 +46,11 @@
 
 .toggle > label::before {
     position: absolute;
-    left: 1.92em;
-    top: .3em;
+    left: 2.25em;
+    top: .32em;
     content: "\2718";
     font-variant: small-caps;
-    font-size: .92em;
+    font-size: .85em;
     text-align: center;
     color: #868171;
 }
