@@ -88,7 +88,7 @@ h1 > span {
 }
 
 h1 > .global-config {
-    margin: 14px 4px 0 0;
+    margin: 10px 4px 0 0;
     float: right;
     font-size: 8pt;
     color: #c0c0c0;
@@ -102,7 +102,7 @@ h1 > .global-config > .toggle {
 
 h1 > .global-config > .toggle {
     margin-left: 5px;
-    font-size: 7pt;
+    font-size: 12px;
 }
 
 h1::after, h1::before {
@@ -137,7 +137,7 @@ h2, summary {
 }
 
 h3 {
-    font-size: 9pt;
+    font-size: 12px;
     padding: 5px 0;
 }
 
@@ -155,7 +155,7 @@ button * {
 
 code {
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    padding: 0.2em 0.4em;
+    padding: .2em .4em;
     margin: 0;
     color: #383535;
     font-size: 85%;
@@ -168,7 +168,7 @@ code {
     display: inline-block;
     white-space: nowrap;
     vertical-align: text-bottom;
-    line-height: 0.9;
+    line-height: .9;
 }
 
 .hide {
@@ -207,13 +207,13 @@ code {
 
 .row > .col:first-child {
     float: left;
-    width: 80px;
+    width: 74px;
     text-align: center;
-    padding-top: 2px;
+    padding-top: 5px;
 }
 
 .row > .col:last-child {
-    margin: 0 8px 0 84px;
+    margin: 0 8px 0 75px;
 }
 
 .row > .col > p {
@@ -476,6 +476,10 @@ html:target #actions, #actions:not(.show) {
     display: block;
 }
 
-:focus, .toggle > input:focus ~ label::after {
+:focus {
+    outline: none;
+}
+
+:focus-visible, .toggle > input:focus-visible ~ label::after {
     outline: .15rem solid #634dff;
 }
