@@ -313,7 +313,11 @@
                 try {
                     var item = JSON.parse(localStorage.getItem(key));
 
-                    if ("value" in item) store[key] = item.value;
+                    if (key === "urls" && Array.isArray(item)) {
+                        store[key] = item;
+                    } else if ("value" in item) {
+                        store[key] = item.value;
+                    }
                 } catch (ee) {}
             }
         }
