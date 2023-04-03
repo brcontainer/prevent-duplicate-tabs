@@ -8,4 +8,6 @@
 
 import { browser, storage } from './boot.js';
 
-console.log(browser);
+storage.addListener((key, value) => {
+    console.log({ key, value });
+});

@@ -7,8 +7,25 @@
  */
 
 var browser = chrome,
-    storage = browser.storage.sync
     manifest = browser.runtime.getManifest();
+
+var _storage = browser.storage;
+
+var storage = {
+    get: _storage.local.get,
+    set: _storage.local.set,
+    addListener: addStorageListener,
+};
+
+function addStorageListener(callback) {
+    return _storage.onChanged.addListener((changes, namespace) => {
+        if (namespace !== 'local') return;
+
+        for (var item of Object.entries(changes)) {
+            callback(item[0], item[1].newValue);
+        }
+    });
+}
 
 function connected() {
     return new Promise(() => {

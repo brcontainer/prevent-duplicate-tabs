@@ -6,7 +6,7 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { storage } from './boot.js';
+import { browser, storage } from './boot.js';
 
 var keys = [],
     syncing = {},
@@ -15,7 +15,13 @@ var keys = [],
 toggles.forEach((toggle) => {
     syncing[toggle.id] = false;
 
+    keys.push(toggle.id);
+
     toggle.addEventListener('change', changeSwitch);
+});
+
+storage.get(keys).then((results) => {
+    toggle.disabled = false;
 });
 
 function changeSwitch(e) {
@@ -23,7 +29,7 @@ function changeSwitch(e) {
 
     syncing[key] = true;
 
-    storage.set({ [key]: value }).finally(() => {
+    storage.set({ [key]: e.target.checked }).finally(() => {
         syncing[key] = false;
     });
 }
