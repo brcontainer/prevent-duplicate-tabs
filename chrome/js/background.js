@@ -309,7 +309,7 @@
         for (var i = 0, j = localStorage.length; i < j; i++) {
             var key = localStorage.key(i);
 
-            if (key.indexOf("data:") === 0 || legacyConfigs.includes(key)) {
+            if (key === "urls" || key.indexOf("data:") === 0 || legacyConfigs.includes(key)) {
                 try {
                     var item = JSON.parse(localStorage.getItem(key));
 
