@@ -40,6 +40,9 @@
             "containers": true
         };
 
+
+    var legacyConfigs = Object.keys(configs);
+
     function checkTabs(type) {
         if (configs[type]) {
             browser.tabs.query(configs.windows ? { "lastFocusedWindow": true } : {}, preGetTabs);
@@ -299,4 +302,22 @@
             if (configs.datachange) setTimeout(checkTabs, 10, "datachange");
         }
     });
+
+    setTimeout(async function () {
+        var store = {};
+
+        for (var i = 0, j = localStorage.length; i < j; i++) {
+            var key = localStorage.key(i);
+
+            if (key.indexOf("data:") === 0 || legacyConfigs.includes(key)) {
+                try {
+                    var item = JSON.parse(localStorage.getItem(key));
+
+                    if ("value" in item) store[key] = item.value;
+                } catch (ee) {}
+            }
+        }
+
+        await browser.storage.local.set(store);
+    }, 1000);
 })(window);

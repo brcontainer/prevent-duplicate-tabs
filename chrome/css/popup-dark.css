@@ -19,7 +19,7 @@ var {
 }
 
 h1 {
-    background-color: rgba(255,255,255,.1);
+    background-color: #404040;
 }
 
 h1 > .global-config {
