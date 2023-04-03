@@ -18,6 +18,14 @@ if (!debugMode) {
     d.ondragstart = disableEvent;
 }
 
+var locales = d.querySelectorAll("[data-i18n]");
+
+for (var i = locales.length - 1; i >= 0; i--) {
+    var el = locales[i], message = browser.i18n.getMessage(el.dataset.i18n);
+
+    if (message) el.innerHTML = markdown(message);
+}
+
 d.addEventListener('click', function (e) {
     if (e.button !== 0) return;
 
@@ -50,3 +58,11 @@ setTimeout(function () {
         }, 20);
     }, 20);
 }, 10);
+
+function markdown(message) {
+    return message
+        .replace(/(^|\s|[>])_(.*?)_($|\s|[<])/g, '$1<i>$2<\/i>$3')
+        .replace(/(^|\s|[>])`(.*?)`($|\s|[<])/g, '$1<code>$2<\/code>$3')
+        .replace(/\{([a-z])(\w+)?\}/gi, '<var name="$1$2"><\/var>')
+        .replace(/(^|\s|[>])\*(.*?)\*($|\s|[<])/g, '$1<strong>$2<\/strong>$3');
+}
