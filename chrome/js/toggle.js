@@ -14,14 +14,20 @@ var keys = [],
 
 toggles.forEach((toggle) => {
     syncing[toggle.id] = false;
-
     keys.push(toggle.id);
-
-    toggle.addEventListener('change', changeSwitch);
 });
 
 storage.get(keys).then((results) => {
-    toggle.disabled = false;
+    console.log({ results });
+
+    toggles.forEach((toggle) => {
+        if (toggle.id in results && results[toggle.id] === true) {
+            toggle.checked = true;
+        }
+
+        toggle.disabled = false;
+        toggle.addEventListener('change', changeSwitch);
+    });
 });
 
 function changeSwitch(e) {
