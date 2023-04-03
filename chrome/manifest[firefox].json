@@ -5,7 +5,6 @@
     "version": "0.8.0",
     "manifest_version": 3,
     "default_locale": "en",
-    "incognito": "split",
     "icons": {
         "16": "images/icon.png",
         "32": "images/32x.png",
