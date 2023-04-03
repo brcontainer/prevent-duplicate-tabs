@@ -6,27 +6,31 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-(function (w, d, u) {
-    "use strict";
+import { storage } from './boot.js';
 
-    function setEvent(widget, key) {
-        widget.addEventListener("toggle", function () {
-            setStorage(key, widget.open);
-        });
+var keys = {},
+    widgets = {},
+    details = document.querySelectorAll('details');
+
+details.forEach((widget) => {
+    var summary = widget.querySelector('summary'),
+        key = 'details:' + summary.getAttribute('data-i18n');
+
+    widget.addEventListener('toggle', () => toggle(key, value, widget));
+
+    key.push(key);
+
+    widgets[key] = widget;
+});
+
+storage.get(keys).then((result) => {
+    for (var key of keys) {
+        widgets[key].open = result[key];
     }
+});
 
-    var details = d.querySelectorAll("details");
-
-    for (var i = details.length - 1; i >= 0; i--) {
-        var widget = details[i],
-            summary = widget.querySelector("[data-i18n]"),
-            key = "details:" + summary.getAttribute("data-i18n"),
-            stored = getStorage(key);
-
-        if (typeof stored === "boolean") {
-            widget.open = stored;
-        }
-
-        setEvent(widget, key);
-    }
-})(window, document);
+function toggle(widget, key, value) {
+    storage.set({ [key]: value }).then(() => {
+        widget.open = value;
+    });
+}

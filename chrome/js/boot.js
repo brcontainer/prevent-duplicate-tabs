@@ -6,30 +6,28 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-function empty() {}
+var browser = chrome,
+    storage = browser.storage.sync
+    manifest = browser.runtime.getManifest();
 
-function setStorage(key, value) {
-    localStorage.setItem(key, JSON.stringify({ "value": value }));
+function connected() {
+    return new Promise(() => {
+        if (!browser.runtime || !browser.runtime.sendMessage) {
+            return Promise.reject(new Error('Extension not connected'));
+        }
+
+        return Promise.resolve();
+    });
 }
 
-function getStorage(key, fallback) {
-    var value = localStorage[key];
-
-    if (!value || value[0] !== "{" || value.substr(-1) !== "}") {
-        return fallback;
-    }
-
-    var current = JSON.parse(value);
-
-    return current ? current.value : fallback;
+function sendMessage(message) {
+    return connected().then(() => browser.runtime.sendMessage(null, message, {}));
 }
 
-function runtimeConnected() {
-    return !!browser && browser.runtime && browser.runtime.sendMessage;
-}
-
-function sendMessage(message, callback) {
-    if (runtimeConnected()) {
-        browser.runtime.sendMessage(null, message, {}, callback || empty);
-    }
-}
+export {
+    browser,
+    connected,
+    manifest,
+    sendMessage,
+    storage
+};
