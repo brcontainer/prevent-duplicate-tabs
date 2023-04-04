@@ -8,8 +8,12 @@
 
 import { browser, storage } from './boot.js';
 
-var tabId = null,
-    timeout = null,
+var isReady = false,
+    tabId = null,
+    toggleTimeout = null,
+    findTimeout = null,
+    urls = [],
+    hosts = [],
     configs = {
         turnoff: false,
         old: true,
@@ -28,16 +32,28 @@ var tabId = null,
         containers: true
     };
 
-storage.addListener((key, value) => {
-    if (typeof value === 'boolean' && key in configs) {
-        configs[key] = value;
-        toggleIcon();
+var storageKeys = Object.keys(configs).concat(['urls', 'hosts']);
+
+storage.get(storageKeys).then((results) => {
+    for (var key of storageKeys) {
+        if (key === 'urls') {
+            if (Array.isArray(results[key])) urls = results[key];
+        } else if (key === 'hosts') {
+            if (Array.isArray(results[key])) hosts = results[key];
+        } else if (typeof results[key] === 'boolean') {
+            configs[key] = results[key];
+        }
     }
+
+    console.log(results, configs);
+
+    ready();
 });
 
 browser.tabs.onActivated.addListener((tab) => {
     tabId = tab.tabId;
-    preToggleIcon();
+
+    if (isReady) preToggleIcon();
 });
 
 function isDisabled() {
@@ -52,9 +68,9 @@ function isDisabled() {
 }
 
 function preToggleIcon() {
-    if (timeout !== null) clearTimeout(timeout);
+    if (toggleTimeout !== null) clearTimeout(toggleTimeout);
 
-    timeout = setTimeout(toggleIcon, 50);
+    toggleTimeout = setTimeout(toggleIcon, 50);
 }
 
 function toggleIcon() {
@@ -69,4 +85,56 @@ function toggleIcon() {
             '128': `${path}/128x.png`,
         }
     });
+}
+
+function ready() {
+    storage.addListener(changeData);
+
+    browser.tabs.onAttached.addListener(tabEvent('attach', 500));
+    browser.tabs.onCreated.addListener(tabEvent('create', 10));
+    browser.tabs.onReplaced.addListener(tabEvent('replace', 10));
+    browser.tabs.onUpdated.addListener(tabEvent('update', 10));
+
+    setTimeout(preTriggerTabEvent, 100, 'start');
+
+    preToggleIcon();
+
+    isReady = true;
+}
+
+function changeData(key, value) {
+    if (typeof value === 'boolean' && key in configs) {
+        configs[key] = value;
+        toggleIcon();
+
+        if (configs.datachange) {
+            setTimeout(preTriggerTabEvent, 100, 'datachange');
+        }
+    }
+}
+
+function tabEvent(type) {
+    return () => preTriggerTabEvent(type);
+}
+
+function preTriggerTabEvent(type) {
+    if (configs[type]) {
+        if (findTimeout !== null) clearTimeout(findTimeout);
+
+        findTimeout = setTimeout(triggerTabEvent, 50);
+    }
+}
+
+function triggerTabEvent() {
+    browser.tabs.query(configs.windows ? {
+        'lastFocusedWindow': true
+    } : {}).then(findDuplicateTabs);
+}
+
+function findDuplicateTabs(tabs) {
+    console.log('triggerTabEvent', isDisabled());
+
+    if (isDisabled()) return;
+
+    console.log('findDuplicateTabs', tabs, new Date().toISOString());
 }
