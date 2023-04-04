@@ -37,16 +37,16 @@ h1::before {
 }
 
 .ico.setup {
-    background-image: url(../images/setup.svg);
+    background-image: url(/images/setup.svg);
 }
 .ico.bug {
-    background-image: url(../images/bug.svg);
+    background-image: url(/images/bug.svg);
 }
 .ico.knowed {
-    background-image: url(../images/observer.svg#invert-knowed);
+    background-image: url(/images/observer.svg#invert-knowed);
 }
 .ico.ignored {
-    background-image: url(../images/observer.svg#invert-ignored);
+    background-image: url(/images/observer.svg#invert-ignored);
 }
 
 code {
