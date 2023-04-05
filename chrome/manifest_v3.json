@@ -6,13 +6,13 @@
     "manifest_version": 3,
     "default_locale": "en",
     "icons": {
-        "16": "images/icon.png",
+        "16": "images/16x.png",
         "32": "images/32x.png",
         "48": "images/48x.png",
         "128": "images/128x.png"
     },
     "action": {
-        "default_icon":  "images/icon.png",
+        "default_icon":  "images/16x.png",
         "default_popup": "views/popup.html#popup"
     },
     "options_ui": {
