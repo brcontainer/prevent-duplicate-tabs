@@ -7,18 +7,47 @@
  */
 
 var browser = chrome,
-    manifest = browser.runtime.getManifest();
+    manifest = browser.runtime.getManifest(),
+    usesPromise = manifest.manifest_version >= 3;
 
-var _storage = browser.storage;
+var _incognito = browser.extension.isAllowedIncognitoAccess,
+    _storage = browser.storage,
+    _tabs = browser.tabs;
 
 var storage = {
-    get: _storage.local.get,
-    set: _storage.local.set,
+    get: getStorage,
+    set: setStorage,
     addListener: addStorageListener,
 };
 
+var tabs = {
+    create: createTab,
+    query: queryTabs,
+    onActivated: _tabs.onActivated,
+    onAttached: _tabs.onAttached,
+    onCreated: _tabs.onCreated,
+    onReplaced: _tabs.onReplaced,
+    onUpdated: _tabs.onUpdated,
+};
+
+function getStorage(keys) {
+    if (usesPromise) return _storage.local.get(keys);
+
+    return new Promise((resolve) => {
+        _storage.local.get(keys, resolve);
+    });
+}
+
+function setStorage(keys) {
+    if (usesPromise) return _storage.local.set(keys);
+
+    return new Promise((resolve) => {
+        _storage.local.set(keys, resolve);
+    });
+}
+
 function addStorageListener(callback) {
-    return _storage.onChanged.addListener((changes, namespace) => {
+    _storage.onChanged.addListener((changes, namespace) => {
         if (namespace !== 'local') return;
 
         for (var item of Object.entries(changes)) {
@@ -27,13 +56,29 @@ function addStorageListener(callback) {
     });
 }
 
+function createTab(props) {
+    if (usesPromise) return _tabs.create(props);
+
+    return new Promise((resolve) => {
+        _tabs.create(props, resolve);
+    });
+}
+
+function queryTabs(options) {
+    if (usesPromise) return _tabs.query(options);
+
+    return new Promise((resolve) => {
+        _tabs.query(options, resolve);
+    });
+}
+
 function connected() {
-    return new Promise(() => {
+    return new Promise((resolve, reject) => {
         if (!browser.runtime || !browser.runtime.sendMessage) {
-            return Promise.reject(new Error('Extension not connected'));
+            return reject(new Error('Extension not connected'));
         }
 
-        return Promise.resolve();
+        return resolve();
     });
 }
 
@@ -41,10 +86,20 @@ function sendMessage(message) {
     return connected().then(() => browser.runtime.sendMessage(null, message, {}));
 }
 
+function incognito() {
+    if (usesPromise) return _incognito();
+
+    return new Promise((resolve) => {
+        _incognito(resolve)
+    });
+}
+
 export {
     browser,
     connected,
+    incognito,
     manifest,
     sendMessage,
-    storage
+    storage,
+    tabs
 };

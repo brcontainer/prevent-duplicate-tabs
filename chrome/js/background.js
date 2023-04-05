@@ -6,31 +6,34 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { browser, storage } from './boot.js';
+import { browser, storage, tabs } from './boot.js';
 
 var isReady = false,
     tabId = null,
     toggleTimeout = null,
     findTimeout = null,
-    urls = [],
-    hosts = [],
-    configs = {
-        turnoff: false,
-        old: true,
-        active: true,
-        start: true,
-        replace: true,
-        update: true,
-        create: true,
-        attach: true,
-        datachange: true,
-        http: true,
-        query: true,
-        hash: false,
-        incognito: false,
-        windows: true,
-        containers: true
-    };
+    tabQuery = {},
+    action = browser['action' in browser ? 'action' : 'browserAction'];
+
+var urls = [], hosts = [];
+
+var configs = {
+    turnoff: false,
+    old: true,
+    active: true,
+    start: true,
+    replace: true,
+    update: true,
+    create: true,
+    attach: true,
+    datachange: true,
+    http: true,
+    query: true,
+    hash: false,
+    incognito: false,
+    windows: true,
+    containers: true
+};
 
 var storageKeys = Object.keys(configs).concat(['urls', 'hosts']);
 
@@ -45,12 +48,10 @@ storage.get(storageKeys).then((results) => {
         }
     }
 
-    console.log(results, configs);
-
     ready();
 });
 
-browser.tabs.onActivated.addListener((tab) => {
+tabs.onActivated.addListener((tab) => {
     tabId = tab.tabId;
 
     if (isReady) preToggleIcon();
@@ -76,7 +77,7 @@ function preToggleIcon() {
 function toggleIcon() {
     var path = isDisabled() ? '/images/disabled' : '/images';
 
-    browser.action.setIcon({
+    action.setIcon({
         'tabId': tabId,
         'path': {
             '16': `${path}/16x.png`,
@@ -88,12 +89,14 @@ function toggleIcon() {
 }
 
 function ready() {
+    refreshTabQuery();
+
     storage.addListener(changeData);
 
-    browser.tabs.onAttached.addListener(tabEvent('attach', 500));
-    browser.tabs.onCreated.addListener(tabEvent('create', 10));
-    browser.tabs.onReplaced.addListener(tabEvent('replace', 10));
-    browser.tabs.onUpdated.addListener(tabEvent('update', 10));
+    tabs.onAttached.addListener(tabEvent('attach', 500));
+    tabs.onCreated.addListener(tabEvent('create', 10));
+    tabs.onReplaced.addListener(tabEvent('replace', 10));
+    tabs.onUpdated.addListener(tabEvent('update', 10));
 
     setTimeout(preTriggerTabEvent, 100, 'start');
 
@@ -102,9 +105,16 @@ function ready() {
     isReady = true;
 }
 
+function refreshTabQuery() {
+    tabQuery = configs.windows ? { 'lastFocusedWindow': true } : {};
+}
+
 function changeData(key, value) {
     if (typeof value === 'boolean' && key in configs) {
         configs[key] = value;
+
+        if (key === 'windows') refreshTabQuery();
+
         toggleIcon();
 
         if (configs.datachange) {
@@ -126,14 +136,10 @@ function preTriggerTabEvent(type) {
 }
 
 function triggerTabEvent() {
-    browser.tabs.query(configs.windows ? {
-        'lastFocusedWindow': true
-    } : {}).then(findDuplicateTabs);
+    tabs.query(tabQuery).then(findDuplicateTabs);
 }
 
 function findDuplicateTabs(tabs) {
-    console.log('triggerTabEvent', isDisabled());
-
     if (isDisabled()) return;
 
     console.log('findDuplicateTabs', tabs, new Date().toISOString());

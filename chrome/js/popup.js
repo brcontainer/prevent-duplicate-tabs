@@ -1,4 +1,12 @@
-import { browser, manifest, storage } from './boot.js';
+/*
+ * Prevent Duplicate Tabs
+ * Copyright (c) 2023 Guilherme Nascimento (brcontainer@yahoo.com.br)
+ * Released under the MIT license
+ *
+ * https://github.com/brcontainer/prevent-duplicate-tabs
+ */
+
+import { browser, incognito, manifest, storage } from './boot.js';
 
 var d = document, debugMode = false;
 
@@ -41,7 +49,7 @@ d.addEventListener('click', function (e) {
     }
 });
 
-browser.extension.isAllowedIncognitoAccess().then((allowed) => {
+incognito().then((allowed) => {
     d.getElementById('incognito_warn').classList.toggle('hide', allowed === true);
 });
 

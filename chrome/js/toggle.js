@@ -18,7 +18,7 @@ toggles.forEach((toggle) => {
 });
 
 storage.get(keys).then((results) => {
-    console.log({ results });
+    console.log('toggle', { results });
 
     toggles.forEach((toggle) => {
         if (toggle.id in results && results[toggle.id] === true) {
@@ -34,6 +34,8 @@ function changeSwitch(e) {
     var key = e.target.id;
 
     syncing[key] = true;
+
+    console.log({ [key]: e.target.checked });
 
     storage.set({ [key]: e.target.checked }).finally(() => {
         syncing[key] = false;
