@@ -93,10 +93,10 @@ function ready() {
 
     storage.addListener(changeData);
 
-    tabs.onAttached.addListener(tabEvent('attach', 500));
-    tabs.onCreated.addListener(tabEvent('create', 10));
-    tabs.onReplaced.addListener(tabEvent('replace', 10));
-    tabs.onUpdated.addListener(tabEvent('update', 10));
+    tabs.onAttached.addListener(tabEvent('attach'));
+    tabs.onCreated.addListener(tabEvent('create'));
+    tabs.onReplaced.addListener(tabEvent('replace'));
+    tabs.onUpdated.addListener(tabEventUpdate);
 
     setTimeout(preTriggerTabEvent, 100, 'start');
 
@@ -125,6 +125,10 @@ function changeData(key, value) {
 
 function tabEvent(type) {
     return () => preTriggerTabEvent(type);
+}
+
+function tabEventUpdate(tabId, changeInfo) {
+    if (changeInfo.url) preTriggerTabEvent('update');
 }
 
 function preTriggerTabEvent(type) {
