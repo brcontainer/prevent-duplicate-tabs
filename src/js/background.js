@@ -13,9 +13,11 @@ var isReady = false,
     toggleTimeout = null,
     findTimeout = null,
     tabQuery = {},
+    ignoredTabs = [],
     action = browser['action' in browser ? 'action' : 'browserAction'];
 
-var urls = [], hosts = [];
+var urls = [],
+    hosts = [];
 
 var configs = {
     turnoff: false,
@@ -55,6 +57,10 @@ tabs.onActivated.addListener((tab) => {
     tabId = tab.tabId;
 
     if (isReady) preToggleIcon();
+});
+
+browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request === 'form:filled') preventTabClose(sender.tab.id);
 });
 
 function isDisabled() {
@@ -147,4 +153,8 @@ function findDuplicateTabs(tabs) {
     if (isDisabled()) return;
 
     console.log('findDuplicateTabs', tabs, new Date().toISOString());
+}
+
+function preventTabClose(tabId) {
+    ignoredTabs.push(tabId);
 }
