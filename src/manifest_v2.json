@@ -25,5 +25,17 @@
     "permissions": [
         "storage",
         "tabs"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*",
+                "https://*/*"
+            ],
+            "js": [
+                "js/detect-trusted-fill-fields.js"
+            ],
+            "run_at": "document_idle"
+        }
     ]
 }
