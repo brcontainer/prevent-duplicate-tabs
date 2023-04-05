@@ -6,7 +6,7 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { browser, storage, tabs } from './boot.js';
+import { browser, storage, tabs } from './core.js';
 
 var isReady = false,
     tabId = null,

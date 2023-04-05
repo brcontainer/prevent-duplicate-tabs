@@ -6,7 +6,7 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { browser, incognito, manifest, storage } from './boot.js';
+import { browser, incognito, manifest, storage } from './core.js';
 
 var d = document, debugMode = false;
 

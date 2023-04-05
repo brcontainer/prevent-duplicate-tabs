@@ -6,7 +6,7 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { browser, storage } from './boot.js';
+import { browser, storage } from './core.js';
 
 var keys = [],
     syncing = {},

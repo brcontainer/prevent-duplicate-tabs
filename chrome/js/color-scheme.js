@@ -6,7 +6,7 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { storage } from './boot.js';
+import { storage } from './core.js';
 
 var media = window.matchMedia('(prefers-color-scheme: dark)'),
     cKey = 'data:color-scheme',
