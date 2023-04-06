@@ -6,7 +6,7 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { storage } from './core.js';
+import { sendMessage, storage } from './core.js';
 
 var keys = [],
     syncing = {},
@@ -17,7 +17,7 @@ toggles.forEach((toggle) => {
     keys.push(toggle.id);
 });
 
-storage.get(keys).then((results) => {
+sendMessage('configs').then((results) => {
     console.log('toggle', { results });
 
     toggles.forEach((toggle) => {

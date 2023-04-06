@@ -62,7 +62,15 @@ tabs.onActivated.addListener((tab) => {
 });
 
 main.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request === 'form:filled') preventTabClose(sender.tab.id);
+    console.log(request);
+
+    if (request === 'form:filled') {
+        preventTabClose(sender.tab.id);
+    } else if (request === 'configs') {
+        sendResponse(configs);
+    } else if (request === 'ignored') {
+        sendResponse({ url, hosts });
+    }
 });
 
 function isDisabled() {
@@ -101,9 +109,9 @@ function ready() {
 
     storage.addListener(changeData);
 
-    tabs.onAttached.addListener(tabEvent('attach'));
-    tabs.onCreated.addListener(tabEvent('create'));
-    tabs.onReplaced.addListener(tabEvent('replace'));
+    tabs.onAttached.addListener(() => preTriggerTabEvent('attach'));
+    tabs.onCreated.addListener(() => preTriggerTabEvent('create'));
+    tabs.onReplaced.addListener(() => preTriggerTabEvent('replace'));
     tabs.onUpdated.addListener(tabEventUpdate);
 
     setTimeout(preTriggerTabEvent, 100, 'start');
@@ -127,10 +135,6 @@ function changeData(key, value) {
 
         if (configs.datachange) setTimeout(preTriggerTabEvent, 100, 'datachange');
     }
-}
-
-function tabEvent(type) {
-    return () => preTriggerTabEvent(type);
 }
 
 function tabEventUpdate(tabId, changeInfo) {
