@@ -6,18 +6,32 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-var browser = chrome,
-    manifest = browser.runtime.getManifest(),
+var main;
+
+if (typeof browser !== 'undefined') {
+    main = browser;
+} else {
+    main = chrome;
+}
+
+var debug = false,
+    manifest = main.runtime.getManifest(),
     usesPromise = manifest.manifest_version >= 3;
 
-var _incognito = browser.extension.isAllowedIncognitoAccess,
-    _storage = browser.storage,
-    _tabs = browser.tabs;
+if (main.runtime.id && !('requestUpdateCheck' in main.runtime)) {
+    if (/@temporary-addon$/.test(main.runtime.id)) debug = true;
+} else if (!('update_url' in manifest)) {
+    debug = true;
+}
+
+var _incognito = main.extension.isAllowedIncognitoAccess,
+    _storage = main.storage,
+    _tabs = main.tabs;
 
 var storage = {
     get: getStorage,
     set: setStorage,
-    addListener: addStorageListener,
+    addListener: addListenerStorage,
 };
 
 var tabs = {
@@ -46,7 +60,7 @@ function setStorage(keys) {
     });
 }
 
-function addStorageListener(callback) {
+function addListenerStorage(callback) {
     _storage.onChanged.addListener((changes, namespace) => {
         if (namespace !== 'local') return;
 
@@ -72,18 +86,18 @@ function queryTabs(options) {
     });
 }
 
-function connected() {
-    return new Promise((resolve, reject) => {
-        if (!browser.runtime || !browser.runtime.sendMessage) {
-            return reject(new Error('Extension not connected'));
-        }
-
-        return resolve();
+function sendMessage(message) {
+    return new Promise((resolve) => {
+        main.runtime.sendMessage(null, message, {}, resolve);
     });
 }
 
-function sendMessage(message) {
-    return connected().then(() => browser.runtime.sendMessage(null, message, {}));
+function container() {
+    return queryTabs({ active: true, lastFocusedWindow: true }).then((tabs) => {
+        if (tabs?.[0]?.cookieStoreId) return Promise.resolve(true);
+
+        return Promise.resolve(false);
+    });
 }
 
 function incognito() {
@@ -95,8 +109,9 @@ function incognito() {
 }
 
 export {
-    browser,
-    connected,
+    main,
+    container,
+    debug,
     incognito,
     manifest,
     sendMessage,

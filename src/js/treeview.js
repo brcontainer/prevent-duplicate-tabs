@@ -30,14 +30,26 @@ storage.get(keys).then((results) => {
         }
 
         widget.disabled = false;
-        widget.addEventListener('toggle', toggle);
+        widget.addEventListener('toggle', toggleSwitch);
     });
 });
 
-function toggle(e) {
+storage.addListener((key, value) => {
+    details.forEach((widget) => {
+        if (key === widget.id) {
+            widget.open = value === true;
+        }
+    });
+});
+
+function toggleSwitch(e) {
+    if (syncing[key]) return;
+
     var key = e.target.id;
 
     syncing[key] = true;
+
+    console.log({ [key]: e.target.open });
 
     storage.set({ [key]: e.target.open }).finally(() => {
         syncing[key] = false;

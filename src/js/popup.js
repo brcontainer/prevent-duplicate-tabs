@@ -6,35 +6,27 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { browser, incognito, manifest, storage } from './core.js';
+import { main, container, debug, incognito, storage, tabs } from './core.js';
 
-var d = document, debugMode = false;
+var d = document,
+    s = d.scrollingElement || d.body;
 
-if (browser.runtime.id && !('requestUpdateCheck' in browser.runtime)) {
-    if (/@temporary-addon$/.test(browser.runtime.id)) debugMode = true;
-} else if (!('update_url' in manifest)) {
-    debugMode = true;
-}
-
-function disableEvent(e) {
-    e.preventDefault();
-    return false;
-}
-
-if (!debugMode) {
+if (!debug) {
     d.oncontextmenu = disableEvent;
     d.ondragstart = disableEvent;
 }
 
 var locales = d.querySelectorAll('[data-i18n]');
 
+console.log({ locales });
+
 for (var i = locales.length - 1; i >= 0; i--) {
-    var el = locales[i], message = browser.i18n.getMessage(el.dataset.i18n);
+    var el = locales[i], message = main.i18n.getMessage(el.dataset.i18n);
 
     if (message) el.innerHTML = markdown(message);
 }
 
-d.addEventListener('click', function (e) {
+d.addEventListener('click', (e) => {
     if (e.button !== 0) return;
 
     var el = e.target;
@@ -43,29 +35,40 @@ d.addEventListener('click', function (e) {
 
     var protocol = el.protocol;
 
-    if (protocol === 'http:' || protocol === 'https:') {
-        e.preventDefault();
-        browser.tabs.create({ 'url': el.href });
-    }
+    if (protocol !== 'http:' && protocol !== 'https:') return;
+
+    e.preventDefault();
+    tabs.create({ 'url': el.href });
 });
 
 incognito().then((allowed) => {
     d.getElementById('incognito_warn').classList.toggle('hide', allowed === true);
 });
 
-var s = d.scrollingElement || d.body;
+container().then((supported) => {
+    if (!supported) return;
 
-setTimeout(function () {
+    d.querySelectorAll(".support-containers").forEach((config) => {
+        config.classList.toggle("supported-containers", true);
+    });
+});
+
+setTimeout(() => {
     s.style.transform = 'scale(2)';
 
-    setTimeout(function () {
+    setTimeout(() => {
         s.style.transform = 'scale(1)';
 
-        setTimeout(function () {
+        setTimeout(() => {
             s.style.transform = null;
         }, 20);
     }, 20);
 }, 10);
+
+function disableEvent(e) {
+    e.preventDefault();
+    return false;
+}
 
 function markdown(message) {
     return message

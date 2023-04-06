@@ -6,7 +6,7 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { browser, storage, tabs } from './core.js';
+import { main, storage, tabs } from './core.js';
 
 var isReady = false,
     tabId = null,
@@ -14,7 +14,7 @@ var isReady = false,
     findTimeout = null,
     tabQuery = {},
     ignoredTabs = [],
-    action = browser['action' in browser ? 'action' : 'browserAction'];
+    action = main['action' in main ? 'action' : 'browserAction'];
 
 var urls = [],
     hosts = [];
@@ -39,7 +39,7 @@ var configs = {
 
 var storageKeys = Object.keys(configs).concat(['urls', 'hosts']);
 
-storage.get(storageKeys).then((results) => {
+migrate().then(() => storage.get(storageKeys)).then((results) => {
     for (var key of storageKeys) {
         if (key === 'urls') {
             if (Array.isArray(results[key])) urls = results[key];
@@ -59,7 +59,7 @@ tabs.onActivated.addListener((tab) => {
     if (isReady) preToggleIcon();
 });
 
-browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+main.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request === 'form:filled') preventTabClose(sender.tab.id);
 });
 
@@ -156,5 +156,42 @@ function findDuplicateTabs(tabs) {
 }
 
 function preventTabClose(tabId) {
+    console.log('preventTabClose', tabId);
     ignoredTabs.push(tabId);
+}
+
+function migrate() {
+    var total = 0, data = {}, legacyConfigs = Object.keys(configs);
+
+    for (var i = 0, j = localStorage.length; i < j; i++) {
+        var key = localStorage.key(i);
+
+        if (
+            key === 'urls' ||
+            key === 'hosts' ||
+            key.indexOf('data:') === 0 ||
+            key.indexOf('details:') === 0 ||
+            legacyConfigs.includes(key)
+        ) {
+            try {
+                var data = localStorage.getItem(key);
+
+                if (!data) continue;
+
+                var item = JSON.parse(data);
+
+                if (key === 'hosts' || key === 'urls') {
+                    if (Array.isArray(item.value)) {
+                        data[key] = item.value;
+                        ++total;
+                    }
+                } else if ('value' in item) {
+                    data[key] = item.value;
+                    ++total;
+                }
+            } catch (ee) {}
+        }
+    }
+
+    return total > 0 ? storage.set(data) : Promise.resolve();
 }

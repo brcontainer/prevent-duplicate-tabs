@@ -10,7 +10,8 @@ import { storage } from './core.js';
 
 var media = window.matchMedia('(prefers-color-scheme: dark)'),
     cKey = 'data:color-scheme',
-    scheme = 'default';
+    scheme = 'default',
+    d = document;
 
 media.onchange = (e) => changeScheme(e.matches);
 
@@ -25,10 +26,10 @@ storage.addListener((key, value) => {
         setScheme(results['data:color-scheme']);
     }
 
-    if (document.readyState === 'complete') {
+    if (d.readyState === 'complete') {
         setupInputs();
     } else {
-        document.addEventListener('DOMContentLoaded', setupInputs);
+        d.addEventListener('DOMContentLoaded', setupInputs);
     }
 })();
 
@@ -39,7 +40,7 @@ async function setScheme(value) {
         scheme = 'default';
     }
 
-    document.querySelectorAll('link[data-scheme=dark]').forEach((link) => {
+    d.querySelectorAll('link[data-scheme=dark]').forEach((link) => {
         if (scheme === 'dark') {
             link.media = 'screen';
         } else if (scheme === 'light') {
@@ -59,7 +60,7 @@ function changeInputs(e) {
 }
 
 function setupInputs() {
-    document.querySelectorAll('input[name=color-scheme]').forEach((radio) => {
+    d.querySelectorAll('input[name=color-scheme]').forEach((radio) => {
         if (radio.value === scheme) radio.checked = true;
 
         radio.addEventListener('change', changeInputs);
