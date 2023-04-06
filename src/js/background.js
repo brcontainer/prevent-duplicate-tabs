@@ -13,8 +13,10 @@ var isReady = false,
     toggleTimeout = null,
     findTimeout = null,
     tabQuery = {},
-    ignoredTabs = [],
-    action = main['action' in main ? 'action' : 'browserAction'];
+    ignoredTabIds = [],
+    action = main['action' in main ? 'action' : 'browserAction'],
+    isNewTabRE = /^(about:blank|chrome:\/+?(newtab|startpageshared)\/?)$/i,
+    isHttpRE = /^https?:\/\/\w/i;
 
 var urls = [],
     hosts = [];
@@ -123,9 +125,7 @@ function changeData(key, value) {
 
         toggleIcon();
 
-        if (configs.datachange) {
-            setTimeout(preTriggerTabEvent, 100, 'datachange');
-        }
+        if (configs.datachange) setTimeout(preTriggerTabEvent, 100, 'datachange');
     }
 }
 
@@ -153,6 +153,83 @@ function findDuplicateTabs(tabs) {
     if (isDisabled()) return;
 
     console.log('findDuplicateTabs', tabs, new Date().toISOString());
+
+    var url,
+        prefix,
+        groupTabs = {},
+        onlyHttp = configs.http,
+        ignoreHash = !configs.hash,
+        ignoreQuery = !configs.query,
+        ignoreIncognitos = !configs.incognito,
+        diffWindows = configs.windows,
+        diffContainers = configs.containers;
+
+    for (const tab of tabs) {
+        url = tab.url || tab.pendingUrl;
+
+        if (
+            tab.pinned ||
+            url === '' ||
+            ignoredTabIds.indexOf(tab.id) !== -1 ||
+            isNewTabRE.test(url) ||
+            (ignoreIncognitos && tab.incognito) ||
+            (onlyHttp && !isHttpRE.test(url)) ||
+            isIgnored(url)
+        ) {
+            continue;
+        }
+
+        if (ignoreHash) url = url.substring(0, url.indexOf('#'));
+
+        if (ignoreQuery) url = url.substring(0, url.indexOf('?'));
+
+        if (tab.incognito) {
+            prefix = 'incognito';
+        } else if (diffContainers && tab.cookieStoreId) {
+            prefix = String(tab.cookieStoreId);
+        } else {
+            prefix = 'normal';
+        }
+
+        if (diffWindows) {
+            url = prefix + '::' + tab.windowId + '::' + url;
+        } else {
+            url = prefix + '::' + url;
+        }
+
+        if (!groupTabs[url]) groupTabs[url] = [];
+
+        groupTabs[url].push({ 'id': tab.id, 'active': tab.active });
+    }
+
+    for (var url in groupTabs) {
+        if (groupTabs.hasOwnProperty(url)) closeTabs(groupTabs[url]);
+    }
+
+    groupTabs = null;
+}
+
+function isIgnored(url) {
+    return urls.indexOf(url) !== -1 || hosts.indexOf(new URL(url).host) !== -1;
+}
+
+function closeTabs(tabs) {
+    if (tabs.length < 2) return;
+
+    tabs.sort(sortTabs);
+
+    for (var i = 1, j = tabs.length; i < j; i++) {
+        // tabs.remove(tabs[i].id);
+        console.log('close tab:', tabs[i].id, new Date().toISOString());
+    }
+}
+
+function sortTabs(tab, nextTab) {
+    if (configs.active && (tab.active || nextTab.active)) {
+        return tab.active ? -1 : 1;
+    }
+
+    return configs.old && tab.id < nextTab.id ? 1 : -1;
 }
 
 function preventTabClose(tabId) {
