@@ -71,12 +71,6 @@
   "others_title": {
     "message": "Others"
   },
-  "incognito_title": {
-    "message": "Incognito"
-  },
-  "incognito_description": {
-    "message": "Check repeated anonymous tabs (requires you to manually enable in your browser)"
-  },
   "windows_title": {
     "message": "Windows"
   },
@@ -88,6 +82,12 @@
   },
   "containers_description": {
     "message": "If enabled it will ignore repeated tabs in different containers, treating them as if they were non-repeated tabs (recommended)"
+  },
+  "incognito_title": {
+    "message": "Incognito"
+  },
+  "incognito_description": {
+    "message": "Check repeated anonymous tabs (requires you to manually enable in your browser)"
   },
   "events_title": {
     "message": "Events"

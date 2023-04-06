@@ -71,12 +71,6 @@
   "others_title": {
     "message": "Autres"
   },
-  "incognito_title": {
-    "message": "Incognito"
-  },
-  "incognito_description": {
-    "message": "Vérifier les onglets répétés en mode privé (vous oblige à activer manuellement dans votre navigateur)"
-  },
   "windows_title": {
     "message": "Fenêtre"
   },
@@ -88,6 +82,12 @@
   },
   "containers_description": {
     "message": "S'il est activé, il ignorera les onglets répétés dans différents «containers», les traitant comme s'il s'agissait d'onglets non répétés (conseillé)"
+  },
+  "incognito_title": {
+    "message": "Incognito"
+  },
+  "incognito_description": {
+    "message": "Vérifier les onglets répétés en mode privé (vous oblige à activer manuellement dans votre navigateur)"
   },
   "events_title": {
     "message": "Événements"

@@ -71,12 +71,6 @@
   "others_title": {
     "message": "其他"
   },
-  "incognito_title": {
-    "message": "隱身"
-  },
-  "incognito_description": {
-    "message": "檢查重複的匿名標籤（要求您在瀏覽器中手動啟用）"
-  },
   "windows_title": {
     "message": "視窗"
   },
@@ -88,6 +82,12 @@
   },
   "containers_description": {
     "message": "如果啟用，它將忽略不同容器中的重複標籤，將它們視為非重複標籤（推薦）"
+  },
+  "incognito_title": {
+    "message": "隱身"
+  },
+  "incognito_description": {
+    "message": "檢查重複的匿名標籤（要求您在瀏覽器中手動啟用）"
   },
   "events_title": {
     "message": "大事記"

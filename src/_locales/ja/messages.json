@@ -71,12 +71,6 @@
   "others_title": {
     "message": "その他"
   },
-  "incognito_title": {
-    "message": "シークレット"
-  },
-  "incognito_description": {
-    "message": "プライベートモードで繰り返しタブを確認する（ブラウザーで手動で有効にする必要があります）"
-  },
   "windows_title": {
     "message": "ウィンドウズ"
   },
@@ -88,6 +82,12 @@
   },
   "containers_description": {
     "message": "有効にすると、異なる「containers」で繰り返されるタブが無視され、繰り返されないタブであるかのように扱われます。(推奨)"
+  },
+  "incognito_title": {
+    "message": "シークレット"
+  },
+  "incognito_description": {
+    "message": "プライベートモードで繰り返しタブを確認する（ブラウザーで手動で有効にする必要があります）"
   },
   "events_title": {
     "message": "イベント"

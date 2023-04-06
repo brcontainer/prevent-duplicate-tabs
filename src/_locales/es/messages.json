@@ -71,12 +71,6 @@
   "others_title": {
     "message": "Otros"
   },
-  "incognito_title": {
-    "message": "Incógnito"
-  },
-  "incognito_description": {
-    "message": "Verifique las pestañas repetidas en modo privado (requiere que las habilite manualmente en su navegador)"
-  },
   "windows_title": {
     "message": "Ventana"
   },
@@ -88,6 +82,12 @@
   },
   "containers_description": {
     "message": "Si está habilitado, ignorará las pestañas repetidas en diferentes containers, tratándolas como si fueran pestañas no repetidas (recomendado)."
+  },
+  "incognito_title": {
+    "message": "Incógnito"
+  },
+  "incognito_description": {
+    "message": "Verifique las pestañas repetidas en modo privado (requiere que las habilite manualmente en su navegador)"
   },
   "events_title": {
     "message": "Eventos"

@@ -71,12 +71,6 @@
   "others_title": {
     "message": "Andere"
   },
-  "incognito_title": {
-    "message": "Inkognito"
-  },
-  "incognito_description": {
-    "message": "Überprüfen Sie wiederholte Registerkarten im privaten Modus (erfordert die manuelle Aktivierung in Ihrem Browser)"
-  },
   "windows_title": {
     "message": "Fenster"
   },
@@ -88,6 +82,12 @@
   },
   "containers_description": {
     "message": "Wenn diese Option aktiviert ist, werden wiederholte Registerkarten in verschiedenen \"Containers\" ignoriert und so behandelt, als wären sie nicht wiederholte Registerkarten (empfohlen)"
+  },
+  "incognito_title": {
+    "message": "Inkognito"
+  },
+  "incognito_description": {
+    "message": "Überprüfen Sie wiederholte Registerkarten im privaten Modus (erfordert die manuelle Aktivierung in Ihrem Browser)"
   },
   "events_title": {
     "message": "Veranstaltungen"

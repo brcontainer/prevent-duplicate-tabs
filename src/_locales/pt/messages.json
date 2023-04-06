@@ -71,12 +71,6 @@
   "others_title": {
     "message": "Outros"
   },
-  "incognito_title": {
-    "message": "Incognito"
-  },
-  "incognito_description": {
-    "message": "Verifique as guias anônimas repetidas (requer que você as habilite manualmente em seu navegador)"
-  },
   "windows_title": {
     "message": "Janelas"
   },
@@ -88,6 +82,12 @@
   },
   "containers_description": {
     "message": "Se habilitado irá ignorar guias repetidas em containers diferentes, tratando como se fossem guias não repetidas (recomendado)"
+  },
+  "incognito_title": {
+    "message": "Incognito"
+  },
+  "incognito_description": {
+    "message": "Verifique as guias anônimas repetidas (requer que você as habilite manualmente em seu navegador)"
   },
   "events_title": {
     "message": "Eventos"
