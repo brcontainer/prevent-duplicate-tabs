@@ -13,16 +13,18 @@
 
     console.log('FILL FORM CHECKER');
 
-    function detectUserFill(evt) {
-        if (userFill || !evt.isTrusted) return;
+    function detectUserFill(e) {
+        if (userFill || !e.isTrusted) return;
 
-        var el = evt.target.tagName;
+        var el = e.target.tagName;
 
         if (el !== 'INPUT' || el !== 'SELECT' || el !== 'TEXTAREA') return;
 
         userFill = true;
 
-        main.runtime.sendMessage(null, 'form:filled', {});
+        if (el.value !== el.defaultValue) {
+            main.runtime.sendMessage(null, 'form:filled', {});
+        }
     }
 
     w.addEventListener('input', detectUserFill, { capture: true });

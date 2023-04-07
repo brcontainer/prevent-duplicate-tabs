@@ -15,7 +15,6 @@ var isReady = false,
     tabQuery = {},
     ignoredTabIds = [],
     action = main['action' in main ? 'action' : 'browserAction'],
-    isNewTabRE = /^(about:blank|chrome:\/+?(newtab|startpageshared)\/?)$/i,
     isHttpRE = /^https?:\/\/\w/i;
 
 var urls = [],
@@ -32,8 +31,9 @@ var configs = {
     attach: true,
     datachange: true,
     http: true,
-    query: true,
     hash: false,
+    query: true,
+    group: true,
     incognito: false,
     windows: true,
     containers: true
@@ -164,6 +164,7 @@ function findDuplicateTabs(tabs) {
         onlyHttp = configs.http,
         ignoreHash = !configs.hash,
         ignoreQuery = !configs.query,
+        ignoreInGroup = !configs.group,
         ignoreIncognitos = !configs.incognito,
         diffWindows = configs.windows,
         diffContainers = configs.containers;
@@ -172,20 +173,21 @@ function findDuplicateTabs(tabs) {
         url = tab.url || tab.pendingUrl;
 
         if (
-            tab.pinned ||
             url === '' ||
+            tab.pinned ||
+            isNewTab(url) ||
             ignoredTabIds.indexOf(tab.id) !== -1 ||
-            isNewTabRE.test(url) ||
+            (ignoreInGroup && tab.groupId) ||
             (ignoreIncognitos && tab.incognito) ||
-            (onlyHttp && !isHttpRE.test(url)) ||
+            (onlyHttp && url.indexOf('https://') !== 0 && url.indexOf('http://') !== 0) ||
             isIgnored(url)
         ) {
             continue;
         }
 
-        if (ignoreHash) url = url.substring(0, url.indexOf('#'));
+        if (ignoreHash) url = sliceUrl(url, '#');
 
-        if (ignoreQuery) url = url.substring(0, url.indexOf('?'));
+        if (ignoreQuery) url = sliceUrl(url, '?');
 
         if (tab.incognito) {
             prefix = 'incognito';
@@ -213,8 +215,19 @@ function findDuplicateTabs(tabs) {
     groupTabs = null;
 }
 
+function isNewTab(url) {
+    return url.indexOf('about:blank') === 0 ||
+        url.indexOf('chrome://newtab') === 0 ||
+        url.indexOf('chrome://startpageshared') === 0;
+}
+
 function isIgnored(url) {
     return urls.indexOf(url) !== -1 || hosts.indexOf(new URL(url).host) !== -1;
+}
+
+function sliceUrl(url) {
+    var index = url.indexOf('#');
+    return index > -1 ? url.substring(0, index) : url;
 }
 
 function closeTabs(tabs) {
@@ -222,10 +235,13 @@ function closeTabs(tabs) {
 
     tabs.sort(sortTabs);
 
+    var tabIds = [];
+
     for (var i = 1, j = tabs.length; i < j; i++) {
-        // tabs.remove(tabs[i].id);
-        console.log('close tab:', tabs[i].id, new Date().toISOString());
+        tabIds.push(tabs[i].id);
     }
+
+    console.log('close tabs:', tabIds, new Date().toISOString());
 }
 
 function sortTabs(tab, nextTab) {

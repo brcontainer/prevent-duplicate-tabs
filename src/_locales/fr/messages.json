@@ -83,6 +83,12 @@
   "containers_description": {
     "message": "S'il est activé, il ignorera les onglets répétés dans différents «containers», les traitant comme s'il s'agissait d'onglets non répétés (conseillé)"
   },
+  "groups_title": {
+    "message": "Groupes"
+  },
+  "groups_description": {
+    "message": "xxxxxxxxx"
+  },
   "incognito_title": {
     "message": "Incognito"
   },

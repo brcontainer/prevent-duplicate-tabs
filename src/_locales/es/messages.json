@@ -83,6 +83,12 @@
   "containers_description": {
     "message": "Si está habilitado, ignorará las pestañas repetidas en diferentes containers, tratándolas como si fueran pestañas no repetidas (recomendado)."
   },
+  "groups_title": {
+    "message": "Grupos"
+  },
+  "groups_description": {
+    "message": "xxxxxxxxx"
+  },
   "incognito_title": {
     "message": "Incógnito"
   },

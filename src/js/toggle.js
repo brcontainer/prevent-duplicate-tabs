@@ -18,8 +18,6 @@ toggles.forEach((toggle) => {
 });
 
 sendMessage('configs').then((results) => {
-    console.log('toggle', { results });
-
     toggles.forEach((toggle) => {
         if (toggle.id in results && results[toggle.id] === true) {
             toggle.checked = true;

@@ -83,6 +83,12 @@
   "containers_description": {
     "message": "Se habilitado irá ignorar guias repetidas em containers diferentes, tratando como se fossem guias não repetidas (recomendado)"
   },
+  "groups_title": {
+    "message": "Grupos"
+  },
+  "groups_description": {
+    "message": "xxxxxxxxx"
+  },
   "incognito_title": {
     "message": "Incognito"
   },

@@ -22,8 +22,6 @@ details.forEach((widget) => {
 });
 
 storage.get(keys).then((results) => {
-    console.log('treeview', { results });
-
     details.forEach((widget) => {
         if (widget.id in results && results[widget.id] === false) {
             widget.open = false;

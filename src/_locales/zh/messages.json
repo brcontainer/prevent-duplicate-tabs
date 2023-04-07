@@ -83,6 +83,12 @@
   "containers_description": {
     "message": "如果啟用，它將忽略不同容器中的重複標籤，將它們視為非重複標籤（推薦）"
   },
+  "groups_title": {
+    "message": "團體"
+  },
+  "groups_description": {
+    "message": "xxxxxxxxx"
+  },
   "incognito_title": {
     "message": "隱身"
   },

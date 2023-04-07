@@ -83,6 +83,12 @@
   "containers_description": {
     "message": "If enabled it will ignore repeated tabs in different containers, treating them as if they were non-repeated tabs (recommended)"
   },
+  "groups_title": {
+    "message": "Groups"
+  },
+  "groups_description": {
+    "message": "xxxxxxxxx"
+  },
   "incognito_title": {
     "message": "Incognito"
   },

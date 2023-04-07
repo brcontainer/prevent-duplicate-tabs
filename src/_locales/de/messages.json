@@ -83,6 +83,12 @@
   "containers_description": {
     "message": "Wenn diese Option aktiviert ist, werden wiederholte Registerkarten in verschiedenen \"Containers\" ignoriert und so behandelt, als wären sie nicht wiederholte Registerkarten (empfohlen)"
   },
+  "groups_title": {
+    "message": "Gruppen"
+  },
+  "groups_description": {
+    "message": "xxxxxxxxx"
+  },
   "incognito_title": {
     "message": "Inkognito"
   },
