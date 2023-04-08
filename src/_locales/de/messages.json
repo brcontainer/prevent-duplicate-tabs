@@ -87,7 +87,7 @@
     "message": "Gruppen"
   },
   "groups_description": {
-    "message": "xxxxxxxxx"
+    "message": "Wenn diese Option aktiviert ist, werden wiederholte Tabulatoren in verschiedenen Gruppen ignoriert und sie so behandelt, als wären sie sich nicht wiederholende Tabulatoren (empfohlen)"
   },
   "incognito_title": {
     "message": "Inkognito"

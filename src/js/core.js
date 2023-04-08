@@ -14,19 +14,20 @@ if (typeof browser !== 'undefined') {
     main = chrome;
 }
 
+var _incognito = main.extension.isAllowedIncognitoAccess,
+    _runtime = main.runtime,
+    _storage = main.storage,
+    _tabs = main.tabs;
+
 var debug = false,
-    manifest = main.runtime.getManifest(),
+    manifest = _runtime.getManifest(),
     usesPromise = manifest.manifest_version >= 3;
 
-if (main.runtime.id && !('requestUpdateCheck' in main.runtime)) {
-    if (/@temporary-addon$/.test(main.runtime.id)) debug = true;
+if (_runtime.id && !('requestUpdateCheck' in _runtime)) {
+    if (/@temporary-addon$/.test(_runtime.id)) debug = true;
 } else if (!('update_url' in manifest)) {
     debug = true;
 }
-
-var _incognito = main.extension.isAllowedIncognitoAccess,
-    _storage = main.storage,
-    _tabs = main.tabs;
 
 var storage = {
     get: getStorage,
@@ -36,6 +37,7 @@ var storage = {
 
 var tabs = {
     create: createTab,
+    remove: removeTabs,
     query: queryTabs,
     onActivated: _tabs.onActivated,
     onAttached: _tabs.onAttached,
@@ -78,6 +80,14 @@ function createTab(props) {
     });
 }
 
+function removeTabs(ids) {
+    if (usesPromise) return _tabs.remove(ids);
+
+    return new Promise((resolve) => {
+        _tabs.remove(ids, resolve);
+    });
+}
+
 function queryTabs(options) {
     if (usesPromise) return _tabs.query(options);
 
@@ -87,16 +97,20 @@ function queryTabs(options) {
 }
 
 function sendMessage(message) {
+    if (usesPromise) return _runtime.sendMessage(null, message, {}, resolve);
+
     return new Promise((resolve) => {
-        main.runtime.sendMessage(null, message, {}, resolve);
+        _runtime.sendMessage(null, message, {}, resolve);
     });
 }
 
-function container() {
-    return queryTabs({ active: true, lastFocusedWindow: true }).then((tabs) => {
-        if (tabs?.[0]?.cookieStoreId) return Promise.resolve(true);
-
-        return Promise.resolve(false);
+function support() {
+    return queryTabs({}).then((tabs) => {
+        var tab = tabs?.[0];
+        return Promise.resolve({
+            containers: ('cookieStoreId' in tab),
+            groups: ('groupId' in tab)
+        });
     });
 }
 
@@ -104,17 +118,17 @@ function incognito() {
     if (usesPromise) return _incognito();
 
     return new Promise((resolve) => {
-        _incognito(resolve)
+        _incognito(resolve);
     });
 }
 
 export {
     main,
-    container,
     debug,
     incognito,
     manifest,
     sendMessage,
     storage,
+    support,
     tabs
 };

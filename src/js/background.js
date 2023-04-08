@@ -6,7 +6,7 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { main, storage, tabs } from './core.js';
+import { main, debug, storage, tabs } from './core.js';
 
 var isReady = false,
     tabId = null,
@@ -22,21 +22,25 @@ var urls = [],
 
 var configs = {
     turnoff: false,
+
     old: true,
     active: true,
+
+    http: true,
+    query: true,
+    hash: false,
+
     start: true,
-    replace: true,
     update: true,
     create: true,
+    replace: true,
     attach: true,
     datachange: true,
-    http: true,
-    hash: false,
-    query: true,
-    group: true,
-    incognito: false,
+
     windows: true,
-    containers: true
+    containers: true,
+    groups: true,
+    incognito: false
 };
 
 var storageKeys = Object.keys(configs).concat(['urls', 'hosts']);
@@ -62,10 +66,8 @@ tabs.onActivated.addListener((tab) => {
 });
 
 main.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log(request);
-
     if (request === 'form:filled') {
-        preventTabClose(sender.tab.id);
+        putIgnoredTabs(sender.tab.id, false);
     } else if (request === 'configs') {
         sendResponse(configs);
     } else if (request === 'ignored') {
@@ -137,10 +139,6 @@ function changeData(key, value) {
     }
 }
 
-function tabEventUpdate(tabId, changeInfo) {
-    if (changeInfo.url) preTriggerTabEvent('update');
-}
-
 function preTriggerTabEvent(type) {
     if (configs[type]) {
         if (findTimeout !== null) clearTimeout(findTimeout);
@@ -150,35 +148,40 @@ function preTriggerTabEvent(type) {
 }
 
 function triggerTabEvent() {
-    tabs.query(tabQuery).then(findDuplicateTabs);
+    tabs.query(tabQuery).then(findTabs);
 }
 
-function findDuplicateTabs(tabs) {
-    if (isDisabled()) return;
+function tabEventUpdate(tabId, changeInfo) {
+    if (changeInfo.url) {
+        putIgnoredTabs(tabId, true);
+        preTriggerTabEvent('update');
+    }
+}
 
-    console.log('findDuplicateTabs', tabs, new Date().toISOString());
+function findTabs(results) {
+    if (isDisabled()) return;
 
     var url,
         prefix,
         groupTabs = {},
+        closeItems = [],
         onlyHttp = configs.http,
         ignoreHash = !configs.hash,
         ignoreQuery = !configs.query,
-        ignoreInGroup = !configs.group,
-        ignoreIncognitos = !configs.incognito,
+        ignoreIncognito = !configs.incognito,
         diffWindows = configs.windows,
-        diffContainers = configs.containers;
+        diffContainers = configs.containers,
+        diffGroups = configs.groups;
 
-    for (const tab of tabs) {
-        url = tab.url || tab.pendingUrl;
+    for (const result of results) {
+        url = result.url || result.pendingUrl;
 
         if (
             url === '' ||
-            tab.pinned ||
+            result.pinned ||
             isNewTab(url) ||
-            ignoredTabIds.indexOf(tab.id) !== -1 ||
-            (ignoreInGroup && tab.groupId) ||
-            (ignoreIncognitos && tab.incognito) ||
+            ignoredTabIds.indexOf(result.id) !== -1 ||
+            (ignoreIncognito && result.incognito) ||
             (onlyHttp && url.indexOf('https://') !== 0 && url.indexOf('http://') !== 0) ||
             isIgnored(url)
         ) {
@@ -189,30 +192,48 @@ function findDuplicateTabs(tabs) {
 
         if (ignoreQuery) url = sliceUrl(url, '?');
 
-        if (tab.incognito) {
-            prefix = 'incognito';
-        } else if (diffContainers && tab.cookieStoreId) {
-            prefix = String(tab.cookieStoreId);
+        if (result.incognito) {
+            prefix = 'incognito:true';
         } else {
-            prefix = 'normal';
+            prefix = 'incognito:false';
+        }
+
+        if (diffContainers) {
+            prefix += '|container:' + result.cookieStoreId;
+        } else {
+            prefix += '|container:false';
+        }
+
+        if (diffGroups) {
+            prefix += '|group:' + result.groupId;
+        } else {
+            prefix += '|group:false';
         }
 
         if (diffWindows) {
-            url = prefix + '::' + tab.windowId + '::' + url;
+            prefix += '|window:' + result.windowId;
         } else {
-            url = prefix + '::' + url;
+            prefix += '|window:false';
         }
+
+        url = prefix + '::' + url;
 
         if (!groupTabs[url]) groupTabs[url] = [];
 
-        groupTabs[url].push({ 'id': tab.id, 'active': tab.active });
+        groupTabs[url].push({ 'id': result.id, 'active': result.active });
     }
 
     for (var url in groupTabs) {
-        if (groupTabs.hasOwnProperty(url)) closeTabs(groupTabs[url]);
+        if (groupTabs.hasOwnProperty(url)) {
+            getDuplicateTabs(groupTabs[url], closeItems);
+        }
     }
 
-    groupTabs = null;
+    if (debug) console.info('findTabs', closeItems, new Date());
+
+    tabs.remove(closeItems);
+
+    closeItems = groupTabs = null;
 }
 
 function isNewTab(url) {
@@ -230,18 +251,14 @@ function sliceUrl(url) {
     return index > -1 ? url.substring(0, index) : url;
 }
 
-function closeTabs(tabs) {
+function getDuplicateTabs(tabs, closeItems) {
     if (tabs.length < 2) return;
 
     tabs.sort(sortTabs);
 
-    var tabIds = [];
-
     for (var i = 1, j = tabs.length; i < j; i++) {
-        tabIds.push(tabs[i].id);
+        closeItems.push(tabs[i].id);
     }
-
-    console.log('close tabs:', tabIds, new Date().toISOString());
 }
 
 function sortTabs(tab, nextTab) {
@@ -252,9 +269,13 @@ function sortTabs(tab, nextTab) {
     return configs.old && tab.id < nextTab.id ? 1 : -1;
 }
 
-function preventTabClose(tabId) {
-    console.log('preventTabClose', tabId);
-    ignoredTabs.push(tabId);
+function putIgnoredTabs(tabId, remove) {
+    if (remove) {
+        var index = ignoredTabIds.indexOf(tabId);
+        if (index !== -1) ignoredTabIds.splice(index, 1);
+    } else {
+        ignoredTabIds.push(tabId);
+    }
 }
 
 function migrate() {
@@ -289,6 +310,8 @@ function migrate() {
             } catch (ee) {}
         }
     }
+
+    if (debug) console.info('migrate', data, new Date());
 
     return total > 0 ? storage.set(data) : Promise.resolve();
 }

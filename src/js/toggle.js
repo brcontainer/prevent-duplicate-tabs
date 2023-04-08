@@ -6,7 +6,7 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { sendMessage, storage } from './core.js';
+import { debug, sendMessage, storage } from './core.js';
 
 var keys = [],
     syncing = {},
@@ -43,7 +43,7 @@ function changeSwitch(e) {
 
     syncing[key] = true;
 
-    console.log({ [key]: e.target.checked });
+    if (debug) console.info('toggle', { [key]: e.target.checked }, new Date());
 
     storage.set({ [key]: e.target.checked }).finally(() => {
         syncing[key] = false;

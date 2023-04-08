@@ -81,13 +81,13 @@
     "message": "Containers"
   },
   "containers_description": {
-    "message": "If enabled it will ignore repeated tabs in different containers, treating them as if they were non-repeated tabs (recommended)"
+    "message": "If enabled, it will ignore repeated tabs in different containers, treating them as if they were non-repeated tabs (recommended)"
   },
   "groups_title": {
-    "message": "Groups"
+    "message": "Tab groups"
   },
   "groups_description": {
-    "message": "xxxxxxxxx"
+    "message": "If enabled, it will ignore repeated tabs in different groups, treating them as if they were non-repeating tabs (recommended)"
   },
   "incognito_title": {
     "message": "Incognito"

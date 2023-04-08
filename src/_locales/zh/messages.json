@@ -84,10 +84,10 @@
     "message": "如果啟用，它將忽略不同容器中的重複標籤，將它們視為非重複標籤（推薦）"
   },
   "groups_title": {
-    "message": "團體"
+    "message": "選項卡組"
   },
   "groups_description": {
-    "message": "xxxxxxxxx"
+    "message": "如果啟用，它將忽略不同選項卡組中的重複選項卡，將它們視為非重複選項卡（推薦）"
   },
   "incognito_title": {
     "message": "隱身"

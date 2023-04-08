@@ -84,10 +84,10 @@
     "message": "Se habilitado irá ignorar abas repetidas em containers diferentes, tratando como se fossem abas não repetidas (recomendado)"
   },
   "groups_title": {
-    "message": "Grupos"
+    "message": "Grupos de abas"
   },
   "groups_description": {
-    "message": "xxxxxxxxx"
+    "message": "Se habilitado irá ignorar guias repetidas em grupos diferentes, tratando como se fossem guias não repetidas (recomendado)"
   },
   "incognito_title": {
     "message": "Incognito"

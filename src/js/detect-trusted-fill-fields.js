@@ -11,8 +11,6 @@
         throw new Error('Prevent duplicate tabs context is not available');
     }
 
-    console.log('FILL FORM CHECKER');
-
     function detectUserFill(e) {
         if (userFill || !e.isTrusted) return;
 

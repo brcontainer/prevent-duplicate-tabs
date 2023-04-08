@@ -468,11 +468,11 @@ html:target #actions, #actions:not(.show) {
     display: none;
 }
 
-.support-containers {
+.container-support, .group-support {
     display: none;
 }
 
-.supported-containers {
+.supported {
     display: block;
 }
 

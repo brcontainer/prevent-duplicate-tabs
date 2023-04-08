@@ -6,7 +6,7 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { main, container, debug, incognito, storage, tabs } from './core.js';
+import { main, debug, incognito, storage, support, tabs } from './core.js';
 
 var d = document,
     s = d.scrollingElement || d.body;
@@ -17,8 +17,6 @@ if (!debug) {
 }
 
 var locales = d.querySelectorAll('[data-i18n]');
-
-console.log({ locales });
 
 for (var i = locales.length - 1; i >= 0; i--) {
     var el = locales[i], message = main.i18n.getMessage(el.dataset.i18n);
@@ -45,11 +43,12 @@ incognito().then((allowed) => {
     d.getElementById('incognito_warn').classList.toggle('hide', allowed === true);
 });
 
-container().then((supported) => {
-    if (!supported) return;
-
-    d.querySelectorAll(".support-containers").forEach((config) => {
-        config.classList.toggle("supported-containers", true);
+support().then((results) => {
+    d.querySelectorAll('.container-support').forEach((config) => {
+        config.classList.toggle('supported', results.containers);
+    });
+    d.querySelectorAll('.group-support').forEach((config) => {
+        config.classList.toggle('supported', results.groups);
     });
 });
 

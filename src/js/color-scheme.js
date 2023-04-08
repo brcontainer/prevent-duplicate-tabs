@@ -6,30 +6,37 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { storage } from './core.js';
+import { debug, storage } from './core.js';
 
 var media = window.matchMedia('(prefers-color-scheme: dark)'),
     cKey = 'data:color-scheme',
     scheme = 'default',
+    syncing = false,
     d = document;
 
 media.onchange = (e) => changeScheme(e.matches);
 
 storage.addListener((key, value) => {
-    if (key === cKey) setScheme(value);
+    if (key === cKey) {
+        syncing = true;
+        setScheme(value);
+        updateInputs(false);
+        syncing = false;
+    }
 });
 
 (async function () {
-    var results = await storage.get(['data:color-scheme']);
+    var current = 'default',
+        results = await storage.get(['data:color-scheme']);
 
-    if (cKey in results) {
-        setScheme(results['data:color-scheme']);
-    }
+    if (cKey in results) current = results['data:color-scheme'];
+
+    setScheme(current);
 
     if (d.readyState === 'complete') {
-        setupInputs();
+        updateInputs(true);
     } else {
-        d.addEventListener('DOMContentLoaded', setupInputs);
+        d.addEventListener('DOMContentLoaded', () => updateInputs(true));
     }
 })();
 
@@ -49,21 +56,25 @@ async function setScheme(value) {
             link.media = '(prefers-color-scheme: dark)';
         }
     });
+
+    updateInputs(false);
 }
 
 function changeInputs(e) {
-    var el = e.target;
+    if (syncing) return;
 
-    if (el.matches('input[name=color-scheme]')) {
-        storage.set({ 'data:color-scheme': el.value });
-    }
+    storage.set({ 'data:color-scheme': e.target.value });
+
+    if (debug) console.info('color-scheme', e.target.value, new Date());
 }
 
-function setupInputs() {
+function updateInputs(setup) {
     d.querySelectorAll('input[name=color-scheme]').forEach((radio) => {
         if (radio.value === scheme) radio.checked = true;
 
-        radio.addEventListener('change', changeInputs);
-        radio.disabled = false;
+        if (setup) {
+            radio.addEventListener('change', changeInputs);
+            radio.disabled = false;
+        }
     });
 }

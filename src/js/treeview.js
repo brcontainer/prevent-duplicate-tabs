@@ -6,7 +6,7 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { storage } from './core.js';
+import { debug, storage } from './core.js';
 
 var keys = [],
     syncing = {},
@@ -47,7 +47,7 @@ function toggleSwitch(e) {
 
     syncing[key] = true;
 
-    console.log({ [key]: e.target.open });
+    if (debug) console.info('treeview', { [key]: e.target.open }, new Date());
 
     storage.set({ [key]: e.target.open }).finally(() => {
         syncing[key] = false;
