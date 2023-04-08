@@ -198,13 +198,13 @@ function findTabs(results) {
             prefix = 'incognito:false';
         }
 
-        if (diffContainers) {
+        if (diffContainers && 'cookieStoreId' in result) {
             prefix += '|container:' + result.cookieStoreId;
         } else {
             prefix += '|container:false';
         }
 
-        if (diffGroups) {
+        if (diffGroups && 'groupId' in result) {
             prefix += '|group:' + result.groupId;
         } else {
             prefix += '|group:false';
@@ -218,7 +218,11 @@ function findTabs(results) {
 
         url = prefix + '::' + url;
 
-        if (!groupTabs[url]) groupTabs[url] = [];
+        if (!groupTabs[url]) {
+            groupTabs[url] = [];
+
+            if (debug) console.info('groupTabs', url, new Date());
+        }
 
         groupTabs[url].push({ 'id': result.id, 'active': result.active });
     }
