@@ -7,6 +7,7 @@
  */
 
 html, body {
+    min-width: 310px;
     padding: 0;
     margin: 0;
 }
@@ -207,7 +208,11 @@ code {
     border-top: none;
 }
 
-.btn i.disabled {
+.btn > span {
+    vertical-align: middle;
+}
+
+.btn > i.disabled {
     display: none;
 }
 
@@ -217,11 +222,11 @@ code {
     cursor: default;
 }
 
-.btn:disabled i.disabled {
+.btn:disabled > i.disabled {
     display: inline-block;
 }
 
-.btn:disabled i ~ i {
+.btn:disabled > i ~ i {
     display: none;
 }
 

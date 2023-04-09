@@ -66,6 +66,10 @@ code {
                 0 0 20px 4px rgba(0,0,0,.02);
 }
 
+.btn:disabled {
+    color: #626262;
+}
+
 .row:hover {
     background-color: #565555;
 }
