@@ -65,7 +65,7 @@ function changeInputs(e) {
 
     storage.set({ 'data:color-scheme': e.target.value });
 
-    if (debug) console.info('color-scheme', e.target.value, new Date());
+    if (debug) console.info('[color-scheme]', e.target.value, new Date());
 }
 
 function updateInputs(setup) {

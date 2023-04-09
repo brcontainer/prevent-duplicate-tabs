@@ -18,6 +18,7 @@ details.forEach((widget) => {
     widget.setAttribute('id', key);
 
     syncing[key] = false;
+
     keys.push(key);
 });
 
@@ -47,7 +48,7 @@ function toggleSwitch(e) {
 
     syncing[key] = true;
 
-    if (debug) console.info('treeview', { [key]: e.target.open }, new Date());
+    if (debug) console.info('[treeview]', { [key]: e.target.open }, new Date());
 
     storage.set({ [key]: e.target.open }).finally(() => {
         syncing[key] = false;

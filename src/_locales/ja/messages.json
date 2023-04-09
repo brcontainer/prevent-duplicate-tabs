@@ -146,6 +146,12 @@
   "color_scheme_light": {
     "message": "light"
   },
+  "backup_title": {
+    "message": "バックアップ"
+  },
+  "backup_sync": {
+    "message": "同期する"
+  },
   "version": {
     "message": "バージョン{version}"
   },

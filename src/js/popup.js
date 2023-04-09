@@ -6,7 +6,7 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { main, debug, incognito, storage, support, tabs } from './core.js';
+import { main, debug, incognito, sendMessage, storage, supports, tabs } from './core.js';
 
 var d = document,
     s = d.scrollingElement || d.body;
@@ -15,6 +15,11 @@ if (!debug) {
     d.oncontextmenu = disableEvent;
     d.ondragstart = disableEvent;
 }
+
+var actions = {
+    'sync': syncStorage,
+    'device': deviceStorage
+};
 
 var locales = d.querySelectorAll('[data-i18n]');
 
@@ -29,21 +34,16 @@ d.addEventListener('click', (e) => {
 
     var el = e.target;
 
-    if (el.nodeName !== 'A' && !el.closest('a[href]')) return;
+    anchorCreateTab(e, el);
 
-    var protocol = el.protocol;
-
-    if (protocol !== 'http:' && protocol !== 'https:') return;
-
-    e.preventDefault();
-    tabs.create({ 'url': el.href });
+    btnAction(el);
 });
 
 incognito().then((allowed) => {
     d.getElementById('incognito_warn').classList.toggle('hide', allowed === true);
 });
 
-support().then((results) => {
+supports().then((results) => {
     d.querySelectorAll('.container-support').forEach((config) => {
         config.classList.toggle('supported', results.containers);
     });
@@ -64,6 +64,26 @@ setTimeout(() => {
     }, 20);
 }, 10);
 
+function anchorCreateTab(e, el) {
+    if (el.nodeName !== 'A' && !el.closest('a[href]')) return;
+
+    var protocol = el.protocol;
+
+    if (protocol !== 'http:' && protocol !== 'https:') return;
+
+    e.preventDefault();
+
+    tabs.create({ 'url': el.href });
+}
+
+function btnAction(el) {
+    if (el.nodeName !== 'BUTTON' && el.dataset.action) return;
+
+    var action = actions[el.dataset.action];
+
+    if (action) action(el);
+}
+
 function disableEvent(e) {
     e.preventDefault();
     return false;
@@ -75,4 +95,20 @@ function markdown(message) {
         .replace(/(^|\s|[>])`(.*?)`($|\s|[<])/g, '$1<code>$2<\/code>$3')
         .replace(/\{([a-z])(\w+)?\}/gi, '<var name="$1$2"><\/var>')
         .replace(/(^|\s|[>])\*(.*?)\*($|\s|[<])/g, '$1<strong>$2<\/strong>$3');
+}
+
+function syncStorage(el) {
+    el.disabled = true;
+
+    sendMessage('backup:sync').then(() => {
+        el.disabled = false;
+    });
+}
+
+function deviceStorage(el) {
+    el.disabled = true;
+
+    sendMessage('backup:device').finally(() => {
+        el.disabled = false;
+    });
 }

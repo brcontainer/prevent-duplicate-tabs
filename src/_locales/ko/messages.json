@@ -146,6 +146,12 @@
   "color_scheme_light": {
     "message": "light"
   },
+  "backup_title": {
+    "message": "지원"
+  },
+  "backup_sync": {
+    "message": "동기화"
+  },
   "version": {
     "message": "버전 {version}"
   },

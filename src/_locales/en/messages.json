@@ -146,6 +146,12 @@
   "color_scheme_light": {
     "message": "light"
   },
+  "backup_title": {
+    "message": "Backup"
+  },
+  "backup_sync": {
+    "message": "Synchronize"
+  },
   "version": {
     "message": "Version {version}"
   },

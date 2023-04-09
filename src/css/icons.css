@@ -18,6 +18,13 @@
     background-position: right center;
     background-image: url(/images/setup.svg);
 }
+.ico.sync {
+    /*background-position: right center;*/
+    background-image: url(/images/sync.svg);
+    height: 16px;
+    width: 16px;
+    margin-right: 5px;
+}
 .ico.bug {
     background-image: url(/images/bug.svg);
     height: 16px;

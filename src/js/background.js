@@ -72,7 +72,13 @@ main.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse(configs);
     } else if (request === 'ignored') {
         sendResponse({ url, hosts });
+    } else if (request === 'backup:sync') {
+        syncStorage().then(sendResponse);
+    } else {
+        return;
     }
+
+    return true;
 });
 
 function isDisabled() {
@@ -161,7 +167,8 @@ function tabEventUpdate(tabId, changeInfo) {
 function findTabs(results) {
     if (isDisabled()) return;
 
-    var url,
+    var ns,
+        url,
         prefix,
         groupTabs = {},
         closeItems = [],
@@ -216,15 +223,15 @@ function findTabs(results) {
             prefix += '|window:false';
         }
 
-        url = prefix + '::' + url;
+        ns = prefix + '::' + url;
 
-        if (!groupTabs[url]) {
-            groupTabs[url] = [];
+        if (!groupTabs[ns]) {
+            groupTabs[ns] = [];
 
-            if (debug) console.info('groupTabs', url, new Date());
+            if (debug) console.info('[namespace]', ns, new Date());
         }
 
-        groupTabs[url].push({ 'id': result.id, 'active': result.active });
+        groupTabs[ns].push({ 'id': result.id, 'active': result.active });
     }
 
     for (var url in groupTabs) {
@@ -233,7 +240,7 @@ function findTabs(results) {
         }
     }
 
-    if (debug) console.info('findTabs', closeItems, new Date());
+    if (debug) console.info('[findTabs]', closeItems, new Date());
 
     tabs.remove(closeItems);
 
@@ -255,13 +262,13 @@ function sliceUrl(url) {
     return index > -1 ? url.substring(0, index) : url;
 }
 
-function getDuplicateTabs(tabs, closeItems) {
-    if (tabs.length < 2) return;
+function getDuplicateTabs(items, closeItems) {
+    if (items.length < 2) return;
 
-    tabs.sort(sortTabs);
+    items.sort(sortTabs);
 
-    for (var i = 1, j = tabs.length; i < j; i++) {
-        closeItems.push(tabs[i].id);
+    for (var i = 1, j = items.length; i < j; i++) {
+        closeItems.push(items[i].id);
     }
 }
 
@@ -276,10 +283,21 @@ function sortTabs(tab, nextTab) {
 function putIgnoredTabs(tabId, remove) {
     if (remove) {
         var index = ignoredTabIds.indexOf(tabId);
+
         if (index !== -1) ignoredTabIds.splice(index, 1);
     } else {
         ignoredTabIds.push(tabId);
     }
+}
+
+function syncStorage() {
+    return storage.get().then((results) => storage.set(results)).then(() => delay(1000));
+}
+
+function delay(timeout) {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(), timeout);
+    });
 }
 
 function migrate() {
@@ -315,7 +333,7 @@ function migrate() {
         }
     }
 
-    if (debug) console.info('migrate', data, new Date());
+    if (debug) console.info('[migrate]', data, new Date());
 
     return total > 0 ? storage.set(data) : Promise.resolve();
 }

@@ -43,7 +43,7 @@ function changeSwitch(e) {
 
     syncing[key] = true;
 
-    if (debug) console.info('toggle', { [key]: e.target.checked }, new Date());
+    if (debug) console.info('[toggle]', { [key]: e.target.checked }, new Date());
 
     storage.set({ [key]: e.target.checked }).finally(() => {
         syncing[key] = false;

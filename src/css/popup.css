@@ -44,7 +44,7 @@ body {
               user-select: none;
 }
 
-body, a {
+body, a, button {
     color: #4F4949;
 }
 
@@ -149,7 +149,7 @@ summary {
     cursor: pointer;
 }
 
-button * {
+a *, button * {
     pointer-events: none;
 }
 
@@ -176,12 +176,12 @@ code {
 }
 
 .group {
-    margin: 0 10px;
     background-color: #fff;
     border: 1px solid;
-    border-radius: 3px;
     box-shadow: 0 2px 3px rgba(0,0,0,.04);
     transition: all .1s ease;
+    border-radius: 3px;
+    margin: 0 10px;
 }
 
 .group:hover {
@@ -189,6 +189,44 @@ code {
                 0 0 8px 0 rgba(0,0,0,.04),
                 0 0 15px 0 rgba(0,0,0,.01),
                 0 0 20px 4px rgba(0,0,0,.02);
+}
+
+.btn {
+    margin: 0;
+    padding: 12px;
+    display: block;
+    background: transparent;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    border-top: 1px solid;
+    text-align: left;
+}
+
+.btn:first-child {
+    border-top: none;
+}
+
+.btn i.disabled {
+    display: none;
+}
+
+.btn:disabled {
+    pointer-events: none;
+    color: #cfcfcf;
+    cursor: default;
+}
+
+.btn:disabled i.disabled {
+    display: inline-block;
+}
+
+.btn:disabled i ~ i {
+    display: none;
+}
+
+.btn:hover {
+    background-color: rgba(0,0,0,.05);
 }
 
 .row {
@@ -361,7 +399,7 @@ main > footer, main > footer a, .row > .col > p {
     color: #928b8b;
 }
 
-h1, .group, .row, main > footer {
+h1, .btn, .group, .row, main > footer {
     border-color: #dedada;
 }
 
@@ -483,3 +521,17 @@ html:target #actions, #actions:not(.show) {
 :focus-visible, .toggle > input:focus-visible ~ label::after {
     outline: .15rem solid #634dff;
 }
+
+.ani-rot {
+    animation: rotate 1s infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+

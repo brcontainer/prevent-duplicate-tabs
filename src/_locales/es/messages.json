@@ -149,6 +149,12 @@
   "color_scheme_light": {
     "message": "light"
   },
+  "backup_title": {
+    "message": "Respaldo"
+  },
+  "backup_sync": {
+    "message": "Sincronizar"
+  },
   "version": {
     "message": "Versión {version}"
   },

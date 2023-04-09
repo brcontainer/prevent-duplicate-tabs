@@ -30,8 +30,8 @@ if (_runtime.id && !('requestUpdateCheck' in _runtime)) {
 }
 
 var storage = {
-    get: getStorage,
-    set: setStorage,
+    get: (keys) => getStorage('local', keys),
+    set: (keys) => setStorage('local', keys),
     addListener: addListenerStorage,
 };
 
@@ -46,19 +46,21 @@ var tabs = {
     onUpdated: _tabs.onUpdated,
 };
 
-function getStorage(keys) {
-    if (usesPromise) return _storage.local.get(keys);
+var _supports;
+
+function getStorage(type, keys) {
+    if (usesPromise) return _storage[type].get(keys);
 
     return new Promise((resolve) => {
-        _storage.local.get(keys, resolve);
+        _storage[type].get(keys, resolve);
     });
 }
 
-function setStorage(keys) {
-    if (usesPromise) return _storage.local.set(keys);
+function setStorage(type, keys) {
+    if (usesPromise) return _storage[type].set(keys);
 
     return new Promise((resolve) => {
-        _storage.local.set(keys, resolve);
+        _storage[type].set(keys, resolve);
     });
 }
 
@@ -97,19 +99,26 @@ function queryTabs(options) {
 }
 
 function sendMessage(message) {
-    if (usesPromise) return _runtime.sendMessage(null, message, {}, resolve);
+    if (usesPromise) return _runtime.sendMessage(null, message, {});
 
     return new Promise((resolve) => {
         _runtime.sendMessage(null, message, {}, resolve);
     });
 }
 
-function support() {
-    return queryTabs({}).then((tabs) => {
-        var tab = tabs?.[0];
-        return Promise.resolve({
-            containers: ('cookieStoreId' in tab),
-            groups: ('groupId' in tab)
+function supports() {
+    return new Promise((resolve) => {
+        if (_supports) return resolve(_supports);
+
+        return queryTabs({}).then((tabs) => {
+            var tab = tabs?.[0];
+
+            _supports = {
+                containers: ('cookieStoreId' in tab),
+                groups: ('groupId' in tab)
+            };
+
+            return resolve(_supports);
         });
     });
 }
@@ -129,6 +138,6 @@ export {
     manifest,
     sendMessage,
     storage,
-    support,
+    supports,
     tabs
 };

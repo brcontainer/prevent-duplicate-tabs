@@ -146,6 +146,12 @@
   "color_scheme_light": {
     "message": "light"
   },
+  "backup_title": {
+    "message": "備份"
+  },
+  "backup_sync": {
+    "message": "同步"
+  },
   "version": {
     "message": "版本{version}"
   },
