@@ -72,8 +72,8 @@ main.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse(configs);
     } else if (request === 'ignored') {
         sendResponse({ url, hosts });
-    } else if (request === 'backup:sync') {
-        syncStorage().then(sendResponse);
+    } else if (request === 'sync:backup' || request === 'sync:restore') {
+        storage.sync(request === 'sync:restore').then(() => delay(1000)).then(() => sendResponse());
     } else {
         return;
     }
@@ -99,15 +99,15 @@ function preToggleIcon() {
 }
 
 function toggleIcon() {
-    var path = isDisabled() ? '/images/disabled' : '/images';
+    var path = isDisabled() ? 'icons/disabled' : 'icons';
 
     action.setIcon({
         'tabId': tabId,
         'path': {
-            '16': `${path}/16x.png`,
-            '32': `${path}/32x.png`,
-            '48': `${path}/48x.png`,
-            '128': `${path}/128x.png`,
+            '16': `/images/${path}/16x.png`,
+            '32': `/images/${path}/32x.png`,
+            '48': `/images/${path}/48x.png`,
+            '128': `/images/${path}/128x.png`,
         }
     });
 }
@@ -288,10 +288,6 @@ function putIgnoredTabs(tabId, remove) {
     } else {
         ignoredTabIds.push(tabId);
     }
-}
-
-function syncStorage() {
-    return storage.get().then((results) => storage.set(results)).then(() => delay(1000));
 }
 
 function delay(timeout) {

@@ -150,7 +150,16 @@
     "message": "지원"
   },
   "backup_sync": {
-    "message": "동기화"
+    "message": "브라우저 계정과 동기화"
+  },
+  "backup_restore": {
+    "message": "브라우저 계정에서 복원"
+  },
+  "backup_export": {
+    "message": "장치로 내보내기"
+  },
+  "backup_import": {
+    "message": "장치에서 가져오기"
   },
   "version": {
     "message": "버전 {version}"

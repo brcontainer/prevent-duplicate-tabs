@@ -82,7 +82,7 @@ main > footer, main > footer a, .row > .col > p {
     color: #b1a9a9;
 }
 
-h1, .group, .row, main > footer {
+h1, .group, .row, .btn, main > footer {
     border-color: #252525;
 }
 

@@ -150,7 +150,16 @@
     "message": "備份"
   },
   "backup_sync": {
-    "message": "同步"
+    "message": "與瀏覽器帳戶同步"
+  },
+  "backup_restore": {
+    "message": "從瀏覽器帳戶恢復"
+  },
+  "backup_export": {
+    "message": "導出到設備"
+  },
+  "backup_import": {
+    "message": "從設備導入"
   },
   "version": {
     "message": "版本{version}"

@@ -182,7 +182,7 @@ code {
     box-shadow: 0 2px 3px rgba(0,0,0,.04);
     transition: all .1s ease;
     border-radius: 3px;
-    margin: 0 10px;
+    margin: 0 10px 10px 10px;
 }
 
 .group:hover {
@@ -516,6 +516,14 @@ html:target #actions, #actions:not(.show) {
 }
 
 .supported {
+    display: block;
+}
+
+.export-import {
+    display: none;
+}
+
+html:target .export-import {
     display: block;
 }
 

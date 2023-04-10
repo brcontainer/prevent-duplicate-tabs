@@ -150,7 +150,16 @@
     "message": "Sauvegarde"
   },
   "backup_sync": {
-    "message": "Synchroniser"
+    "message": "Synchroniser avec le compte du navigateur"
+  },
+  "backup_restore": {
+    "message": "Restaurer à partir du compte du navigateur"
+  },
+  "backup_export": {
+    "message": "Exporter vers l'appareil"
+  },
+  "backup_import": {
+    "message": "Importer depuis l'appareil"
   },
   "version": {
     "message": "Version {version}"

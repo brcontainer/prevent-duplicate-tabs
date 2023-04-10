@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/css/dark/toggle.css" media="(max-width: 0px)" data-scheme="dark">
     <link rel="stylesheet" type="text/css" href="/css/dark/icons.css" media="(max-width: 0px)" data-scheme="dark">
 
-    <link rel="icon" type="image/png" href="/images/16x.png">
+    <link rel="icon" type="image/png" href="/images/icons/16x.png">
 
     <script type="module" src="/js/color-scheme.js"></script>
     <script type="module" src="/js/popup.js" defer></script>
@@ -179,7 +179,7 @@
                         <p data-i18n="containers_description"></p>
                     </div>
                 </div>
-                <div class="row group-supportd">
+                <div class="row group-support">
                     <div class="col">
                         <div class="toggle">
                             <input type="checkbox" id="groups" disabled>
@@ -321,24 +321,30 @@
 
         <details open>
             <summary data-i18n="backup_title"></summary>
-            <div class="group">
-                <button class="btn sync-support" data-action="sync">
+            <div class="group sync-support">
+                <button class="btn" data-action="backupSync">
                     <i class="ico sync disabled ani-rot"></i>
                     <i class="ico sync"></i>
                     <span data-i18n="backup_sync"></span>
                 </button>
-                <!--
-                <button class="btn" data-action="device">
-                    <i class="ico setup load disabled ani-rot"></i>
-                    <i class="ico setup device"></i>
-                    <span data-i18n="backup_device"></span>
+                <button class="btn" data-action="backupRestore">
+                    <i class="ico sync disabled ani-rot"></i>
+                    <i class="ico sync"></i>
+                    <span data-i18n="backup_restore"></span>
                 </button>
-                <button class="btn" data-action="restore">
-                    <i class="ico setup load disabled ani-rot"></i>
-                    <i class="ico setup restore"></i>
-                    <span data-i18n="restore_device"></span>
+            </div>
+            <div class="group export-import">
+                <button class="btn" data-action="backupExport">
+                    <i class="ico sync disabled ani-rot"></i>
+                    <i class="ico sync"></i>
+                    <span data-i18n="backup_export"></span>
                 </button>
-                -->
+                <button class="btn" data-action="backupImport">
+                    <i class="ico sync disabled ani-rot"></i>
+                    <i class="ico sync"></i>
+                    <span data-i18n="backup_import"></span>
+                </button>
+                <input type="file" id="input-import" class="hide">
             </div>
         </details>
 

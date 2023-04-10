@@ -30,6 +30,9 @@ if (_runtime.id && !('requestUpdateCheck' in _runtime)) {
 }
 
 var storage = {
+    export: exportStorage,
+    import: importStorage,
+    sync: syncStorage,
     get: (keys) => getStorage('local', keys),
     set: (keys) => setStorage('local', keys),
     addListener: addListenerStorage,
@@ -48,11 +51,96 @@ var tabs = {
 
 var _supports;
 
-function getStorage(type, keys) {
-    if (usesPromise) return _storage[type].get(keys);
+function exportStorage(data) {
+    return getStorage('local').then((results) => {
+        var output;
 
-    return new Promise((resolve) => {
-        _storage[type].get(keys, resolve);
+        if (typeof results !== 'object' || !Object.entries(results).length) {
+            output = '{}';
+        } else {
+            output = JSON.stringify(results);
+        }
+
+        var date = new Date().toISOString(),
+            dateName = date.substring(0, date.indexOf('Z') - 4),
+            fileName = `${dateName}-${manifest.name}`.replace(/[^\w\-]+/g, '_') + '.json';
+
+        var url = URL.createObjectURL(new File([output], fileName, {
+            type: 'application/json'
+        }));
+
+        return createTab({ url: url });
+    });
+}
+
+function importStorage(file) {
+    return new Promise((resolve, reject) => {
+        if (!file.type || !file.size) return reject(new Error('Invalid file'));
+
+        return file.text().then((data) => {
+            data = JSON.parse(data);
+
+            var value, imported = {};
+
+            for (var key of Object.entries(data)) {
+                value = data[key];
+
+                if (key === 'hosts' || key === 'url') {
+                    var items = value.filter(onlyString);
+
+                    if (items.length) imported[key] = items;
+                } else if (key in configs && typeof value === 'boolean') {
+                    imported[key] = value;
+                } else if (key.indexOf('data:') !== -1 || key.indexOf('details:') !== -1) {
+                    imported[key] = value;
+                }
+            }
+
+            if (!Object.entries(imported).length) return Promse.resolve();
+
+            return getStorage('local', ['hosts', 'url']).then((local) => {
+                if (imported.hosts && local.hosts) {
+                    imported = imported.hosts.concat(local.hosts);
+                }
+
+                if (imported.url && local.url) {
+                    imported = imported.url.concat(local.url);
+                }
+
+                return setStorage('local', imported);
+            });
+        });
+    });
+}
+
+function onlyString(item) {
+    return typeof item === 'string';
+}
+
+function syncStorage(restore) {
+    var source = restore ? 'sync' : 'local',
+        dest = restore ? 'local' : 'sync';
+
+    return getStorage(source).then((results) => setStorage(dest, results));
+}
+
+function getStorage(type, keys) {
+    var handler;
+
+    if (usesPromise) {
+        handler = _storage[type].get(keys);
+    } else {
+        handler = new Promise((resolve) => {
+            _storage[type].get(keys, resolve);
+        });
+    }
+
+    return handler.then((results) => {
+        if (typeof results === 'object' && Object.entries(results).length) {
+            return results;
+        }
+
+        return {};
     });
 }
 

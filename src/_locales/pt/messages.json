@@ -150,7 +150,16 @@
     "message": "Cópia de segurança"
   },
   "backup_sync": {
-    "message": "Sincronizar"
+    "message": "Sincronizar com a conta do navegador"
+  },
+  "backup_restore": {
+    "message": "Restaurar da conta do navegador"
+  },
+  "backup_export": {
+    "message": "Exportar para dispositivo"
+  },
+  "backup_import": {
+    "message": "Importar do dispositivo"
   },
   "version": {
     "message": "Versão {version}"

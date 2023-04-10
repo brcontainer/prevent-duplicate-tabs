@@ -150,7 +150,16 @@
     "message": "Backup"
   },
   "backup_sync": {
-    "message": "Synchronize"
+    "message": "Sync with browser account"
+  },
+  "backup_restore": {
+    "message": "Restore from browser account"
+  },
+  "backup_export": {
+    "message": "Export to device"
+  },
+  "backup_import": {
+    "message": "Import from device"
   },
   "version": {
     "message": "Version {version}"

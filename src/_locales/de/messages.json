@@ -150,7 +150,16 @@
     "message": "Sicherung"
   },
   "backup_sync": {
-    "message": "Synchronisieren"
+    "message": "Mit Browserkonto synchronisieren"
+  },
+  "backup_restore": {
+    "message": "Vom Browserkonto wiederherstellen"
+  },
+  "backup_export": {
+    "message": "Auf Gerät exportieren"
+  },
+  "backup_import": {
+    "message": "Vom Gerät importieren"
   },
   "version": {
     "message": "Version {version}"

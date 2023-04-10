@@ -9,7 +9,8 @@
 import { main, debug, incognito, sendMessage, storage, supports, tabs } from './core.js';
 
 var d = document,
-    s = d.scrollingElement || d.body;
+    s = d.scrollingElement || d.body,
+    inputImport = d.getElementById('input-import');
 
 if (!debug) {
     d.oncontextmenu = disableEvent;
@@ -17,8 +18,14 @@ if (!debug) {
 }
 
 var actions = {
-    'sync': syncStorage,
-    'device': deviceStorage
+    'backupSync': backupSync,
+    'backupRestore': backupRestore,
+    'backupExport': () => {
+        storage.export();
+    },
+    'backupImport': () => {
+        inputImport.click();
+    }
 };
 
 var locales = d.querySelectorAll('[data-i18n]');
@@ -52,6 +59,8 @@ supports().then((results) => {
     });
 });
 
+// inputImport.addEventListener('change', getImportedFile);
+
 setTimeout(() => {
     s.style.transform = 'scale(2)';
 
@@ -77,11 +86,15 @@ function anchorCreateTab(e, el) {
 }
 
 function btnAction(el) {
-    if (el.nodeName !== 'BUTTON' && el.dataset.action) return;
+    if (el.nodeName !== 'BUTTON' && !el.dataset.action) return;
 
-    var action = actions[el.dataset.action];
+    var action = el.dataset.action;
 
-    if (action) action(el);
+    var callback = actions[action];
+
+    if (!callback) throw new Error('Invalid action: [' + action + ']');
+
+    callback(el);
 }
 
 function disableEvent(e) {
@@ -97,18 +110,26 @@ function markdown(message) {
         .replace(/(^|\s|[>])\*(.*?)\*($|\s|[<])/g, '$1<strong>$2<\/strong>$3');
 }
 
-function syncStorage(el) {
+function backupSync(el) {
     el.disabled = true;
 
-    sendMessage('backup:sync').then(() => {
+    sendMessage('sync:backup').then(() => {
         el.disabled = false;
     });
 }
 
-function deviceStorage(el) {
+function backupRestore(el) {
     el.disabled = true;
 
-    sendMessage('backup:device').finally(() => {
+    sendMessage('sync:restore').then(() => {
         el.disabled = false;
     });
+}
+
+function getImportedFile(e) {
+    var files = inputImport.files;
+
+    if (!files || !files[0]) return;
+
+    storage.import(files[0]).then(() => {}, () => {});
 }

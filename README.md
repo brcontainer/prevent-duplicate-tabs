@@ -49,9 +49,10 @@ Configuration | Description
 
 Configuration | Description
 --- | ---
-`incognito` | Check repeated anonymous tabs (requires you to manually enable in your browser)
 `windows` | Close only repeated tabs from the same window (recommended)
 `containers` | If enabled it will ignore repeated tabs in different containers, treating them as if they were non-repeated tabs (recommended), only Firefox
+`group tabs` | If enabled it will ignore repeated tabs in different groups, treating them as if they were non-repeated tabs (recommended), only browsers basead in Chromium (Chrome, Edge, Brave)
+`incognito` | Check repeated anonymous tabs (requires you to manually enable in your browser)
 
 ### Events
 
@@ -70,13 +71,13 @@ Event | Description
 
 Supported languages:
 
-- [Chinese (zh)](chrome/_locales/zh/messages.json)
-- [English (en)](chrome/_locales/en/messages.json)
-- [French (fr)](chrome/_locales/fr/messages.json)
-- [German (de)](chrome/_locales/de/messages.json)
-- [Japanese (ja)](chrome/_locales/ja/messages.json)
-- [Korean (ko)](chrome/_locales/ko/messages.json)
-- [Portuguese (pt)](chrome/_locales/pt/messages.json) (and [Brazilian Portuguese (pt_BR)](chrome/_locales/pt_BR/messages.json))
-- [Spanish (es)](chrome/_locales/es/messages.json)
+- [Chinese (zh)](src/_locales/zh/messages.json)
+- [English (en)](src/_locales/en/messages.json)
+- [French (fr)](src/_locales/fr/messages.json)
+- [German (de)](src/_locales/de/messages.json)
+- [Japanese (ja)](src/_locales/ja/messages.json)
+- [Korean (ko)](src/_locales/ko/messages.json)
+- [Portuguese (pt)](src/_locales/pt/messages.json) (and [Brazilian Portuguese (pt_BR)](src/_locales/pt_BR/messages.json))
+- [Spanish (es)](src/_locales/es/messages.json)
 
 I used automatic translations to generate the texts (`messages.json`), so there may be errors, the project is open-source, so feel free to send a pull-request with corrections in the translations.

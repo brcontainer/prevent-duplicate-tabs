@@ -150,7 +150,16 @@
     "message": "バックアップ"
   },
   "backup_sync": {
-    "message": "同期する"
+    "message": "ブラウザ アカウントと同期する"
+  },
+  "backup_restore": {
+    "message": "ブラウザ アカウントからの復元"
+  },
+  "backup_export": {
+    "message": "デバイスにエクスポート"
+  },
+  "backup_import": {
+    "message": "デバイスからインポート"
   },
   "version": {
     "message": "バージョン{version}"
