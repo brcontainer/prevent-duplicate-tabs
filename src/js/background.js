@@ -6,7 +6,7 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { main, debug, storage, tabs } from './core.js';
+import { main, debug, manifest, storage, tabs } from './core.js';
 
 var isReady = false,
     tabId = null,
@@ -45,7 +45,15 @@ var configs = {
 
 var storageKeys = Object.keys(configs).concat(['urls', 'hosts']);
 
-migrate().then(() => storage.get(storageKeys)).then((results) => {
+var boot;
+
+if (manifest.manifest_version >= 3) {
+    boot = migrate().then(() => storage.get(storageKeys));
+} else {
+    boot = storage.get(storageKeys);
+}
+
+boot.then((results) => {
     for (var key of storageKeys) {
         if (key === 'urls') {
             if (Array.isArray(results[key])) urls = results[key];
