@@ -51,6 +51,12 @@ var tabs = {
 
 var _supports;
 
+var importables = [
+    'turnoff', 'old', 'active', 'http', 'query', 'hash',
+    'start', 'update', 'create', 'replace', 'attach', 'datachange',
+    'windows', 'containers', 'groups', 'incognito'
+];
+
 function exportStorage(data) {
     return getStorage('local').then((results) => {
         var output;
@@ -63,7 +69,9 @@ function exportStorage(data) {
 
         var date = new Date().toISOString(),
             dateName = date.substring(0, date.indexOf('Z') - 4),
-            fileName = `${dateName}-${manifest.name}`.replace(/[^\w\-]+/g, '_') + '.json';
+            fileName = `${dateName}-${manifest.name}`;
+
+        fileName = fileName.replace(/\s+/g, '-').replace(/[^\w\-]+/g, '_') + '.json';
 
         return queryTabs({
             'lastFocusedWindow': true,
@@ -73,7 +81,7 @@ function exportStorage(data) {
             var tab = tabs?.[0],
                 opts = {
                     url: URL.createObjectURL(new File([output], fileName, {
-                        type: 'application/json'
+                        type: 'application/octet-stream'
                     }))
                 };
 
@@ -88,26 +96,37 @@ function importStorage(file) {
     return new Promise((resolve, reject) => {
         if (!file.type || !file.size) return reject(new Error('Invalid file'));
 
+        if (debug) console.info('[importStorage]', file);
+
         return file.text().then((data) => {
+            if (debug) console.info('[importStorage]', data);
+
             data = JSON.parse(data);
 
-            var value, imported = {};
+            if (debug) console.info('[importStorage]', data);
 
-            for (var key of Object.entries(data)) {
-                value = data[key];
+            var key, value, imported = {};
+
+            for (var item of Object.entries(data)) {
+                key = item[0];
+                value = item[1];
+
+                if (debug) console.info('[importStorage]', { key, value });
 
                 if (key === 'hosts' || key === 'url') {
                     var items = value.filter(onlyString);
 
                     if (items.length) imported[key] = items;
-                } else if (key in configs && typeof value === 'boolean') {
+                } else if (importables.indexOf(key) !== -1 && typeof value === 'boolean') {
                     imported[key] = value;
                 } else if (key.indexOf('data:') !== -1 || key.indexOf('details:') !== -1) {
                     imported[key] = value;
                 }
             }
 
-            if (!Object.entries(imported).length) return Promse.resolve();
+            if (debug) console.info('[importStorage]', imported);
+
+            if (!Object.entries(imported).length) return Promise.resolve();
 
             return getStorage('local', ['hosts', 'url']).then((local) => {
                 if (imported.hosts && local.hosts) {

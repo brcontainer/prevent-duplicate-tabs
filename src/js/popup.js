@@ -59,7 +59,7 @@ supports().then((results) => {
     });
 });
 
-// inputImport.addEventListener('change', getImportedFile);
+inputImport.addEventListener('change', getImportedFile);
 
 setTimeout(() => {
     s.style.transform = 'scale(2)';
