@@ -113,7 +113,7 @@ function markdown(message) {
 function backupSync(el) {
     el.disabled = true;
 
-    sendMessage('sync:backup').then(() => {
+    sendMessage('backup:sync').then(() => {
         el.disabled = false;
     });
 }
@@ -121,7 +121,7 @@ function backupSync(el) {
 function backupRestore(el) {
     el.disabled = true;
 
-    sendMessage('sync:restore').then(() => {
+    sendMessage('backup:restore').then(() => {
         el.disabled = false;
     });
 }

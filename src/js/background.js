@@ -80,8 +80,8 @@ main.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse(configs);
     } else if (request === 'ignored') {
         sendResponse({ url, hosts });
-    } else if (request === 'sync:backup' || request === 'sync:restore') {
-        storage.sync(request === 'sync:restore').then(() => delay(1000)).then(() => sendResponse());
+    } else if (request === 'backup:sync' || request === 'backup:restore') {
+        storage.sync(request === 'backup:restore').then(() => delay(1000)).then(() => sendResponse());
     } else {
         return;
     }

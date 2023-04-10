@@ -65,11 +65,22 @@ function exportStorage(data) {
             dateName = date.substring(0, date.indexOf('Z') - 4),
             fileName = `${dateName}-${manifest.name}`.replace(/[^\w\-]+/g, '_') + '.json';
 
-        var url = URL.createObjectURL(new File([output], fileName, {
-            type: 'application/json'
-        }));
+        return queryTabs({
+            'lastFocusedWindow': true,
+            'active': true,
+            'windowType': 'normal'
+        }).then((tabs) => {
+            var tab = tabs?.[0],
+                opts = {
+                    url: URL.createObjectURL(new File([output], fileName, {
+                        type: 'application/json'
+                    }))
+                };
 
-        return createTab({ url: url });
+            if (tab && tab.index) opts.index = tab.index + 1;
+
+            return createTab(opts);
+        });
     });
 }
 
