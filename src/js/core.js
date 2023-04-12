@@ -15,6 +15,7 @@ if (typeof browser !== 'undefined') {
 }
 
 var _incognito = main.extension.isAllowedIncognitoAccess,
+    _downloads = main.downloads.download,
     _runtime = main.runtime,
     _storage = main.storage,
     _tabs = main.tabs;
@@ -73,21 +74,14 @@ function exportStorage(data) {
 
         fileName = fileName.replace(/\s+/g, '-').replace(/[^\w\-]+/g, '_') + '.json';
 
-        return queryTabs({
-            'lastFocusedWindow': true,
-            'active': true,
-            'windowType': 'normal'
-        }).then((tabs) => {
-            var tab = tabs?.[0],
-                opts = {
-                    url: URL.createObjectURL(new File([output], fileName, {
-                        type: 'application/octet-stream'
-                    }))
-                };
+        var url = URL.createObjectURL(new Blob([output], {
+            type: 'application/json'
+        }));
 
-            if (tab && tab.index) opts.index = tab.index + 1;
-
-            return createTab(opts);
+        return downloads({
+            url: url,
+            filename: fileName,
+            saveAs: true
         });
     });
 }
@@ -96,14 +90,14 @@ function importStorage(file) {
     return new Promise((resolve, reject) => {
         if (!file.type || !file.size) return reject(new Error('Invalid file'));
 
-        if (debug) console.info('[importStorage]', file);
+        if (debug) console.info('[importStorage]', file, new Date());
 
         return file.text().then((data) => {
-            if (debug) console.info('[importStorage]', data);
+            if (debug) console.info('[importStorage]', data, new Date());
 
             data = JSON.parse(data);
 
-            if (debug) console.info('[importStorage]', data);
+            if (debug) console.info('[importStorage]', data, new Date());
 
             var key, value, imported = {};
 
@@ -111,7 +105,7 @@ function importStorage(file) {
                 key = item[0];
                 value = item[1];
 
-                if (debug) console.info('[importStorage]', { key, value });
+                if (debug) console.info('[importStorage]', { key, value }, new Date());
 
                 if (key === 'hosts' || key === 'url') {
                     var items = value.filter(onlyString);
@@ -124,7 +118,7 @@ function importStorage(file) {
                 }
             }
 
-            if (debug) console.info('[importStorage]', imported);
+            if (debug) console.info('[importStorage]', imported, new Date());
 
             if (!Object.entries(imported).length) return Promise.resolve();
 
@@ -249,6 +243,14 @@ function incognito() {
     });
 }
 
+function downloads(options) {
+    if (usesPromise) return _downloads(options);
+
+    return new Promise((resolve) => {
+        _downloads(options, resolve);
+    });
+}
+
 export {
     main,
     debug,
@@ -257,5 +259,6 @@ export {
     sendMessage,
     storage,
     supports,
-    tabs
+    tabs,
+    downloads
 };

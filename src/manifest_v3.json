@@ -24,6 +24,7 @@
         "type": "module"
     },
     "permissions": [
+        "downloads",
         "storage",
         "tabs"
     ],

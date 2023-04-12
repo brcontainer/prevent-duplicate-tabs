@@ -46,7 +46,9 @@
 .toggle > label::before {
     position: absolute;
     left: 2.25em;
-    top: .32em;
+    top: 50%;
+    height: auto;
+    transform: translateY(-50%);
     content: "\2718";
     font-variant: small-caps;
     font-size: .85em;

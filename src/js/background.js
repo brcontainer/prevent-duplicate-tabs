@@ -47,7 +47,7 @@ var storageKeys = Object.keys(configs).concat(['urls', 'hosts']);
 
 var boot;
 
-if (manifest.manifest_version >= 3) {
+if (manifest.manifest_version < 3) {
     boot = migrate().then(() => storage.get(storageKeys));
 } else {
     boot = storage.get(storageKeys);
@@ -236,7 +236,7 @@ function findTabs(results) {
         if (!groupTabs[ns]) {
             groupTabs[ns] = [];
 
-            if (debug) console.info('[namespace]', ns, new Date());
+            if (debug) console.info('[namespace]', new Date(), ns);
         }
 
         groupTabs[ns].push({ 'id': result.id, 'active': result.active });

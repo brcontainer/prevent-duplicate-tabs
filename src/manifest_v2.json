@@ -23,6 +23,7 @@
         "page": "views/background.html"
     },
     "permissions": [
+        "downloads",
         "storage",
         "tabs"
     ],

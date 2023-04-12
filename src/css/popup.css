@@ -285,13 +285,12 @@ code {
 }
 
 .grid {
-    padding: 4px;
+    padding: 8px 4px;
 }
 
 .grid > * {
     float: left;
-    width: 32.333%;
-    margin-right: 1%;
+    width: calc(33.2% - 2px);
 }
 
 .grid > :first-child {
