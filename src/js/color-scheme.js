@@ -9,7 +9,7 @@
 import { debug, storage } from './core.js';
 
 var media = window.matchMedia('(prefers-color-scheme: dark)'),
-    cKey = 'data:color-scheme',
+    cKey = 'color-scheme',
     scheme = 'default',
     syncing = false,
     d = document;
@@ -27,13 +27,13 @@ storage.addListener((key, value) => {
 
 (async function () {
     var current = 'default',
-        results = await storage.get(['data:color-scheme']);
+        results = await storage.get(['color-scheme']);
 
-    if (cKey in results) current = results['data:color-scheme'];
+    if (cKey in results) current = results['color-scheme'];
 
     setScheme(current);
 
-    if (d.readyState === 'complete') {
+    if (d.readyState === 'complete' || d.readyState === 'interactive') {
         updateInputs(true);
     } else {
         d.addEventListener('DOMContentLoaded', () => updateInputs(true));

@@ -107,7 +107,7 @@ function importStorage(file) {
 
                 if (debug) console.info('[importStorage]', { key, value }, new Date());
 
-                if (key === 'hosts' || key === 'url') {
+                if (key === 'hosts' || key === 'urls') {
                     var items = value.filter(onlyString);
 
                     if (items.length) imported[key] = items;
