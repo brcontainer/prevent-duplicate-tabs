@@ -122,13 +122,13 @@ function importStorage(file) {
 
             if (!Object.entries(imported).length) return Promise.resolve();
 
-            return getStorage('local', ['hosts', 'url']).then((local) => {
+            return getStorage('local', ['hosts', 'urls']).then((local) => {
                 if (imported.hosts && local.hosts) {
-                    imported = imported.hosts.concat(local.hosts);
+                    imported.hosts = imported.hosts.concat(local.hosts);
                 }
 
-                if (imported.url && local.url) {
-                    imported = imported.url.concat(local.url);
+                if (imported.urls && local.urls) {
+                    imported.urls = imported.urls.concat(local.urls);
                 }
 
                 return setStorage('local', imported);
