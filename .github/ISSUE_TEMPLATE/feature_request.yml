@@ -39,13 +39,3 @@ body:
     attributes:
       label: Describe alternatives you've considered
       description: A clear and concise description of any alternative solutions or features you've considered.
-  - type: markdown
-    id: context
-    attributes:
-      description: Add any other context about the problem here
-  - type: checkboxes
-    id: supported
-    attributes:
-      description: I confirm that the suggested feature requested is within the possibilities of what the Chrome extensions API allows.
-      options:
-        - label: I agree
