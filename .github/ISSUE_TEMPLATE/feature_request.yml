@@ -1,0 +1,54 @@
+name: Describe the feature request
+description: Suggest an idea for this project
+title: Feature request
+labels: ["enhancement"]
+assignees:
+  - brcontainer
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a new feature!
+
+        Before continuing we recommend that you understand that the suggested resources must be within the limits of the webextensions APIs, for example, tab information needs to be provided by API: https://developer.chrome.com/docs/extensions/reference/, if your new resource needs information that it does not have in the tab it is likely that it cannot be developed.
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: Does it depend on a specific browser?
+      multiple: true
+      options:
+        - Firefox
+        - Microsoft Edge
+        - Chrome
+        - Opera
+        - Safari
+  - type: textarea
+    id: related
+    attributes:
+      label: Related to a problem?
+      description: Is your feature request related to a problem? Please describe.
+  - type: textarea
+    id: wants
+    attributes:
+      label: Describe the solution you'd like
+      description: A clear and concise description of what you want to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Describe alternatives you've considered
+      description: A clear and concise description of any alternative solutions or features you've considered.
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here
+  - type: checkboxes
+    id: supported
+    attributes:
+      label: Will the API support this feature?
+      description: I confirm that the suggested feature requested is within the possibilities of what the Chrome extensions API allows (https://developer.chrome.com/docs/extensions/reference/).
+      options:
+        - label: I agree
+          required: true
