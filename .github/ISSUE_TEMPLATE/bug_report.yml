@@ -28,16 +28,6 @@ body:
         - Chrome
         - Opera
         - Safari
-  - type: markdown
-    id: steps
-    label: To Reproduce
-    description: Steps to reproduce the behavior
-    attributes:
-      placeholder: |
-        1. Go to '...'
-        2. Click on '....'
-        3. Scroll down to '....'
-        4. See error
   - type: input
     id: additional
     attributes:
@@ -82,8 +72,17 @@ body:
     validations:
       required: true
   - type: textarea
-    id: logs
+    id: context
     attributes:
-      label: Relevant log output
-      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
-      render: shell
+      label: Additional context
+      description: Add any other context about the problem here
+  - type: textarea
+    id: steps
+    label: To Reproduce
+    description: Steps to reproduce the behavior
+    attributes:
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
