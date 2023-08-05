@@ -34,10 +34,10 @@ body:
   - type: textarea
     id: context
     attributes:
-      label: Additional context
+      label: To Reproduce
       description: Add any other context about the problem here
   - type: textarea
-    id: context
+    id: steps
     attributes:
       label: Additional context
       description: Steps to reproduce the behavior
