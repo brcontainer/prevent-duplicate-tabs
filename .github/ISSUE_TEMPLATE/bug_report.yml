@@ -5,7 +5,7 @@ labels: ["bug", "triage"]
 assignees:
   - octocat
 body:
-  - type: markdown
+  - type: textarea
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report!
