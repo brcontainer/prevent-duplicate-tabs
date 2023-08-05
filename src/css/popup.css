@@ -507,7 +507,7 @@ html:target .row {
 }
 
 html:target #actions, #actions:not(.show) {
-    display: none;
+    /* display: none; */
 }
 
 .container-support, .group-support {

@@ -6,7 +6,7 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-import { main, debug, incognito, sendMessage, storage, supports, tabs } from './core.js';
+import { main, debug, manifest, incognito, sendMessage, storage, supports, tabs } from './core.js';
 
 var d = document,
     s = d.scrollingElement || d.body,
@@ -61,6 +61,20 @@ supports().then((results) => {
 
 inputImport.addEventListener('change', getImportedFile);
 
+setVars({ version: manifest.version });
+
+// storage.get(['hosts', 'urls']).then((responses) => {
+//     setVars({ version: manifest.version });
+// });
+
+tabs.query({ active: true, lastFocusedWindow: true }).then((tabs) => {
+    var tab = tabs[0];
+
+    if (!tab) return;
+
+    setVars({ url: tab.url, host: new URL(tab.url).host });
+});
+
 setTimeout(() => {
     s.style.transform = 'scale(2)';
 
@@ -72,6 +86,16 @@ setTimeout(() => {
         }, 20);
     }, 20);
 }, 10);
+
+function setVars(vars) {
+    var name, selector = 'var[name="' + Object.keys(vars).join('"],var[name="') + '"]';
+
+    d.querySelectorAll(selector).forEach((item) => {
+        name = item.getAttribute('name');
+
+        if (vars[name]) item.textContent = vars[name];
+    });
+}
 
 function anchorCreateTab(e, el) {
     if (el.nodeName !== 'A' && !el.closest('a[href]')) return;

@@ -318,16 +318,23 @@ function migrate() {
             legacyConfigs.includes(key)
         ) {
             try {
-                var data = localStorage.getItem(key);
+                var source = localStorage.getItem(key);
 
-                if (!data) continue;
+                if (!source) continue;
 
-                var item = JSON.parse(data);
+                var item = JSON.parse(source);
 
                 if (key === 'hosts' || key === 'urls') {
-                    if (Array.isArray(item.value)) {
-                        data[key] = item.value;
-                        ++total;
+                    var storage = item.value;
+
+                    if (!Array.isArray(storage) || !storage.length) continue;
+
+                    ++total;
+
+                    for (var x = 0, y = storage.length; x < y; x++) {
+                        var prefix = key === 'hosts' ? 'host' : 'url';
+
+                        data[prefix + ':' + match] = storage;
                     }
                 } else if ('value' in item) {
                     data[key] = item.value;
