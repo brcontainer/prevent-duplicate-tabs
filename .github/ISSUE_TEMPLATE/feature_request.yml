@@ -48,7 +48,7 @@ body:
     id: supported
     attributes:
       label: Will the API support this feature?
-      description: I confirm that the suggested feature requested is within the possibilities of what the Chrome extensions API allows.
+      description: I confirm that the suggested feature requested is within the possibilities of what the Chrome extensions API allows (https://developer.chrome.com/docs/extensions/reference/).
       options:
         - label: I agree
           required: true
