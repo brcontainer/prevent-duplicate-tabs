@@ -32,12 +32,17 @@ body:
     validations:
       required: true
   - type: textarea
-    id: context
+    id: steps
     attributes:
       label: To Reproduce
       description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
   - type: textarea
-    id: steps
+    id: context
     attributes:
       label: Additional context
       description: Add any other context about the problem here
