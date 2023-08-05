@@ -52,5 +52,3 @@ body:
     options:
       - label: I agree
         required: true
-    validations:
-      required: true
