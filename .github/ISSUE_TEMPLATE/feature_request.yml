@@ -44,3 +44,13 @@ body:
     attributes:
       label: Additional context
       description: Add any other context about the problem here
+- type: checkboxes
+  id: cat-preferences
+  attributes:
+    label: Will the API support this feature?
+    description: I confirm that the suggested feature requested is within the possibilities of what the Chrome extensions API allows.
+    options:
+      - label: I agree
+        required: true
+    validations:
+      required: true
