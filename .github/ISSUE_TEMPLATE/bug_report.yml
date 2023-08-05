@@ -32,13 +32,12 @@ body:
     validations:
       required: true
   - type: textarea
-    id: steps
-    label: To Reproduce
-    description: Steps to reproduce the behavior
-    validations:
-      required: true
-  - type: textarea
     id: context
     attributes:
       label: Additional context
       description: Add any other context about the problem here
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Steps to reproduce the behavior
