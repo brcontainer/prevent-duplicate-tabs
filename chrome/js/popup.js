@@ -25,6 +25,7 @@
         debugMode = true;
     }
 
+    /** @param {Event} e */
     function disableEvent(e) {
         e.preventDefault();
         return false;
@@ -35,6 +36,7 @@
         d.ondragstart = disableEvent;
     }
 
+    /** @param {string} message */
     function markdown(message) {
         return message
                 .replace(/(^|\s|[>])_(.*?)_($|\s|[<])/g, '$1<i>$2<\/i>$3')
@@ -43,6 +45,7 @@
                             .replace(/(^|\s|[>])\*(.*?)\*($|\s|[<])/g, '$1<strong>$2<\/strong>$3');
     }
 
+    /** @type {NodeListOf<HTMLElement>} */
     var locales = d.querySelectorAll("[data-i18n]");
 
     for (var i = locales.length - 1; i >= 0; i--) {
@@ -54,6 +57,7 @@
     d.addEventListener("click", function (e) {
         if (e.button !== 0) return;
 
+        /** @type {HTMLAnchorElement} */
         var el = e.target;
 
         if (el.nodeName !== "A") {
@@ -79,6 +83,7 @@
         });
     }
 
+    /** @type {HTMLElement} */
     var se = d.scrollingElement || d.body;
 
     setTimeout(function () {

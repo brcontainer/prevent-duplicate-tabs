@@ -52,3 +52,4 @@ Temporary Items
 *.pem
 *.psd
 chrome/*.zip
+node_modules

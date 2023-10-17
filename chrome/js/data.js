@@ -25,12 +25,17 @@
             "version": browser.runtime.getManifest().version
         };
 
+    /**
+     * @param {string[]} hosts
+     * @param {string[]} urls
+     */
     function applyIgnoredData(hosts, urls) {
         var http = isHttpRE.test(variables.url);
 
         if (!http) return;
 
         var actions = d.getElementById("actions"),
+            /** @type {NodeListOf<HTMLElement>} */
             ignoreds = d.querySelectorAll("[data-ignored]");
 
         actions.style.display = "block";
@@ -53,6 +58,7 @@
     }
 
     function applyEvents() {
+        /** @type {NodeListOf<HTMLButtonElement>} */
         var els = d.querySelectorAll("[data-ignored] .col:first-child > button");
 
         for (var i = els.length - 1; i >= 0; i--) {
@@ -60,7 +66,11 @@
         }
     }
 
+    /**
+     * @param {MouseEvent} e
+     */
     function addRemoveUrl(e) {
+        /** @type {HTMLElement} */
         var target = e.target;
 
         if (target && w.runtimeConnected()) {
@@ -96,10 +106,10 @@
             query = "var[name]";
         }
 
-        var vars = d.querySelectorAll(query);
+        var varsElements = d.querySelectorAll(query);
 
-        for (var i = vars.length - 1; i >= 0; i--) {
-            var el = vars[i], key = el.getAttribute("name"), value = variables[key];
+        for (var i = varsElements.length - 1; i >= 0; i--) {
+            var el = varsElements[i], key = el.getAttribute("name"), value = variables[key];
 
             if (key && value) {
                 el.textContent = value;

@@ -6,8 +6,14 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
+/**
+ * @param {boolean} darkPrefer
+ * @param {string} [userPrefer]
+ */
 function setColorScheme(darkPrefer, userPrefer) {
-    var disable, links = document.querySelectorAll("link[href*='-dark.css']");
+    var disable,
+        /** @type {NodeListOf<HTMLLinkElement>} */
+        links = document.querySelectorAll("link[href*='-dark.css']");
 
     switch (userPrefer || getStorage("data:color-scheme")) {
         case "dark":
@@ -40,6 +46,9 @@ function setColorScheme(darkPrefer, userPrefer) {
         }
     });
 
+    /**
+     * @param {MediaQueryListEvent} e
+     */
     media.onchange = function (e) {
         setColorScheme(e.matches);
     };

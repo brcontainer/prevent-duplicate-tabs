@@ -19,6 +19,9 @@
     var dataChange = { "data": u, "value": u };
     var dataEvent = new CustomEvent("change:data", { "detail": dataChange });
 
+    /**
+     * @param {Event} e
+     */
     function changeSwitch(e) {
         if (runtimeConnected()) {
             sync = true;
@@ -27,6 +30,9 @@
         }
     }
 
+    /**
+     * @param {Event} e
+     */
     function changeRadio(e) {
         if (runtimeConnected()) {
             sync = true;
@@ -36,7 +42,14 @@
         }
     }
 
+    /**
+     * @param {string} id
+     * @param {string} value
+     * @param {ExtraDataItem} response
+     * @param {boolean} trigger
+     */
     function updateRadio(id, value, response, trigger) {
+        /** @type {NodeListOf<HTMLInputElement>} */
         var els = d.querySelectorAll("input[type=radio][name='" + id + "']");
 
         for (var i = els.length - 1; i >= 0; i--) {
@@ -62,7 +75,9 @@
     }
 
     sendMessage({ "configs": true }, function (response) {
-        var current, toggles = d.querySelectorAll(".toggle input[type=checkbox]");
+        var current,
+            /** @type {NodeListOf<HTMLInputElement>} */
+            toggles = d.querySelectorAll(".toggle input[type=checkbox]");
 
         for (var i = toggles.length - 1; i >= 0; i--) {
             current = toggles[i];
@@ -90,12 +105,14 @@
         sync = false;
     });
 
+    /** @type {NodeListOf<HTMLInputElement>} */
     var toggles = d.querySelectorAll(".toggle input[type=checkbox]");
 
     for (var i = toggles.length - 1; i >= 0; i--) {
         toggles[i].addEventListener("change", changeSwitch);
     }
 
+    /** @type {NodeListOf<HTMLInputElement>} */
     var radios = d.querySelectorAll(".radio input[type=radio]");
 
     for (var i = radios.length - 1; i >= 0; i--) {
