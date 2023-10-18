@@ -35,7 +35,7 @@ It is also possible to configure whether you prefer to close the oldest tabs and
 Configuration | Description
 --- | ---
 `close olders` | Close the old tabs and keep the most recent one with the same URL
-`keep the tab that is active` | Don't close active tabs
+`keep the tab that is active` | Don't close active tabs. If disabled, when the active tab is closed, the browser will switch to the old tab
 
 ### URLs
 

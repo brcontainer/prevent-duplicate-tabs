@@ -177,8 +177,19 @@
 
         tabs = tabs.sort(sortTabs);
 
+        var activeWasClosed = false;
+
         for (var i = 1; i < j; i++) {
-            browser.tabs.remove(tabs[i].id, empty);
+            var tab = tabs[i];
+            if (tab.actived) {
+                activeWasClosed = true;
+            }
+            browser.tabs.remove(tab.id, empty);
+        }
+
+
+        if (activeWasClosed) {
+            chrome.tabs.update(tabs[0].id, { active: true });
         }
     }
 
