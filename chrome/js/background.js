@@ -184,7 +184,7 @@
         for (var key in localStorage) {
             if (key.indexOf("data:") === 0) {
                 data.push({
-                    "id": key.substr(5),
+                    "id": key.slice(5),
                     "value": getStorage(key)
                 });
             }
