@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "none",
+    "target": "es2016",
+    "checkJs": true,
+    "strictNullChecks": false,
+    "strictFunctionTypes": true,
+    "lib": ["ES2016", "DOM"],
+    "types": ["chrome"]
+  },
+  "files": ["globals.d.ts"],
+  "include": ["chrome"],
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ]
+}

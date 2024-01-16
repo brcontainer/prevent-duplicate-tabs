@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "prevent-duplicate-tabs",
+  "version": "0.7.11",
+  "description": "Prevents from automatically creating new tabs or repeating tabs when two or more tabs have the same addresses",
+  "keywords": [
+    "web-extension"
+  ],
+  "author": "Guilherme Nascimento",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chrome": "^0.0.247"
+  }
+}

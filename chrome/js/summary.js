@@ -9,6 +9,10 @@
 (function (w, d, u) {
     "use strict";
 
+    /**
+     * @param {HTMLDetailsElement} widget
+     * @param {`details:${string}`} key
+     */
     function setEvent(widget, key) {
         widget.addEventListener("toggle", function () {
             setStorage(key, widget.open);
@@ -20,6 +24,7 @@
     for (var i = details.length - 1; i >= 0; i--) {
         var widget = details[i],
             summary = widget.querySelector("[data-i18n]"),
+            /** @type {`details:${string}`} */
             key = "details:" + summary.getAttribute("data-i18n"),
             stored = getStorage(key);
 

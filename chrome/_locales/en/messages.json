@@ -45,7 +45,7 @@
     "message": "Preserve active tab"
   },
   "keep_active_description": {
-    "message": "Don't close active tabs"
+    "message": "Don't close active tabs. If disabled, when the active tab is closed, the browser will switch to the old tab"
   },
   "urls_title": {
     "message": "URLs"

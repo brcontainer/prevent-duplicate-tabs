@@ -6,6 +6,16 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
+/**
+ * @typedef {"attach" | "create" | "replace" | "update"} TabChangeType
+ */
+
+/**
+ * @typedef TabGroupItem
+ * @prop {number} id
+ * @prop {boolean} actived
+ */
+
 (function (w, u) {
     "use strict";
 
@@ -15,13 +25,16 @@
         w.browser = browser;
     }
 
+    /** @type {IgnoredStorage | undefined} */
     var ignoreds,
+        /** @type {ReturnType<typeof setTimeout>} */
         timeout,
         isHttpRE = /^https?:\/\/\w/i,
         isNewTabRE = /^(about:blank|chrome:\/+?(newtab|startpageshared)\/?)$/i,
         removeHashRE = /#[\s\S]+?$/,
         removeQueryRE = /\?[\s\S]+?$/,
         browser = w.browser,
+        /** @type {ConfigStorage} */
         configs = {
             "turnoff": false,
             "old": true,
@@ -43,18 +56,27 @@
 
     var legacyConfigs = Object.keys(configs);
 
+    /**
+     * @param {TabChangeType} type
+     */
     function checkTabs(type) {
         if (configs[type]) {
             browser.tabs.query(configs.windows ? { "lastFocusedWindow": true } : {}, preGetTabs);
         }
     }
 
+    /**
+     * @param {chrome.tabs.Tab[]} tabs
+     */
     function preGetTabs(tabs) {
         if (timeout) clearTimeout(timeout);
 
         timeout = setTimeout(getTabs, 50, tabs);
     }
 
+    /**
+     * @param {string} url
+     */
     function isIgnored(url) {
         return ignoreds && (ignoreds.urls.indexOf(url) !== -1 || ignoreds.hosts.indexOf(new URL(url).host) !== -1);
     }
@@ -70,12 +92,15 @@
         );
     }
 
+    /**
+     * @param {chrome.tabs.Tab[]} tabs
+     */
     function getTabs(tabs) {
         if (isDisabled()) return;
 
         var tab,
-            url,
-            groupTabs = {},
+            /** @type {string} */ url,
+            /** @type {{[url: string]: TabGroupItem[]}} */ groupTabs = {},
             onlyHttp = configs.http,
             ignoreHash = !configs.hash,
             ignoreQuery = !configs.query,
@@ -130,6 +155,10 @@
         groupTabs = tabs = null;
     }
 
+    /**
+     * @param {TabGroupItem} tab
+     * @param {TabGroupItem} nextTab
+     */
     function sortTabs(tab, nextTab) {
         if (configs.active && (tab.actived || nextTab.actived)) {
             return tab.actived ? -1 : 1;
@@ -138,6 +167,9 @@
         return configs.old && tab.id < nextTab.id ? 1 : -1;
     }
 
+    /**
+     * @param {TabGroupItem[]} tabs
+     */
     function closeTabs(tabs) {
         var j = tabs.length;
 
@@ -145,18 +177,46 @@
 
         tabs = tabs.sort(sortTabs);
 
+        var activeWasClosed = false;
+
         for (var i = 1; i < j; i++) {
-            browser.tabs.remove(tabs[i].id, empty);
+            var tab = tabs[i];
+            if (tab.actived) {
+                activeWasClosed = true;
+            }
+            browser.tabs.remove(tab.id, empty);
+        }
+
+
+        if (activeWasClosed) {
+            chrome.tabs.update(tabs[0].id, { active: true });
         }
     }
 
+    /**
+     * @typedef TabQuery
+     * @prop {number} [id]
+     * @prop {number} [tabId]
+     * @prop {string} [url]
+     */
+
+    /**
+     * @param {TabChangeType} type
+     * @param {number} timeout
+     */
     function createEvent(type, timeout) {
+        /**
+         * @param {TabQuery | TabQuery & number} tab
+         */
         return function (tab) {
             setTimeout(checkTabs, timeout, type);
             setTimeout(toggleIgnoreIcon, 100, tab.id || tab.tabId || tab, tab.url);
         };
     }
 
+    /**
+     * @return {typeof configs}
+     */
     function getConfigs() {
         return {
             "turnoff": getStorage("turnoff", configs.turnoff),
@@ -184,7 +244,7 @@
         for (var key in localStorage) {
             if (key.indexOf("data:") === 0) {
                 data.push({
-                    "id": key.substr(5),
+                    "id": key.slice(5),
                     "value": getStorage(key)
                 });
             }
@@ -203,8 +263,14 @@
         };
     }
 
+    /**
+     * @param {'host' | 'url'} type
+     * @param {boolean} ignore
+     * @param {string} value
+     */
     function toggleIgnoreData(type, ignore, value) {
         var changed = true,
+            /** @type {'hosts' | 'urls'} */
             storage = type + "s",
             contents = getStorage(storage);
 
@@ -228,6 +294,10 @@
         contents = null;
     }
 
+    /**
+     * @param {number} tab
+     * @param {string} [url]
+     */
     function toggleIgnoreIcon(tab, url) {
         if (!url) {
             browser.tabs.get(tab, function (tab) {
@@ -252,6 +322,9 @@
         }
     }
 
+    /**
+     * @param {chrome.tabs.Tab[]} tabs
+     */
     function updateCurrentIcon(tabs) {
         if (tabs && tabs[0]) toggleIgnoreIcon(tabs[0].id, tabs[0].url);
     }
@@ -287,6 +360,7 @@
             setStorage(request.setup, request.enable);
             browser.tabs.query({ "active": true, "lastFocusedWindow": true }, updateCurrentIcon);
         } else if (request.data) {
+            /** @type {`data:${string}`} */
             var key = "data:" + request.data;
             configs[key] = request.value;
             setStorage(key, request.value);
