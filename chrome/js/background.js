@@ -133,6 +133,8 @@
     function sortTabs(tab, nextTab) {
         if (configs.active && (tab.actived || nextTab.actived)) {
             return tab.actived ? -1 : 1;
+        } else if (!configs.old) {
+            return tab.actived ? 1 : -1;
         }
 
         return configs.old && tab.id < nextTab.id ? 1 : -1;
