@@ -1,3 +1,13 @@
+/*
+ * Prevent Duplicate Tabs
+ * Copyright (c) 2025 Guilherme Nascimento (brcontainer@yahoo.com.br)
+ * Released under the MIT license
+ *
+ * https://github.com/brcontainer/prevent-duplicate-tabs
+ */
+
+'use strict';
+
 (function (w) {
     var main, userFill = false;
 
