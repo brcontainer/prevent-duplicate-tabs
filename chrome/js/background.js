@@ -15,13 +15,15 @@
         w.browser = browser;
     }
 
-    var ignoreds,
+    var ignoreds = { "urls": [], "hosts": [] },
+        extras = {},
         timeout,
         isHttpRE = /^https?:\/\/\w/i,
-        isNewTabRE = /^(about:blank|chrome:\/+?(newtab|startpageshared)\/?)$/i,
+        isNewTabRE = /^(about:blank|(chrome|edge):\/+?(newtab|startpageshared)\/?)$/i,
         removeHashRE = /#[\s\S]+?$/,
         removeQueryRE = /\?[\s\S]+?$/,
         browser = w.browser,
+        storage = browser.storage.local,
         configs = {
             "turnoff": false,
             "old": true,
@@ -40,8 +42,40 @@
             "containers": true
         };
 
+    function empty() {
+        // Reading lastError stops "Unchecked runtime.lastError" warnings
+        void browser.runtime.lastError;
+    }
 
-    var legacyConfigs = Object.keys(configs);
+    function setStorage(key, value) {
+        var item = {};
+        item[key] = value;
+        return storage.set(item);
+    }
+
+    // A service worker is stopped when idle and started again on the next
+    // event, so settings are loaded from storage every time it starts
+    var ready = storage.get(null).then(function (stored) {
+        if (!stored.firstrun) {
+            stored = Object.assign({ "firstrun": true }, configs, stored);
+            return storage.set(stored).then(function () { return stored; });
+        }
+
+        return stored;
+    }).then(function (stored) {
+        for (var key in stored) {
+            if (key in configs) {
+                configs[key] = stored[key];
+            } else if (key.indexOf("data:") === 0) {
+                extras[key.substr(5)] = stored[key];
+            }
+        }
+
+        ignoreds = {
+            "urls": Array.isArray(stored.urls) ? stored.urls : [],
+            "hosts": Array.isArray(stored.hosts) ? stored.hosts : []
+        };
+    });
 
     function checkTabs(type) {
         if (configs[type]) {
@@ -56,7 +90,11 @@
     }
 
     function isIgnored(url) {
-        return ignoreds && (ignoreds.urls.indexOf(url) !== -1 || ignoreds.hosts.indexOf(new URL(url).host) !== -1);
+        try {
+            return ignoreds.urls.indexOf(url) !== -1 || ignoreds.hosts.indexOf(new URL(url).host) !== -1;
+        } catch (ee) {
+            return false;
+        }
     }
 
     function isDisabled() {
@@ -89,7 +127,7 @@
 
             if (
                 tab.pinned ||
-                url === "" ||
+                !url ||
                 isNewTabRE.test(url) ||
                 (ignoreIncognitos && tab.incognito) ||
                 (onlyHttp && !isHttpRE.test(url)) ||
@@ -152,85 +190,49 @@
 
     function createEvent(type, timeout) {
         return function (tab) {
-            setTimeout(checkTabs, timeout, type);
-            setTimeout(toggleIgnoreIcon, 100, tab.id || tab.tabId || tab, tab.url);
+            ready.then(function () {
+                setTimeout(checkTabs, timeout, type);
+                setTimeout(toggleIgnoreIcon, 100, tab.id || tab.tabId || tab, tab.url);
+            });
         };
     }
 
     function getConfigs() {
-        return {
-            "turnoff": getStorage("turnoff", configs.turnoff),
-            "old": getStorage("old", configs.old),
-            "active": getStorage("active", configs.active),
-            "start": getStorage("start", configs.start),
-            "replace": getStorage("replace", configs.replace),
-            "update": getStorage("update", configs.update),
-            "create": getStorage("create", configs.create),
-            "attach": getStorage("attach", configs.attach),
-            "datachange": getStorage("datachange", configs.datachange),
-            "http": getStorage("http", configs.http),
-            "query": getStorage("query", configs.query),
-            "hash": getStorage("hash", configs.hash),
-            "incognito": getStorage("incognito", configs.incognito),
-            "windows": getStorage("windows", configs.windows),
-            "containers": getStorage("containers", configs.containers)
-        };
+        return Object.assign({}, configs);
     }
 
-    function getExtraData()
-    {
+    function getExtraData() {
         var data = [];
 
-        for (var key in localStorage) {
-            if (key.indexOf("data:") === 0) {
-                data.push({
-                    "id": key.substr(5),
-                    "value": getStorage(key)
-                });
-            }
+        for (var key in extras) {
+            data.push({ "id": key, "value": extras[key] });
         }
 
         return data;
     }
 
-    function getIgnored() {
-        var hosts = getStorage("hosts"),
-            urls = getStorage("urls");
-
-        return ignoreds = {
-            "urls": Array.isArray(urls) ? urls : [],
-            "hosts": Array.isArray(hosts) ? hosts : []
-        };
-    }
-
     function toggleIgnoreData(type, ignore, value) {
-        var changed = true,
-            storage = type + "s",
-            contents = getStorage(storage);
-
-        if (!Array.isArray(contents)) contents = [];
-
-        var index = contents.indexOf(value);
+        var key = type + "s",
+            contents = ignoreds[key].slice(),
+            index = contents.indexOf(value);
 
         if (ignore && index === -1) {
             contents.push(value);
         } else if (!ignore && index !== -1) {
             contents.splice(index, 1);
         } else {
-            changed = false;
+            return;
         }
 
-        if (changed) {
-            setStorage(storage, contents);
-            ignoreds[storage] = contents;
-        }
-
-        contents = null;
+        ignoreds[key] = contents;
+        setStorage(key, contents);
     }
 
     function toggleIgnoreIcon(tab, url) {
         if (!url) {
             browser.tabs.get(tab, function (tab) {
+                if (browser.runtime.lastError) return;
+
                 if (tab) {
                     var url = tab.url || tab.pendingUrl;
                     setTimeout(toggleIgnoreIcon, url ? 0 : 500, tab.id, url);
@@ -245,10 +247,10 @@
                 icon = "/images/icon.png";
             }
 
-            browser.browserAction.setIcon({
+            browser.action.setIcon({
                 "tabId": tab,
                 "path": icon
-            });
+            }, empty);
         }
     }
 
@@ -256,18 +258,18 @@
         if (tabs && tabs[0]) toggleIgnoreIcon(tabs[0].id, tabs[0].url);
     }
 
-    if (!getStorage("firstrun")) {
-        for (var config in configs) {
-            setStorage(config, configs[config]);
-        }
+    // "start" event: runs when the browser launches, not on every service worker wake-up
+    browser.runtime.onStartup.addListener(function () {
+        ready.then(function () {
+            setTimeout(checkTabs, 100, "start");
+        });
+    });
 
-        setStorage("firstrun", true);
-    } else {
-        configs = getConfigs();
-    }
-
-    setTimeout(checkTabs, 100, "start");
-    setTimeout(getIgnored, 200);
+    browser.runtime.onInstalled.addListener(function () {
+        ready.then(function () {
+            setTimeout(checkTabs, 100, "start");
+        });
+    });
 
     browser.tabs.onAttached.addListener(createEvent("attach", 500));
     browser.tabs.onCreated.addListener(createEvent("create", 10));
@@ -275,53 +277,45 @@
     browser.tabs.onUpdated.addListener(createEvent("update", 10));
 
     browser.tabs.onActivated.addListener(function (tab) {
-        toggleIgnoreIcon(tab.tabId);
+        ready.then(function () {
+            toggleIgnoreIcon(tab.tabId);
+        });
     });
 
     browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-        if (request.ignore !== u) {
-            toggleIgnoreData(request.type, request.ignore, request.value);
-            toggleIgnoreIcon(request.tabId, request.url);
-        } else if (request.setup) {
-            configs[request.setup] = request.enable;
-            setStorage(request.setup, request.enable);
-            browser.tabs.query({ "active": true, "lastFocusedWindow": true }, updateCurrentIcon);
-        } else if (request.data) {
-            var key = "data:" + request.data;
-            configs[key] = request.value;
-            setStorage(key, request.value);
-        } else if (request.extra) {
-            sendResponse(getExtraData());
-        } else if (request.configs) {
-            sendResponse(getConfigs());
-        } else if (request.ignored) {
-            sendResponse(getIgnored());
-        }
-
-        if (request.setup || request.ignore !== u) {
-            if (configs.datachange) setTimeout(checkTabs, 10, "datachange");
-        }
-    });
-
-    setTimeout(async function () {
-        var store = {};
-
-        for (var i = 0, j = localStorage.length; i < j; i++) {
-            var key = localStorage.key(i);
-
-            if (key === "urls" || key.indexOf("data:") === 0 || legacyConfigs.includes(key)) {
-                try {
-                    var item = JSON.parse(localStorage.getItem(key));
-
-                    if (key === "urls" && Array.isArray(item.value)) {
-                        store[key] = item.value;
-                    } else if ("value" in item) {
-                        store[key] = item.value;
-                    }
-                } catch (ee) {}
+        ready.then(function () {
+            if (request.ignore !== u) {
+                toggleIgnoreData(request.type, request.ignore, request.value);
+                toggleIgnoreIcon(request.tabId, request.url);
+                sendResponse();
+            } else if (request.setup) {
+                configs[request.setup] = request.enable;
+                setStorage(request.setup, request.enable);
+                browser.tabs.query({ "active": true, "lastFocusedWindow": true }, updateCurrentIcon);
+                sendResponse();
+            } else if (request.data) {
+                extras[request.data] = request.value;
+                setStorage("data:" + request.data, request.value);
+                sendResponse();
+            } else if (request.extra) {
+                sendResponse(getExtraData());
+            } else if (request.configs) {
+                sendResponse(getConfigs());
+            } else if (request.ignored) {
+                sendResponse(ignoreds);
+            } else {
+                sendResponse();
             }
-        }
 
-        await browser.storage.local.set(store);
-    }, 1000);
-})(window);
+            if (request.setup || request.ignore !== u) {
+                if (configs.datachange) setTimeout(checkTabs, 10, "datachange");
+            }
+        }).catch(function () {
+            // Always answer so the sender's callback is not left waiting
+            sendResponse();
+        });
+
+        // Keeps the message channel open for the async sendResponse above
+        return true;
+    });
+})(self);

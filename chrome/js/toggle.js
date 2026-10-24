@@ -32,6 +32,8 @@
             sync = true;
 
             sendMessage({ "data": this.name, "value": this.value });
+            // The popup keeps its own copy, the service worker has no localStorage
+            setStorage("data:" + this.name, this.value);
             triggerEvent(this.name, this.value);
         }
     }

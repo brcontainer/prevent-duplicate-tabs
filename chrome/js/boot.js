@@ -6,7 +6,10 @@
  * https://github.com/brcontainer/prevent-duplicate-tabs
  */
 
-function empty() {}
+function empty() {
+    // Reading lastError stops "Unchecked runtime.lastError" warnings
+    void (self.chrome && chrome.runtime && chrome.runtime.lastError);
+}
 
 function setStorage(key, value) {
     localStorage.setItem(key, JSON.stringify({ "value": value }));
