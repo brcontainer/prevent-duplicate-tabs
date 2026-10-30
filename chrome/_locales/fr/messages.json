@@ -3,16 +3,16 @@
     "message": "Éteindre"
   },
   "title": {
-    "message": "paramètres"
+    "message": "Paramètres"
   },
   "actions_title": {
     "message": "Actions"
   },
   "ignore_host": {
-    "message": "Ignorer cet hôte"
+    "message": "Ignorer ce domaine"
   },
   "reconsider_host": {
-    "message": "Reconsidérer cet hôte"
+    "message": "Reconsidérer ce domaine"
   },
   "ignore_host_description": {
     "message": "Empêcher les onglets en double dont l'adresse contient le domaine {host}"
@@ -39,13 +39,13 @@
     "message": "Fermer les anciens"
   },
   "close_olders_description": {
-    "message": "Fermez les anciens onglets et conservez le plus récent avec le même URL"
+    "message": "Ferme les anciens onglets et conserve le plus récent avec la même URL"
   },
   "keep_active_title": {
     "message": "Conserver l'onglet actif"
   },
   "keep_active_description": {
-    "message": "Ne fermez pas les onglets actifs"
+    "message": "Ne ferme pas les onglets actifs"
   },
   "urls_title": {
     "message": "URLs"
@@ -54,19 +54,19 @@
     "message": "Seulement HTTP"
   },
   "only_http_description": {
-    "message": "Fermer uniquement les onglets avec des URL HTTP"
+    "message": "Fermer uniquement les onglets avec des URL HTTP(s)"
   },
   "querystring_title": {
-    "message": "querystring"
+    "message": "Querystring"
   },
   "querystring_description": {
-    "message": "S'il est désactivé (éteindre), il ignore querystring dans les URL, alors ce `http://foo/bar?baz` sera équivalent à `http://foo/bar`"
+    "message": "Si désactivé, ignore les querystring dans les URL. `http://foo/bar?baz` sera alors équivalent à `http://foo/bar`"
   },
   "hash_title": {
     "message": "hash"
   },
   "hash_description": {
-    "message": "S'il est désactivé (éteindre), il ignore querystring dans les URL, alors ce `http://foo/bar#baz` sera équivalent à `http://foo/bar`"
+    "message": "Si désactivé, ignore les hash dans les URL. `http://foo/bar#baz` sera alors équivalent à `http://foo/bar`"
   },
   "others_title": {
     "message": "Autres"
@@ -75,19 +75,19 @@
     "message": "Incognito"
   },
   "incognito_description": {
-    "message": "Vérifier les onglets répétés en mode privé (vous oblige à activer manuellement dans votre navigateur)"
+    "message": "Vérifie les onglets répétés en navigation privé (nécessite d'activer manuellement dans votre navigateur)"
   },
   "windows_title": {
     "message": "Fenêtre"
   },
   "windows_description": {
-    "message": "Fermer uniquement les onglets répétés de la même fenêtre (recommandé)"
+    "message": "Ferme uniquement les onglets répétés de la même fenêtre (recommandé)"
   },
   "containers_title": {
     "message": "Containers"
   },
   "containers_description": {
-    "message": "S'il est activé, il ignorera les onglets répétés dans différents «containers», les traitant comme s'il s'agissait d'onglets non répétés (conseillé)"
+    "message": "Si activé, ignore les onglets répétés dans différents «&nbsp;containers&:nbsp;», les traitant comme s'il s'agissait d'onglets non répétés (recommandé)"
   },
   "events_title": {
     "message": "Événements"
@@ -96,49 +96,49 @@
     "message": "Début"
   },
   "start_event_description": {
-    "message": "Fermez les onglets répétés lorsque votre navigateur est lancé"
+    "message": "Ferme les onglets répétés au lancement du navigateur"
   },
   "update_event_title": {
     "message": "update"
   },
   "update_event_description": {
-    "message": "Fermer les onglets répétés lorsqu'un onglet est mis à jour"
+    "message": "Ferme les onglets répétés lorsqu'un onglet est mis à jour"
   },
   "create_event_title": {
     "message": "create"
   },
   "create_event_description": {
-    "message": "Fermer les onglets répétés lorsqu'un nouvel onglet est créé"
+    "message": "Ferme les onglets répétés lorsqu'un nouvel onglet est créé"
   },
   "replace_event_title": {
     "message": "replace"
   },
   "replace_event_description": {
-    "message": "Fermez les onglets répétés lorsqu'un onglet est remplacé par un autre en raison d'un prérendu ou instantané"
+    "message": "Ferme les onglets répétés lorsqu'un onglet est remplacé par un autre en raison d'un prérendu ou instantané"
   },
   "attached_event_title": {
     "message": "attach"
   },
   "attached_event_description": {
-    "message": "Fermez les onglets répétés lorsqu'un onglet est attaché à une autre fenêtre ou détaché (création d'une nouvelle fenêtre)."
+    "message": "Ferme les onglets répétés lorsqu'un onglet est attaché à une autre fenêtre ou détaché (création d'une nouvelle fenêtre)."
   },
   "datachange_event_title": {
     "message": "datachange"
   },
   "datachange_event_description": {
-    "message": "Fermez les onglets répétés lorsque vous modifiez la configuration de \"ordre de tri\", \"URLs\", \"autres\" et \"événements\""
+    "message": "Ferme les onglets répétés lorsque vous modifiez la configuration de \"ordre de tri\", \"URLs\", \"autres\" et \"événements\""
   },
   "color_scheme_title": {
     "message": "Choisir un thème"
   },
   "color_scheme_dark": {
-    "message": "dark"
+    "message": "sombre"
   },
   "color_scheme_device": {
-    "message": "device"
+    "message": "appareil"
   },
   "color_scheme_light": {
-    "message": "light"
+    "message": "clair"
   },
   "version": {
     "message": "Version {version}"
